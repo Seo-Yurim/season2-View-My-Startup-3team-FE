@@ -1,7 +1,6 @@
 import styles from './InvestmentPasswordFail.module.css';
 import X from '../../assets/ic_x.svg';
 import Modal from '../Common/Modal';
-import { useEffect } from 'react';
 
 export default function InvestmentPasswordFail({ setFail }) {
   const handleCloseFailModal = () => {
