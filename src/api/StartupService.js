@@ -1,12 +1,12 @@
-const STARTUP_API_BASE_URL = "https://season2-view-my-startup-3team-be.onrender.com/api/startups";
+const STARTUP_API_BASE_URL = 'http://3.39.23.207:3000/api/startups';
 
 // Article 목록 가져오기
 export async function getStartupList(
   page = 1,
   limit = 10,
-  order = "simInvest",
-  sort = "desc",
-  keyword = ""
+  order = 'simInvest',
+  sort = 'desc',
+  keyword = ''
 ) {
   try {
     const params = new URLSearchParams({
@@ -14,14 +14,14 @@ export async function getStartupList(
       limit,
       order,
       sort,
-      keyword,
+      keyword
     });
     const response = await fetch(
       `${STARTUP_API_BASE_URL}?${params.toString()}`
     );
     if (!response.ok) {
       const errorMessage = await response.text();
-      console.log("errMessage", errorMessage);
+      console.log('errMessage', errorMessage);
       throw new Error(`Error: ${response.status}`);
     }
     return await response.json();
