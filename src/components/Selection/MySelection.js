@@ -44,7 +44,7 @@ export default function MySelection() {
   const [sortOptionBy, setSortOptionBy] = useState('revenue_desc');
 
   let sessionId = sessionStorage.getItem('sessionId');
-  const API_HOST = 'https://season2-view-my-startup-3team-be.onrender.com';
+  const API_HOST = 'http://3.39.23.207:3000';
 
   const fetchExistingSelections = useCallback(async () => {
     try {

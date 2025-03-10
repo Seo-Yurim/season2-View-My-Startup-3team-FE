@@ -1,5 +1,4 @@
-const STARTUP_API_BASE_URL =
-  'https://season2-view-my-startup-3team-be.onrender.com/api/startups';
+const STARTUP_API_BASE_URL = 'http://3.39.23.207:3000/api/startups';
 
 export async function getStartup(id) {
   try {
