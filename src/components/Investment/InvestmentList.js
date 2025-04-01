@@ -1,36 +1,10 @@
 import styles from './InvestmentList.module.css';
 import noImageIcon from '../../assets/no-image.png';
-import { useState } from 'react';
 import { formatAmount } from '../../utils/formatAmount';
-import Pagination from '../Common/Pagination';
 import { useNavigate } from 'react-router-dom';
-import { useGetInvestmentList } from '../../api/queries/investmentQuery.js';
 
-export default function InvestmentList() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
+export default function InvestmentList({ list }) {
   const navigate = useNavigate();
-  const [params, setParams] = useState({
-    order: 'sim_invest',
-    sort: 'desc'
-  });
-
-  const { data, isLoading, isError } = useGetInvestmentList({
-    currentPage,
-    pageSize,
-    order: params.order,
-    sort: params.sort
-  });
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error..</div>;
-
-  const list = data.list;
-  const totalPages = Math.ceil(data.totalCount / pageSize);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
 
   const handleStartupClick = (item) => {
     navigate(`/startup/${item.startup.id}`);
@@ -81,11 +55,6 @@ export default function InvestmentList() {
           </tbody>
         </table>
       </div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
     </div>
   );
 }
