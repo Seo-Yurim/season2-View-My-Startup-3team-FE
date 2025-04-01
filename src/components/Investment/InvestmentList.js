@@ -5,10 +5,10 @@ import { formatAmount } from '../../utils/formatAmount';
 import Pagination from '../Common/Pagination';
 import { useNavigate } from 'react-router-dom';
 import { useGetInvestmentList } from '../../api/queries/investmentQuery.js';
-import { getInvestmentTotal } from '../../api/InvestmentService.js';
 
 export default function InvestmentList() {
   const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
   const navigate = useNavigate();
   const [params, setParams] = useState({
     order: 'sim_invest',
@@ -17,6 +17,7 @@ export default function InvestmentList() {
 
   const { data, isLoading, isError } = useGetInvestmentList({
     currentPage,
+    pageSize,
     order: params.order,
     sort: params.sort
   });
@@ -25,7 +26,7 @@ export default function InvestmentList() {
   if (isError) return <div>Error..</div>;
 
   const list = data.list;
-  const totalCount = getInvestmentTotal();
+  const totalPages = Math.ceil(data.totalCount / pageSize);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -82,7 +83,7 @@ export default function InvestmentList() {
       </div>
       <Pagination
         currentPage={currentPage}
-        totalPages={totalCount}
+        totalPages={totalPages}
         onPageChange={handlePageChange}
       />
     </div>

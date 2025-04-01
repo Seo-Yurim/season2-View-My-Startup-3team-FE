@@ -36,11 +36,6 @@ export async function getInvestmentList({ page, limit, order, sort }) {
   return res.data;
 }
 
-export async function getInvestmentTotal() {
-  const res = await get('/api/investments');
-  return res.data.totalCount;
-}
-
 export async function createInvestment(investment) {
   const res = await post(`/api/investments`, investment);
   return res.data;
