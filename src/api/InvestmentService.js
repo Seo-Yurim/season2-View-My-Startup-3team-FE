@@ -31,8 +31,8 @@ async function remove(url, body) {
   return instance.delete(url, body);
 }
 
-export async function getInvestmentList({ page, limit, orderBy }) {
-  const res = await get(`/api/investments`, { page, limit, orderBy });
+export async function getInvestmentList({ page, limit, order, sort }) {
+  const res = await get(`/api/investments`, { page, limit, order, sort });
   return res.data;
 }
 

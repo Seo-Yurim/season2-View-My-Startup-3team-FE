@@ -1,69 +1,32 @@
 import styles from './InvestmentList.module.css';
 import noImageIcon from '../../assets/no-image.png';
-import { getInvestmentList } from '../../api/InvestmentService';
-import useQuery from '../../hooks/useQuery';
-import { useState, useCallback } from 'react';
-import { useSort } from '../../contexts/SortContext';
+import { useState } from 'react';
 import { formatAmount } from '../../utils/formatAmount';
 import Pagination from '../Common/Pagination';
 import { useNavigate } from 'react-router-dom';
+import { useGetInvestmentList } from '../../api/queries/investmentQuery.js';
 
 export default function InvestmentList() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
-  const { orderBy } = useSort();
   const navigate = useNavigate();
-
-  // 데이터 불러오기
-  const fetchInvestmentList = useCallback(async () => {
-    return await getInvestmentList({
-      limit: 1000
-    });
-  }, []);
-
-  const [data, isLoading, error] = useQuery(fetchInvestmentList, []);
-
-  // 조건부 렌더링
-  if (isLoading) return;
-  if (error) return <div>Error: {error.message}</div>;
-  if (!data || data.list.length === 0)
-    return <div className={styles.null}>아직 투자 현황이 없어요.</div>;
-
-  // 데이터 정렬
-  const sortedList = data.list.sort((a, b) => {
-    const sortValues = {
-      sim_invest_asc: a.startup.simInvest - b.startup.simInvest,
-      sim_invest_desc: b.startup.simInvest - a.startup.simInvest,
-      actual_invest_asc: a.startup.actualInvest - b.startup.actualInvest,
-      actual_invest_desc: b.startup.actualInvest - a.startup.actualInvest
-    };
-
-    return sortValues[orderBy] || 0;
+  const [params, setParams] = useState({
+    order: 'sim_invest',
+    sort: 'desc'
   });
 
-  // 순위 계산
-  let rank = null;
-  let previousValue = null;
-
-  const rankedList = sortedList.map((item, index) => {
-    const currentValue =
-      item.startup[orderBy.includes('sim') ? 'simInvest' : 'actualInvest'];
-
-    if (previousValue === currentValue) {
-      return { ...item, rank };
-    } else {
-      rank = index + 1; // 전체 데이터에 대한 순위
-      previousValue = currentValue;
-      return { ...item, rank };
-    }
+  const { data, isLoading, isError } = useGetInvestmentList({
+    currentPage,
+    pageSize,
+    order: params.order,
+    sort: params.sort
   });
 
-  // 페이지네이션
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error..</div>;
+
+  const list = data.list;
   const totalPages = Math.ceil(data.totalCount / pageSize);
-  const currentList = rankedList.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -91,7 +54,7 @@ export default function InvestmentList() {
             </tr>
           </thead>
           <tbody>
-            {currentList.map((item) => (
+            {list.map((item) => (
               <tr
                 key={item.id}
                 onClick={() => handleStartupClick(item)}
