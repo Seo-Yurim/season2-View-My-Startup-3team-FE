@@ -41,7 +41,9 @@ export default function InvestmentDropdown({ setSortOrder }) {
   return (
     <div className={styles.menu} ref={dropdownRef}>
       <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
-        {currentLabel || Object.keys(options)[0]}
+        <p className={styles.currentLabel}>
+          {currentLabel || Object.keys(options)[0]}
+        </p>
         <img className={styles.icon} src={arrowDown} alt="드롭다운 아이콘" />
       </div>
       {isOpen && (
