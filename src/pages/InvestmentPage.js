@@ -34,10 +34,6 @@ export default function InvestmentPage() {
     }));
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
   return (
     <div>
       <InvestmentHeader setSortOrder={handleSortChange} />
