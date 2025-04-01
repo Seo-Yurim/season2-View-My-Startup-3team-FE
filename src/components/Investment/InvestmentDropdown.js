@@ -1,11 +1,10 @@
 import styles from './InvestmentDropdown.module.css';
 import arrowDown from '../../assets/ic_toggle.svg';
 import { useState, useRef, useEffect } from 'react';
-import { useSort } from '../../contexts/SortContext';
 
 export default function InvestmentDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const { orderBy, setOrderBy } = useSort();
+  const [orderBy, setOrderBy] = useState();
   const dropdownRef = useRef(null);
 
   // 메뉴 외부 클릭 감지
