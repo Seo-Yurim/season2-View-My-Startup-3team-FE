@@ -1,8 +1,9 @@
 import InvestmentList from '../components/Investment/InvestmentList';
-import InvestmentHeader from '../components/Investment/InvestmentHeader';
 import { useState } from 'react';
 import { useGetInvestmentList } from '../api/queries/investmentQuery';
 import Pagination from '../components/Common/Pagination';
+import Dropdown from '../components/Common/Dropdown/Dropdown';
+import styles from '../styles/InvestmentPage.module.css';
 
 export default function InvestmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,7 +37,10 @@ export default function InvestmentPage() {
 
   return (
     <div>
-      <InvestmentHeader setSortOrder={handleSortChange} />
+      <div className={styles.header}>
+        <h1>투자 현황</h1>
+        <Dropdown setSortOrder={handleSortChange} />
+      </div>
       <InvestmentList list={list} />
       <Pagination
         currentPage={currentPage}

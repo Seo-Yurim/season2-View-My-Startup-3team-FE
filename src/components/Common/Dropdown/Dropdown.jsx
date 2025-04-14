@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Dropdown.module.css";
 import arrowDown from "../../../assets/ic_toggle.svg";
 import { useState, useRef, useEffect } from "react";
