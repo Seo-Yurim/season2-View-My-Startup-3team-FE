@@ -38,7 +38,7 @@ export default function InvestmentPage() {
   return (
     <div>
       <div className={styles.header}>
-        <h1>투자 현황</h1>
+        <h1 className={styles.title}>투자 현황</h1>
         <Dropdown setSortOrder={handleSortChange} />
       </div>
       <InvestmentList list={list} />
