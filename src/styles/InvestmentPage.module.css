@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    /* 추후 CSS 수정 시 삭제해야함. */
+    margin-bottom: 0;
+}

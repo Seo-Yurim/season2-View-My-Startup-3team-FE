@@ -10,6 +10,7 @@ export const useGetInvestmentList = ({
   return useQuery({
     queryKey: ['investment-list', { currentPage, order, sort }],
     queryFn: () =>
-      getInvestmentList({ page: currentPage, limit: pageSize, order, sort })
+      getInvestmentList({ page: currentPage, limit: pageSize, order, sort }),
+    keepPreviousData: true
   });
 };
