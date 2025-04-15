@@ -9,8 +9,8 @@ import StartupTitle from "../components/Common/StartupTitle/StartupTitle";
 import Description from "../components/Common/Description/Description";
 
 const sortOptions = {
-  "View My Startup 누적 투자 금액 높은 순": ["sim_invest", "desc"],
-  "View My Startup 누적 투자 금액 낮은 순": ["sim_invest", "asc"],
+  "모의 누적 투자 금액 높은 순": ["sim_invest", "desc"],
+  "모의 누적 투자 금액 낮은 순": ["sim_invest", "asc"],
   "실제 누적 투자 금액 높은 순": ["actual_invest", "desc"],
   "실제 누적 투자 금액 낮은 순": ["actual_invest", "asc"],
 };
