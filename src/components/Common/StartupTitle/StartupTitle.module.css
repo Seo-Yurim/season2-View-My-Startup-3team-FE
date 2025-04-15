@@ -1,0 +1,14 @@
+.name {
+    display: flex;
+    align-items: center;
+
+    gap: 1.2rem;
+}
+
+.name img {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    border-radius: 100%;
+    background-color: white;
+}

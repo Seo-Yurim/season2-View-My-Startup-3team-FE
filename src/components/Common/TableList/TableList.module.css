@@ -60,21 +60,6 @@
     border-bottom: 0.1rem solid var(--secondary-gray-300);
 }
 
-.name {
-    display: flex;
-    align-items: center;
-
-    gap: 1.2rem;
-}
-
-.name img {
-    width: 3.2rem;
-    height: 3.2rem;
-
-    border-radius: 100%;
-    background-color: white;
-}
-
 .table td.description {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -105,10 +90,6 @@
         padding: 0;
     }
 
-    .br {
-        display: block;
-    }
-
     /* 전체 스크롤바 */
     .wrapper::-webkit-scrollbar {
         width: 100%;
@@ -133,10 +114,6 @@
 @media (max-width: 743px) {
     .table th {
         padding: 0;
-    }
-
-    .br {
-        display: block;
     }
 
     /* 전체 스크롤바 */

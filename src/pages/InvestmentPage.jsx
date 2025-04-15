@@ -4,8 +4,8 @@ import Pagination from "../components/Common/Pagination/Pagination";
 import Dropdown from "../components/Common/Dropdown/Dropdown";
 import styles from "../styles/InvestmentPage.module.css";
 import TableList from "../components/Common/TableList/TableList";
-import noImageIcon from "../assets/no-image.png";
 import { formatAmount } from "../utils/formatAmount";
+import StartupTitle from "../components/Common/StartupTitle/StartupTitle";
 
 const sortOptions = {
   "View My Startup 누적 투자 금액 높은 순": ["sim_invest", "desc"],
@@ -23,21 +23,7 @@ const tableHead = [
   {
     title: "기업 명",
     width: "21.3rem",
-    render: (item) => (
-      <div style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}>
-        <img
-          src={item.startup.image || noImageIcon}
-          alt={item.startup.name}
-          style={{
-            width: "3.2rem",
-            height: "3.2rem",
-            borderRadius: "100%",
-            backgroundColor: "white",
-          }}
-        />
-        {item.startup.name}
-      </div>
-    ),
+    render: (item) => <StartupTitle item={item} />,
   },
   {
     title: "기업 소개",
