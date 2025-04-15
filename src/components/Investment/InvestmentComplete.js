@@ -1,6 +1,6 @@
 import styles from './InvestmentComplete.module.css';
 import X from '../../assets/ic_x.svg';
-import Modal from '../Common/Modal';
+import Modal from '../Common/Modal/Modal';
 
 export default function InvestmentComplete({ onClose }) {
   return (

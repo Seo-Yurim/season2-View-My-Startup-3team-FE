@@ -5,7 +5,7 @@ import visibilityOn from '../../assets/btn_visibility_off.svg';
 import { useState } from 'react';
 import { patchInvestment } from '../../api/InvestmentService';
 import useValidate from '../../hooks/useValidate';
-import Modal from '../Common/Modal';
+import Modal from '../Common/Modal/Modal';
 import InvestmentUpdateConfirm from './InvestmentUpdateConfirm';
 
 export default function InvestmentUpdate({

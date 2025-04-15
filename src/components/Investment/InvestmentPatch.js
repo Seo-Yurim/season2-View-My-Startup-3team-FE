@@ -2,7 +2,7 @@ import styles from './InvestmentPatch.module.css';
 import X from '../../assets/ic_x.svg';
 import visibilityOff from '../../assets/btn_visibility_on.svg';
 import visibilityOn from '../../assets/btn_visibility_off.svg';
-import Modal from '../Common/Modal';
+import Modal from '../Common/Modal/Modal';
 import { useState, useRef, useEffect } from 'react';
 import InvestmentUpdate from './InvestmentUpdate';
 import InvestmentPasswordFail from './InvestmentPasswordFail';

@@ -1,7 +1,7 @@
 import InvestmentList from "../components/Investment/InvestmentList";
 import { useState } from "react";
 import { useGetInvestmentList } from "../api/queries/investmentQuery";
-import Pagination from "../components/Common/Pagination";
+import Pagination from "../components/Common/Pagination/Pagination";
 import Dropdown from "../components/Common/Dropdown/Dropdown";
 import styles from "../styles/InvestmentPage.module.css";
 
