@@ -3,9 +3,10 @@ import styles from "./TableList.module.css";
 
 export default function TableList({ tableHead, list }) {
   const navigate = useNavigate();
+  const emptyRowCount = Math.max(0, 10 - list.length);
 
   return (
-    <div>
+    <>
       <div className={styles.wrapper}>
         <table className={styles.table}>
           <thead>
@@ -31,9 +32,18 @@ export default function TableList({ tableHead, list }) {
                 ))}
               </tr>
             ))}
+
+            {Array.from({ length: emptyRowCount }).map((_, idx) => (
+              <tr
+                key={`empty-${idx}`}
+                style={{ visibility: "hidden", borderBottom: "none" }}
+              >
+                &nbsp;
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 }

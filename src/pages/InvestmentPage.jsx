@@ -19,7 +19,7 @@ const tableHead = [
   {
     title: "순위",
     width: "6.8rem",
-    render: (item) => item.rank,
+    render: (item) => item.rank + "위",
   },
   {
     title: "기업 명",
@@ -79,7 +79,7 @@ export default function InvestmentPage() {
   };
 
   return (
-    <div>
+    <>
       <div className={styles.header}>
         <h1 className={styles.title}>투자 현황</h1>
         <Dropdown
@@ -95,6 +95,6 @@ export default function InvestmentPage() {
         totalPages={totalPages}
         onPageChange={(page) => setCurrentPage(page)}
       />
-    </div>
+    </>
   );
 }
