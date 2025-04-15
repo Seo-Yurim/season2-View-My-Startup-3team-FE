@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./TableList.module.css";
 
-export default function TableList({ tableHead, list }) {
+export default function TableList({ tableData, list }) {
   const navigate = useNavigate();
   const emptyRowCount = Math.max(0, 10 - list.length);
 
@@ -11,7 +11,7 @@ export default function TableList({ tableHead, list }) {
         <table className={styles.table}>
           <thead>
             <tr>
-              {tableHead?.map((head, idx) => (
+              {tableData?.map((head, idx) => (
                 <th key={idx} style={{ width: `${head.width}` }}>
                   {head.title}
                 </th>
@@ -25,7 +25,7 @@ export default function TableList({ tableHead, list }) {
                 onClick={() => navigate(`/startup/${item?.startup.id}`)}
                 style={{ cursor: "pointer" }}
               >
-                {tableHead.map((col, colIndex) => (
+                {tableData.map((col, colIndex) => (
                   <td key={colIndex}>
                     {col.render ? col.render(item) : item[col.key]}
                   </td>
