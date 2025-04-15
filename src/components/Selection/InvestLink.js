@@ -1,6 +1,6 @@
 import styles from '../Investment/InvestmentComplete.module.css';
 import X from '../../assets/ic_x.svg';
-import Modal from '../Common/Modal';
+import Modal from '../Common/Modal/Modal';
 import { useNavigate } from 'react-router-dom';
 
 export default function InvestmentComplete({ onClose, startup }) {

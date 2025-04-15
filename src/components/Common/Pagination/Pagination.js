@@ -1,18 +1,17 @@
 import styles from './Pagination.module.css';
-import arrowLeftIcon from '../../assets/ic_arrow_left.svg';
-import arrowRightIcon from '../../assets/ic_arrow_right.svg';
+import arrowLeftIcon from '../../../assets/ic_arrow_left.svg';
+import arrowRightIcon from '../../../assets/ic_arrow_right.svg';
 
 const MAX_PAGE_DISPLAY = 5; // 한 번에 보여줄 페이지 수
 
-const Pagination = ({ 
-  currentPage, 
-  totalPages, 
-  onPageChange, 
+const Pagination = ({
+  currentPage,
+  totalPages,
+  onPageChange,
   pageButtonSize,
   pageButtonBorderRadius,
   pageButtonFontSize
 }) => {
-
   if (totalPages <= 1) {
     return null;
   }
@@ -20,7 +19,7 @@ const Pagination = ({
   const maxPageDisplay = MAX_PAGE_DISPLAY;
   const pageNumbers = [];
 
-  // 페이지 그룹 계산 로직 
+  // 페이지 그룹 계산 로직
   const currentGroup = Math.ceil(currentPage / maxPageDisplay);
   const startPage = (currentGroup - 1) * maxPageDisplay + 1;
   const endPage = Math.min(totalPages, startPage + maxPageDisplay - 1);
@@ -34,7 +33,7 @@ const Pagination = ({
   const handlePrevGroupClick = () => {
     const newStartPage = startPage - maxPageDisplay;
     if (newStartPage > 0) {
-      onPageChange(newStartPage + maxPageDisplay - 1);        // 이전 그룹의 마지막 페이지로 이동
+      onPageChange(newStartPage + maxPageDisplay - 1); // 이전 그룹의 마지막 페이지로 이동
     }
   };
 
@@ -42,7 +41,7 @@ const Pagination = ({
   const handleNextGroupClick = () => {
     const newStartPage = startPage + maxPageDisplay;
     if (newStartPage <= totalPages) {
-      onPageChange(newStartPage);       // 다음 그룹의 첫 번째 페이지로 이동
+      onPageChange(newStartPage); // 다음 그룹의 첫 번째 페이지로 이동
     }
   };
 
@@ -69,23 +68,30 @@ const Pagination = ({
         <button
           className={styles.paginationButton}
           onClick={handlePrevGroupClick}
-          style={buttonStyle(pageButtonSize, pageButtonBorderRadius, pageButtonFontSize)}
+          style={buttonStyle(
+            pageButtonSize,
+            pageButtonBorderRadius,
+            pageButtonFontSize
+          )}
         >
-          <img
-            src={arrowLeftIcon}
-            alt='Previous'
-          />
+          <img src={arrowLeftIcon} alt="Previous" />
         </button>
       )}
 
       {pageNumbers.map((page) => (
         <button
           key={page}
-          className={`${styles.paginationButton} ${currentPage === page ? styles.paginationButtonActive : ''}`}
+          className={`${styles.paginationButton} ${
+            currentPage === page ? styles.paginationButtonActive : ''
+          }`}
           onClick={() => {
-            onPageChange(page);  // 페이지 변경
+            onPageChange(page); // 페이지 변경
           }}
-          style={buttonStyle(pageButtonSize, pageButtonBorderRadius, pageButtonFontSize)}
+          style={buttonStyle(
+            pageButtonSize,
+            pageButtonBorderRadius,
+            pageButtonFontSize
+          )}
         >
           {page}
         </button>
@@ -95,12 +101,13 @@ const Pagination = ({
         <button
           className={styles.paginationButton}
           onClick={handleNextGroupClick}
-          style={buttonStyle(pageButtonSize, pageButtonBorderRadius, pageButtonFontSize)}
+          style={buttonStyle(
+            pageButtonSize,
+            pageButtonBorderRadius,
+            pageButtonFontSize
+          )}
         >
-          <img
-            src={arrowRightIcon}
-            alt='Next'
-          />
+          <img src={arrowRightIcon} alt="Next" />
         </button>
       )}
     </div>

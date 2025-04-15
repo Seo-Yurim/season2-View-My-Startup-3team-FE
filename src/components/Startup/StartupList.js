@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './StartupList.module.css';
 import useFetchStartups from '../../hooks/useFetchStartups';
-import Pagination from '../Common/Pagination';
+import Pagination from '../Common/Pagination/Pagination';
 import noImageIcon from '../../assets/no-image.png';
 import { formatAmount } from '../../utils/formatAmount';
 import StartupHeader from './StartupHeader';
@@ -46,25 +46,17 @@ export default function StartupList() {
 
   const handleRowClick = (id) => {
     navigate(`/startup/${id}`);
-  }
+  };
 
   if (error) {
     //return <div className="error-message">{error}</div>;
-    return (
-      <Warn
-        variant = "error"
-        title="오류발생"
-        description={error}
-      />
-    )
+    return <Warn variant="error" title="오류발생" description={error} />;
   }
 
   if (showLoading) {
-    return (
-      <div>목록을 불러오는 중입니다....</div>
-    );
+    return <div>목록을 불러오는 중입니다....</div>;
   }
-  
+
   return (
     <>
       <StartupHeader
@@ -85,11 +77,10 @@ export default function StartupList() {
             </tr>
           </thead>
           <tbody>
-            {
-              startups.map((startup) => (
-              <tr 
+            {startups.map((startup) => (
+              <tr
                 key={startup.id}
-                onClick={() => handleRowClick(startup.id)}  // 행 클릭 이벤트 추가
+                onClick={() => handleRowClick(startup.id)} // 행 클릭 이벤트 추가
                 style={{ cursor: 'pointer' }}
               >
                 <td>{startup.rank}위</td>
@@ -114,9 +105,7 @@ export default function StartupList() {
                       }}
                     />
                   </span>
-                  <span className={styles.startupName}>
-                    {startup.name}
-                  </span>
+                  <span className={styles.startupName}>{startup.name}</span>
                 </td>
                 <td className={styles.description}>{startup.description}</td>
                 <td>{startup.categoryName}</td>

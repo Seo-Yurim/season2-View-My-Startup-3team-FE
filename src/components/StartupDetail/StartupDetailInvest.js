@@ -1,16 +1,16 @@
-import styles from "./StartupDetailInvest.module.css";
-import kebab from "../../assets/ic_kebab.svg";
-import { useState, useEffect, useRef } from "react";
-import Pagination from "../Common/Pagination";
-import { formatAmount } from "../../utils/formatAmount";
-import InvestmentCreate from "../Investment/InvestmentCreate";
-import InvestmentPatch from "../Investment/InvestmentPatch";
-import InvestmentDelete from "../Investment/InvestmentDelete";
-import StartupDetailDropdown from "./StartupDetailDropdown";
-import { useParams } from "react-router-dom";
-import useFetchInvestors from "../../hooks/useFetchInvestors";
-import useFetchStartup from "../../hooks/useFetchStartupDetail";
-import Warn from "../Warn";
+import styles from './StartupDetailInvest.module.css';
+import kebab from '../../assets/ic_kebab.svg';
+import { useState, useEffect, useRef } from 'react';
+import Pagination from '../Common/Pagination/Pagination';
+import { formatAmount } from '../../utils/formatAmount';
+import InvestmentCreate from '../Investment/InvestmentCreate';
+import InvestmentPatch from '../Investment/InvestmentPatch';
+import InvestmentDelete from '../Investment/InvestmentDelete';
+import StartupDetailDropdown from './StartupDetailDropdown';
+import { useParams } from 'react-router-dom';
+import useFetchInvestors from '../../hooks/useFetchInvestors';
+import useFetchStartup from '../../hooks/useFetchStartupDetail';
+import Warn from '../Warn';
 
 const MAX_ITEMS = 5;
 
@@ -22,7 +22,7 @@ export default function StartupDetailInvest() {
   const { investors, error, totalCount, showLoading } = useFetchInvestors(
     id,
     currentPage,
-    maxItems,
+    maxItems
   );
 
   const { startup } = useFetchStartup(id);
@@ -51,9 +51,9 @@ export default function StartupDetailInvest() {
 
   const handleDropdownOptionClick = (action) => {
     setDropdownOpen(false);
-    if (action === "patch") {
+    if (action === 'patch') {
       handleOpenPatchModal();
-    } else if (action === "delete") {
+    } else if (action === 'delete') {
       handleOpenDeleteModal();
     }
   };
@@ -69,9 +69,9 @@ export default function StartupDetailInvest() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [dropdownOpen]);
 
@@ -94,7 +94,7 @@ export default function StartupDetailInvest() {
       <div className={styles.headerBox}>
         <div className={styles.header}>
           <h1>View My Startup에서 받은 투자</h1>
-          <button onClick={handleOpenCreateModal} style={{ cursor: "pointer" }}>
+          <button onClick={handleOpenCreateModal} style={{ cursor: 'pointer' }}>
             기업 투자하기
           </button>
         </div>
@@ -108,11 +108,11 @@ export default function StartupDetailInvest() {
                 <table className={styles.table}>
                   <thead>
                     <tr>
-                      <th style={{ width: "8.4rem" }}>투자자 이름</th>
-                      <th style={{ width: "8.4rem" }}>순위</th>
-                      <th style={{ width: "8.4rem" }}>투자 금액</th>
-                      <th style={{ width: "auto" }}>투자 코멘트</th>
-                      <th style={{ width: "6.4rem" }}> </th>
+                      <th style={{ width: '8.4rem' }}>투자자 이름</th>
+                      <th style={{ width: '8.4rem' }}>순위</th>
+                      <th style={{ width: '8.4rem' }}>투자 금액</th>
+                      <th style={{ width: 'auto' }}>투자 코멘트</th>
+                      <th style={{ width: '6.4rem' }}> </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -121,22 +121,22 @@ export default function StartupDetailInvest() {
                         <td className={styles.name}>{item.name}</td>
                         <td>{item.rank}위</td>
                         <td>{formatAmount(item.investAmount)} 원</td>
-                        <td style={{ textAlign: "left" }}>{item.comment}</td>
-                        <td style={{ position: "relative" }}>
+                        <td style={{ textAlign: 'left' }}>{item.comment}</td>
+                        <td style={{ position: 'relative' }}>
                           <img
                             src={kebab}
                             alt="더보기 아이콘"
                             onClick={() => handleMenuClick(item)}
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: 'pointer' }}
                           />
                           {selectedInvestor?.id === item.id && dropdownOpen && (
                             <div ref={dropdownRef}>
                               <StartupDetailDropdown
                                 onPatch={() =>
-                                  handleDropdownOptionClick("patch")
+                                  handleDropdownOptionClick('patch')
                                 }
                                 onDelete={() =>
-                                  handleDropdownOptionClick("delete")
+                                  handleDropdownOptionClick('delete')
                                 }
                               />
                             </div>

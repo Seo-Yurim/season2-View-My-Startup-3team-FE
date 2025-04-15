@@ -1,4 +1,4 @@
-import SearchInput from '../Common/SearchInput';
+import SearchInput from '../Common/Search/SearchInput';
 import StartupDropdown from './StartupDropdown';
 import styles from './StartupHeader.module.css';
 
@@ -11,5 +11,5 @@ export default function StartupHeader({ setSearchKeyword, setSortOption }) {
         <StartupDropdown setSortOption={setSortOption} />
       </div>
     </div>
-  )
+  );
 }
