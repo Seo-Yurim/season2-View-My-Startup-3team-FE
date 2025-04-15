@@ -48,33 +48,12 @@
     font-weight: 400;
 }
 
-.table tbody td {
+.table tbody tr {
     height: 6.4rem;
-}
-
-.table tbody td:nth-child(2) {
-    font-weight: 500;
 }
 
 .table tbody tr:not(:last-child) {
     border-bottom: 0.1rem solid var(--secondary-gray-300);
-}
-
-.table td.description {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-
-    max-width: 30.4rem;
-    max-height: 4.7rem;
-
-    padding: 1.5rem;
-
-    line-height: 1.7rem;
-    text-align: left;
-    text-overflow: ellipsis;
-    line-clamp: 2;
 }
 
 .null {

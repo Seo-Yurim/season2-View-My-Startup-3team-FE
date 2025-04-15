@@ -6,6 +6,7 @@ import styles from "../styles/InvestmentPage.module.css";
 import TableList from "../components/Common/TableList/TableList";
 import { formatAmount } from "../utils/formatAmount";
 import StartupTitle from "../components/Common/StartupTitle/StartupTitle";
+import Description from "../components/Common/Description/Description";
 
 const sortOptions = {
   "View My Startup 누적 투자 금액 높은 순": ["sim_invest", "desc"],
@@ -28,7 +29,7 @@ const tableHead = [
   {
     title: "기업 소개",
     width: "30.4rem",
-    render: (item) => item.startup.description,
+    render: (item) => <Description item={item} />,
   },
   {
     title: "카테고리",

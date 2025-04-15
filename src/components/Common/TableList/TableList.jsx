@@ -29,22 +29,6 @@ export default function TableList({ tableHead, list }) {
                     {col.render ? col.render(item) : item[col.key]}
                   </td>
                 ))}
-                {/* <td>{item.rank}위</td>
-                <td>
-                  <div className={styles.name}>
-                    <img
-                      src={item.startup.image || noImageIcon}
-                      alt={item.startup.name}
-                    />
-                    {item.startup.name}
-                  </div>
-                </td>
-                <td className={styles.description}>
-                  {item.startup.description}
-                </td>
-                <td>{item.startup.categoryName}</td>
-                <td>{formatAmount(item.startup.simInvest)} 원</td>
-                <td>{formatAmount(item.startup.actualInvest)} 원</td> */}
               </tr>
             ))}
           </tbody>
