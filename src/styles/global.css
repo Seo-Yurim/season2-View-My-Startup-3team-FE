@@ -30,3 +30,19 @@ button {
   /* 부모 요소의 폰트 스타일을 상속 */
   font-family: inherit;
 }
+
+.fade-transition {
+  animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
