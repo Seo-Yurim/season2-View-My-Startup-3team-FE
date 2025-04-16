@@ -1,0 +1,17 @@
+.name {
+    display: flex;
+    align-items: center;
+
+    padding-left: 3rem;
+    gap: 1.2rem;
+
+    text-wrap: nowrap;
+}
+
+.name img {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    border-radius: 100%;
+    background-color: white;
+}
