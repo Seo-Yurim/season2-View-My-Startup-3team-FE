@@ -1,17 +1,17 @@
-import styles from './InvestmentDelete.module.css';
-import X from '../../assets/ic_x.svg';
-import visibilityOff from '../../assets/btn_visibility_on.svg';
-import visibilityOn from '../../assets/btn_visibility_off.svg';
-import Modal from '../Common/Modal/Modal';
-import { useState, useRef, useEffect } from 'react';
-import { deleteInvestment } from '../../api/InvestmentService';
-import InvestmentPasswordFail from './InvestmentPasswordFail';
-import InvestmentDeleteConfirm from './InvestmentDeleteConfirm';
+import styles from "./InvestmentDelete.module.css";
+import X from "../../assets/ic_x.svg";
+import visibilityOff from "../../assets/btn_visibility_on.svg";
+import visibilityOn from "../../assets/btn_visibility_off.svg";
+import ModalContainer from "../Common/Modal/ModalContainer";
+import { useState, useRef, useEffect } from "react";
+import { deleteInvestment } from "../../api/InvestmentService";
+import InvestmentPasswordFail from "./InvestmentPasswordFail";
+import InvestmentDeleteConfirm from "./InvestmentDeleteConfirm";
 
 export default function InvestmentDelete({ onClose, mockInvestor }) {
   const { id, password: storedPassword } = mockInvestor || {};
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [fail, setFail] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -37,7 +37,7 @@ export default function InvestmentDelete({ onClose, mockInvestor }) {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSubmit(e);
     }
   };
@@ -54,20 +54,20 @@ export default function InvestmentDelete({ onClose, mockInvestor }) {
       onClose();
       window.location.reload();
     } catch (err) {
-      console.error('삭제 요청 중 오류 발생:', err);
+      console.error("삭제 요청 중 오류 발생:", err);
       console.error(err.response.data);
     }
   };
 
   return (
-    <Modal>
+    <ModalContainer>
       <div className={styles.content}>
         <div className={styles.header}>
           <h1>삭제 권한 인증</h1>
           <img
             src={X}
             onClick={onClose}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             alt="close btn"
           />
         </div>
@@ -78,7 +78,7 @@ export default function InvestmentDelete({ onClose, mockInvestor }) {
           <div className={styles.password}>
             <input
               ref={passwordInputRef}
-              type={isPasswordVisible ? 'text' : 'password'}
+              type={isPasswordVisible ? "text" : "password"}
               id="password"
               placeholder="비밀번호를 입력해 주세요"
               value={password}
@@ -87,7 +87,7 @@ export default function InvestmentDelete({ onClose, mockInvestor }) {
             />
             <img
               src={isPasswordVisible ? visibilityOff : visibilityOn}
-              alt={isPasswordVisible ? '비밀번호 표시' : '비밀번호 숨기기'}
+              alt={isPasswordVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
               onClick={togglePasswordVisibility}
             />
           </div>
@@ -103,6 +103,6 @@ export default function InvestmentDelete({ onClose, mockInvestor }) {
           onClose={() => setConfirm(false)}
         />
       )}
-    </Modal>
+    </ModalContainer>
   );
 }

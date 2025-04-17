@@ -1,15 +1,15 @@
-import styles from './InvestmentComplete.module.css';
-import X from '../../assets/ic_x.svg';
-import Modal from '../Common/Modal/Modal';
+import styles from "./InvestmentComplete.module.css";
+import X from "../../assets/ic_x.svg";
+import ModalContainer from "../Common/Modal/ModalContainer";
 
 export default function InvestmentComplete({ onClose }) {
   return (
-    <Modal>
+    <ModalContainer>
       <div className={styles.content}>
         <img
           src={X}
           onClick={onClose}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           alt="close btn"
         />
         <span>투자가 완료되었어요!</span>
@@ -17,6 +17,6 @@ export default function InvestmentComplete({ onClose }) {
           확인
         </button>
       </div>
-    </Modal>
+    </ModalContainer>
   );
 }

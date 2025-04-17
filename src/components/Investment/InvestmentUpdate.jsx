@@ -1,31 +1,31 @@
-import styles from './InvestmentCreate.module.css';
-import X from '../../assets/ic_x.svg';
-import visibilityOff from '../../assets/btn_visibility_on.svg';
-import visibilityOn from '../../assets/btn_visibility_off.svg';
-import { useState } from 'react';
-import { patchInvestment } from '../../api/InvestmentService';
-import useValidate from '../../hooks/useValidate';
-import Modal from '../Common/Modal/Modal';
-import InvestmentUpdateConfirm from './InvestmentUpdateConfirm';
+import styles from "./InvestmentCreate.module.css";
+import X from "../../assets/ic_x.svg";
+import visibilityOff from "../../assets/btn_visibility_on.svg";
+import visibilityOn from "../../assets/btn_visibility_off.svg";
+import { useState } from "react";
+import { patchInvestment } from "../../api/InvestmentService";
+import useValidate from "../../hooks/useValidate";
+import ModalContainer from "../Common/Modal/ModalContainer";
+import InvestmentUpdateConfirm from "./InvestmentUpdateConfirm";
 
 export default function InvestmentUpdate({
   onClose,
   startup,
   mockInvestor,
-  initialValues
+  initialValues,
 }) {
   const { image, name, categoryName } = startup || {};
   const { values, errors, handleChange, validate, handleBlur, getRawValues } =
     useValidate({
-      name: initialValues?.name || '',
-      investAmount: initialValues?.investAmount || '',
-      comment: initialValues?.comment || '',
-      password: initialValues?.password || '',
-      checkPassword: ''
+      name: initialValues?.name || "",
+      investAmount: initialValues?.investAmount || "",
+      comment: initialValues?.comment || "",
+      password: initialValues?.password || "",
+      checkPassword: "",
     });
 
   const [checkPasswordVisible, setCheckPasswordVisible] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [confirm, setConfirm] = useState(false);
 
   const toggleCheckPasswordVisibility = () => {
@@ -34,10 +34,10 @@ export default function InvestmentUpdate({
 
   const isInputEmpty = () => {
     return (
-      values.name.trim() !== '' &&
-      values.investAmount.trim() !== '' &&
-      values.comment.trim() !== '' &&
-      values.checkPassword.trim() !== ''
+      values.name.trim() !== "" &&
+      values.investAmount.trim() !== "" &&
+      values.comment.trim() !== "" &&
+      values.checkPassword.trim() !== ""
     );
   };
 
@@ -66,24 +66,24 @@ export default function InvestmentUpdate({
         window.location.reload();
       } else {
         console.log(updateRes.status);
-        setError('수정 요청이 실패했습니다.');
+        setError("수정 요청이 실패했습니다.");
       }
     } catch (err) {
       console.error(err);
-      setError('투자 수정 중 오류가 발생했습니다.');
+      setError("투자 수정 중 오류가 발생했습니다.");
     }
   };
 
   return (
     <>
-      <Modal>
+      <ModalContainer>
         <form className={styles.form} onSubmit={handleUpdateSubmit}>
           <div>
             <h1>기업에 투자하기</h1>
             <img
               src={X}
               onClick={onClose}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
               alt="close btn"
             />
           </div>
@@ -108,8 +108,8 @@ export default function InvestmentUpdate({
               onBlur={handleBlur}
               style={{
                 border: errors.name
-                  ? '0.1rem solid var(--error-color)'
-                  : '0.1rem solid var(--secondary-gray-200)'
+                  ? "0.1rem solid var(--error-color)"
+                  : "0.1rem solid var(--secondary-gray-200)",
               }}
             />
             {errors.name && <div className={styles.error}>{errors.name}</div>}
@@ -127,8 +127,8 @@ export default function InvestmentUpdate({
               onBlur={handleBlur}
               style={{
                 border: errors.investAmount
-                  ? '0.1rem solid var(--error-color)'
-                  : '0.1rem solid var(--secondary-gray-200)'
+                  ? "0.1rem solid var(--error-color)"
+                  : "0.1rem solid var(--secondary-gray-200)",
               }}
             />
             {errors.investAmount && (
@@ -148,8 +148,8 @@ export default function InvestmentUpdate({
               onBlur={handleBlur}
               style={{
                 border: errors.comment
-                  ? '0.1rem solid var(--error-color)'
-                  : '0.1rem solid var(--secondary-gray-200)'
+                  ? "0.1rem solid var(--error-color)"
+                  : "0.1rem solid var(--secondary-gray-200)",
               }}
             />
             {errors.comment && (
@@ -162,7 +162,7 @@ export default function InvestmentUpdate({
             <label htmlFor="checkPassword">비밀번호 확인</label>
             <div className={styles.password}>
               <input
-                type={checkPasswordVisible ? 'text' : 'password'}
+                type={checkPasswordVisible ? "text" : "password"}
                 id="checkPassword"
                 placeholder="비밀번호를 다시 한 번 입력해 주세요"
                 value={values.checkPassword}
@@ -170,13 +170,13 @@ export default function InvestmentUpdate({
                 onBlur={handleBlur}
                 style={{
                   border: errors.checkPassword
-                    ? '0.1rem solid var(--error-color)'
-                    : '0.1rem solid var(--secondary-gray-200)'
+                    ? "0.1rem solid var(--error-color)"
+                    : "0.1rem solid var(--secondary-gray-200)",
                 }}
               />
               <img
                 src={checkPasswordVisible ? visibilityOff : visibilityOn}
-                alt={checkPasswordVisible ? '비밀번호 표시' : '비밀번호 숨기기'}
+                alt={checkPasswordVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
                 onClick={toggleCheckPasswordVisibility}
               />
             </div>
@@ -204,7 +204,7 @@ export default function InvestmentUpdate({
             onClose={() => setConfirm(false)}
           />
         )}
-      </Modal>
+      </ModalContainer>
     </>
   );
 }

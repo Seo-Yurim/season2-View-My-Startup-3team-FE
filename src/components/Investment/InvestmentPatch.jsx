@@ -1,15 +1,15 @@
-import styles from './InvestmentPatch.module.css';
-import X from '../../assets/ic_x.svg';
-import visibilityOff from '../../assets/btn_visibility_on.svg';
-import visibilityOn from '../../assets/btn_visibility_off.svg';
-import Modal from '../Common/Modal/Modal';
-import { useState, useRef, useEffect } from 'react';
-import InvestmentUpdate from './InvestmentUpdate';
-import InvestmentPasswordFail from './InvestmentPasswordFail';
+import styles from "./InvestmentPatch.module.css";
+import X from "../../assets/ic_x.svg";
+import visibilityOff from "../../assets/btn_visibility_on.svg";
+import visibilityOn from "../../assets/btn_visibility_off.svg";
+import ModalContainer from "../Common/Modal/ModalContainer";
+import { useState, useRef, useEffect } from "react";
+import InvestmentUpdate from "./InvestmentUpdate";
+import InvestmentPasswordFail from "./InvestmentPasswordFail";
 
 export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
   const { password: storedPassword } = mockInvestor || {};
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showInvestmentUpdate, setShowInvestmentUpdate] = useState(false);
   const [fail, setFail] = useState(false);
@@ -35,7 +35,7 @@ export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handlePasswordSubmit(e);
     }
   };
@@ -48,14 +48,14 @@ export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
 
   return (
     <div>
-      <Modal>
+      <ModalContainer>
         <div className={styles.content}>
           <div className={styles.header}>
             <h1>수정 권한 인증</h1>
             <img
               src={X}
               onClick={onClose}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
               alt="close btn"
             />
           </div>
@@ -66,7 +66,7 @@ export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
             <div className={styles.password}>
               <input
                 ref={passwordInputRef}
-                type={isPasswordVisible ? 'text' : 'password'}
+                type={isPasswordVisible ? "text" : "password"}
                 id="password"
                 placeholder="비밀번호를 입력해 주세요"
                 value={password}
@@ -75,7 +75,7 @@ export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
               />
               <img
                 src={isPasswordVisible ? visibilityOff : visibilityOn}
-                alt={isPasswordVisible ? '비밀번호 표시' : '비밀번호 숨기기'}
+                alt={isPasswordVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
                 onClick={togglePasswordVisibility}
               />
             </div>
@@ -84,7 +84,7 @@ export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
             수정하기
           </button>
         </div>
-      </Modal>
+      </ModalContainer>
 
       {fail && <InvestmentPasswordFail setFail={setFail} />}
 
@@ -100,7 +100,7 @@ export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
             name: mockInvestor.name,
             investAmount: mockInvestor.investAmount,
             comment: mockInvestor.comment,
-            password: mockInvestor.password
+            password: mockInvestor.password,
           }}
         />
       )}

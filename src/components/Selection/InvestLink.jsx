@@ -1,7 +1,7 @@
-import styles from '../Investment/InvestmentComplete.module.css';
-import X from '../../assets/ic_x.svg';
-import Modal from '../Common/Modal/Modal';
-import { useNavigate } from 'react-router-dom';
+import styles from "../Investment/InvestmentComplete.module.css";
+import X from "../../assets/ic_x.svg";
+import Modal from "../Common/Modal/ModalContainer";
+import { useNavigate } from "react-router-dom";
 
 export default function InvestmentComplete({ onClose, startup }) {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function InvestmentComplete({ onClose, startup }) {
         <img
           src={X}
           onClick={onClose}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           alt="close btn"
         />
         <span>투자가 완료되었어요!</span>
