@@ -6,27 +6,27 @@
   color: var(--primary-white);
 }
 
-h1 {
+.privacyContainer h1 {
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
 
-h2 {
+.privacyContainer h2 {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1.2rem;
 }
 
-section {
+.privacyContainer section {
   margin-bottom: 3rem;
 }
 
-p {
+.privacyContainer p {
   font-size: 1.4rem;
   line-height: 2rem;
 }
 
-li {
+.privacyContainer li {
   margin-bottom: 0.5rem;
 }
