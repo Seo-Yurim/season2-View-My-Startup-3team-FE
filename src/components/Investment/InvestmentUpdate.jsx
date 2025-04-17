@@ -6,7 +6,7 @@ import { useState } from "react";
 import { patchInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
 import ModalContainer from "../Modal/ModalContainer";
-import InvestmentUpdateConfirm from "./InvestmentUpdateConfirm";
+import ConfirmModal from "../Modal/ConfirmModal";
 
 export default function InvestmentUpdate({
   onClose,
@@ -199,7 +199,8 @@ export default function InvestmentUpdate({
           {error && <div className={styles.error}>{error}</div>}
         </form>
         {confirm && (
-          <InvestmentUpdateConfirm
+          <ConfirmModal
+            type="updateConfirm"
             onUpdate={confirmUpdate}
             onClose={() => setConfirm(false)}
           />

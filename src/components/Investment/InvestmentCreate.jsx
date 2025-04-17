@@ -6,7 +6,7 @@ import { useState } from "react";
 import { createInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
 import ModalContainer from "../Modal/ModalContainer";
-import InvestmentComplete from "./InvestmentComplete";
+import ConfirmModal from "../Modal/ConfirmModal";
 
 export default function InvestmentCreate({ onClose, startup }) {
   const { id: startupId, image, name, categoryName } = startup || {};
@@ -234,7 +234,7 @@ export default function InvestmentCreate({ onClose, startup }) {
           {error && <div className={styles.error}>{error}</div>}
         </form>
       </ModalContainer>
-      {isComplete && <InvestmentComplete onClose={handleCloseCompleteModal} />}
+      {isComplete && <ConfirmModal onClose={handleCloseCompleteModal} />}
     </>
   );
 }

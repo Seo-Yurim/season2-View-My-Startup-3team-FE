@@ -5,7 +5,7 @@ import visibilityOn from "../../assets/btn_visibility_off.svg";
 import ModalContainer from "../Modal/ModalContainer";
 import { useState, useRef, useEffect } from "react";
 import InvestmentUpdate from "./InvestmentUpdate";
-import InvestmentPasswordFail from "./InvestmentPasswordFail";
+import ConfirmModal from "../Modal/ConfirmModal";
 
 export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
   const { password: storedPassword } = mockInvestor || {};
@@ -86,7 +86,7 @@ export default function InvestmentPatch({ onClose, mockInvestor, startup }) {
         </div>
       </ModalContainer>
 
-      {fail && <InvestmentPasswordFail setFail={setFail} />}
+      {fail && <ConfirmModal type="passwordFail" setFail={setFail} />}
 
       {showInvestmentUpdate && (
         <InvestmentUpdate

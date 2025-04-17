@@ -5,8 +5,7 @@ import visibilityOn from "../../assets/btn_visibility_off.svg";
 import ModalContainer from "../Modal/ModalContainer";
 import { useState, useRef, useEffect } from "react";
 import { deleteInvestment } from "../../api/InvestmentService";
-import InvestmentPasswordFail from "./InvestmentPasswordFail";
-import InvestmentDeleteConfirm from "./InvestmentDeleteConfirm";
+import ConfirmModal from "../Modal/ConfirmModal";
 
 export default function InvestmentDelete({ onClose, mockInvestor }) {
   const { id, password: storedPassword } = mockInvestor || {};
@@ -96,9 +95,10 @@ export default function InvestmentDelete({ onClose, mockInvestor }) {
           삭제하기
         </button>
       </div>
-      {fail && <InvestmentPasswordFail setFail={setFail} />}
+      {fail && <ConfirmModal type="passwordFail" setFail={setFail} />}
       {confirm && (
-        <InvestmentDeleteConfirm
+        <ConfirmModal
+          type="deleteConfirm"
           onDelete={confirmDelete}
           onClose={() => setConfirm(false)}
         />

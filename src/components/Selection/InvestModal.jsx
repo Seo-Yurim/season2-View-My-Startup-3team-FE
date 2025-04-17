@@ -6,7 +6,7 @@ import { useState } from "react";
 import { createInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
 import Modal from "../Modal/ModalContainer";
-import InvestLink from "./InvestLink";
+import ConfirmModal from "../Modal/ConfirmModal";
 
 export default function InvestModal({ onClose, startup }) {
   const selectedStartup = startup[0]; // 배열의 첫 번째 요소를 선택
@@ -238,9 +238,9 @@ export default function InvestModal({ onClose, startup }) {
         </form>
       </Modal>
       {isComplete && (
-        <InvestLink
+        <ConfirmModal
           onClose={handleCloseCompleteModal}
-          startup={selectedStartup}
+          data={selectedStartup}
         />
       )}
     </>

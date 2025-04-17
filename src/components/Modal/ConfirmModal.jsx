@@ -2,13 +2,15 @@ import styles from "./ConfirmModal.module.css";
 import X from "../../assets/ic_x.svg";
 import ModalContainer from "./ModalContainer";
 import Button from "../Common/Button/Button";
+import { useNavigate } from "react-router-dom";
 
-export function ConfirmModal({
+export default function ConfirmModal({
   type = "complete",
   onClose,
   onDelete,
   onUpdate,
   setFail,
+  data,
 }) {
   const modalType =
     type === "passwordFail" ? (
@@ -35,12 +37,27 @@ export function ConfirmModal({
     ) : (
       <>
         <span>투자가 완료되었어요!</span>
-        <Button label="확인" onClick={onClose} />
+        <Button
+          label="확인"
+          onClick={
+            data
+              ? () => {
+                  onClose();
+                  handleRowClick(data.id);
+                }
+              : onClose
+          }
+        />
       </>
     );
 
   const handleCloseFailModal = () => {
     setFail(false);
+  };
+
+  const navigate = useNavigate();
+  const handleRowClick = (id) => {
+    navigate(`/startup/${id}`);
   };
 
   return (
