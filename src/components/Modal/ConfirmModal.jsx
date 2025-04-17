@@ -1,16 +1,7 @@
 import styles from "./ConfirmModal.module.css";
 import X from "../../assets/ic_x.svg";
 import ModalContainer from "./ModalContainer";
-
-/**
- *
- * @param {string} type - 모달 타입
- * @param {string} description - 모달 안에 쓸 내용
- * @param {function} onClose - 닫는 함수
- * @param {function} onDelete - 삭제하는 함수
- * @param {function} onUpdate - 수정하는 함수
- * @param {function} setFail - 실패 여부
- */
+import Button from "../Common/Button/Button";
 
 export function ConfirmModal({
   type = "complete",
@@ -23,40 +14,28 @@ export function ConfirmModal({
     type === "passwordFail" ? (
       <>
         <span>잘못된 비밀번호입니다.</span>
-        <button className={styles.complete} onClick={setFail}>
-          확인
-        </button>
+        <Button label="확인" onClick={handleCloseFailModal} />
       </>
     ) : type === "deleteConfirm" ? (
       <>
         <span>해당 정보를 삭제하시겠습니까?</span>
         <div className={styles.buttons}>
-          <button className={styles.cancel} onClick={onClose}>
-            취소
-          </button>
-          <button className={styles.confirm} onClick={onDelete}>
-            확인
-          </button>
+          <Button type="solid" label="취소" onClick={onClose} />
+          <Button label="확인" onClick={onDelete} />
         </div>
       </>
     ) : type === "updateConfirm" ? (
       <>
         <span>수정하시겠습니까?</span>
         <div className={styles.buttons}>
-          <button className={styles.cancel} onClick={onClose}>
-            취소
-          </button>
-          <button className={styles.confirm} onClick={onUpdate}>
-            확인
-          </button>
+          <Button type="solid" label="취소" onClick={onClose} />
+          <Button label="확인" onClick={onUpdate} />
         </div>
       </>
     ) : (
       <>
         <span>투자가 완료되었어요!</span>
-        <button className={styles.complete} onClick={onClose}>
-          확인
-        </button>
+        <Button label="확인" onClick={onClose} />
       </>
     );
 
@@ -71,7 +50,7 @@ export function ConfirmModal({
           src={X}
           onClick={onClose}
           style={{ cursor: "pointer" }}
-          alt="close btn"
+          alt="modal close"
         />
         {modalType}
       </div>

@@ -45,7 +45,6 @@ export default function InvestmentPage() {
       {isError && <div>Error..</div>}
       {!isLoading && !isError && (
         <>
-          <Button label="확인" />
           <div className={styles.header}>
             <h1 className={styles.title}>투자 현황</h1>
             <Dropdown
