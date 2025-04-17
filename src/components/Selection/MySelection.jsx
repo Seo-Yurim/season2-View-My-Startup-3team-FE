@@ -1,21 +1,21 @@
-import styles from './MySelection.module.css';
-import btn_plus from '../../assets/btn_plus.svg';
-import MySelectionModal from './MySelectionModal';
-import CompareSelectionModal from './CompareSelectionModal';
-import { useState, useEffect, useCallback } from 'react';
-import ic_minus from '../../assets/ic_minus.svg';
-import ic_restart from '../../assets/ic_restart.svg';
-import useFetchMySelection from '../../hooks/useFetchMySelection';
-import useFetchCompare from '../../hooks/useFetchCompare.js';
-import useFetchCompareResult from '../../hooks/useFetchCompareResult';
-import noImageIcon from '../../assets/no-image.png';
-import { formatAmount } from '../../utils/formatAmount.js';
-import useFetchCancelMySelection from '../../hooks/useFetchCancelMySelection.js';
-import useFetchCancelCompare from '../../hooks/useFetchCancelCompare.js';
-import CompareDropdown from './CompareDropdown.js';
-import InvestModal from './InvestModal.js';
-import useFetchRank from '../../hooks/useFetchRanck.js';
-import RankDropdown from './RankDropdown.js';
+import styles from "./MySelection.module.css";
+import btn_plus from "../../assets/btn_plus.svg";
+import MySelectionModal from "./MySelectionModal";
+import CompareSelectionModal from "./CompareSelectionModal";
+import { useState, useEffect, useCallback } from "react";
+import ic_minus from "../../assets/ic_minus.svg";
+import ic_restart from "../../assets/ic_restart.svg";
+import useFetchMySelection from "../../hooks/useFetchMySelection";
+import useFetchCompare from "../../hooks/useFetchCompare";
+import useFetchCompareResult from "../../hooks/useFetchCompareResult";
+import noImageIcon from "../../assets/no-image.png";
+import { formatAmount } from "../../utils/formatAmount";
+import useFetchCancelMySelection from "../../hooks/useFetchCancelMySelection";
+import useFetchCancelCompare from "../../hooks/useFetchCancelCompare";
+import CompareDropdown from "./CompareDropdown";
+import InvestModal from "./InvestModal";
+import useFetchRank from "../../hooks/useFetchRanck";
+import RankDropdown from "./RankDropdown";
 
 export default function MySelection() {
   const [isModal, setIsModal] = useState(false);
@@ -26,47 +26,47 @@ export default function MySelection() {
   const { fetchComparison } = useFetchCompare();
   const [isComparisonDone, setIsComparisonDone] = useState(false);
   const { allResults, setOrder, setSort, fetchResult } = useFetchCompareResult(
-    'desc',
-    'simInvest'
+    "desc",
+    "simInvest"
   );
   const { fetchCancelMySelection } = useFetchCancelMySelection();
   const { fetchCancelComparison } = useFetchCancelCompare();
-  const [sortOption, setSortOption] = useState('simInvest_desc');
+  const [sortOption, setSortOption] = useState("simInvest_desc");
   const [isInvestModal, setIsInvestModal] = useState(false);
   const selectedStartupIds = selectedStartup.map((startup) => startup.id);
   const startupId =
     selectedStartupIds.length > 0 ? selectedStartupIds[0] : null;
   const { rankData, setOrderBy, setSortBy } = useFetchRank(
     startupId,
-    'revenue',
-    'desc'
+    "revenue",
+    "desc"
   );
-  const [sortOptionBy, setSortOptionBy] = useState('revenue_desc');
+  const [sortOptionBy, setSortOptionBy] = useState("revenue_desc");
 
-  let sessionId = sessionStorage.getItem('sessionId');
-  const API_HOST = 'http://3.39.23.207:3000';
+  let sessionId = sessionStorage.getItem("sessionId");
+  const API_HOST = "http://3.39.23.207:3000";
 
   const fetchExistingSelections = useCallback(async () => {
     try {
       const response = await fetch(
         `${API_HOST}/api/selections?sessionId=${sessionId}`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
 
       if (!response.ok) {
-        throw new Error('선택 정보를 불러오는 데 실패했습니다.');
+        throw new Error("선택 정보를 불러오는 데 실패했습니다.");
       }
 
       const data = await response.json();
       setSelectedStartup(data.selectedStartups || []);
       setCompareSelectedStartups(data.comparisonStartups || []);
     } catch (error) {
-      console.error('기존 선택 정보를 불러오는 중 오류 발생:', error);
+      console.error("기존 선택 정보를 불러오는 중 오류 발생:", error);
     }
   }, [sessionId]);
 
@@ -181,10 +181,10 @@ export default function MySelection() {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 743);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -236,7 +236,7 @@ export default function MySelection() {
       </div>
       <div
         className={styles.borderBox}
-        style={{ border: selectedStartup.length > 0 ? 'none' : '' }}
+        style={{ border: selectedStartup.length > 0 ? "none" : "" }}
       >
         <div className={styles.innerBox}>
           {selectedStartup.map((startup) => (
@@ -257,10 +257,10 @@ export default function MySelection() {
                 alt="startupImg"
                 className={styles.startupImg}
                 style={{
-                  verticalAlign: 'middle',
-                  borderRadius: '50%',
-                  backgroundColor: 'white',
-                  objectFit: 'cover'
+                  verticalAlign: "middle",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  objectFit: "cover",
                 }}
               />
               <span className={styles.startupName}>{startup.name}</span>
@@ -309,10 +309,10 @@ export default function MySelection() {
           </div>
           <div
             className={styles.borderBox}
-            style={{ border: selectedStartup.length > 0 ? 'none' : '' }}
+            style={{ border: selectedStartup.length > 0 ? "none" : "" }}
           >
             <div
-              style={{ border: selectedStartup.length > 0 ? 'none' : '' }}
+              style={{ border: selectedStartup.length > 0 ? "none" : "" }}
               className={
                 compareSelectedStartups.length > 0
                   ? styles.innerBoxMobile
@@ -344,10 +344,10 @@ export default function MySelection() {
                       alt="startupImg"
                       className={styles.startupImg}
                       style={{
-                        verticalAlign: 'middle',
-                        borderRadius: '50%',
-                        backgroundColor: 'white',
-                        objectFit: 'cover'
+                        verticalAlign: "middle",
+                        borderRadius: "50%",
+                        backgroundColor: "white",
+                        objectFit: "cover",
                       }}
                     />
                     <span className={styles.startupName}>{startup.name}</span>
@@ -401,16 +401,16 @@ export default function MySelection() {
             <h2 className={styles.doneTxt}>비교 결과 확인하기</h2>
             <CompareDropdown setSortOption={setSortOption} />
           </div>
-          <div style={{ width: '100%', overflowX: 'auto' }}>
+          <div style={{ width: "100%", overflowX: "auto" }}>
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th style={{ width: '21.3rem' }}>기업명</th>
-                  <th style={{ width: '30.4rem' }}>기업소개</th>
-                  <th style={{ width: '15.4rem' }}>카테고리</th>
-                  <th style={{ width: '15.4rem' }}>누적 투자 금액</th>
-                  <th style={{ width: '15.4rem' }}>매출액</th>
-                  <th style={{ width: '15.4rem' }}>고용 인원</th>
+                  <th style={{ width: "21.3rem" }}>기업명</th>
+                  <th style={{ width: "30.4rem" }}>기업소개</th>
+                  <th style={{ width: "15.4rem" }}>카테고리</th>
+                  <th style={{ width: "15.4rem" }}>누적 투자 금액</th>
+                  <th style={{ width: "15.4rem" }}>매출액</th>
+                  <th style={{ width: "15.4rem" }}>고용 인원</th>
                 </tr>
               </thead>
               <tbody>
@@ -422,34 +422,34 @@ export default function MySelection() {
                         (startup) => startup.id === result.id
                       )
                         ? styles.selectedStartupRow
-                        : ''
+                        : ""
                     }
                   >
-                    <td style={{ textAlign: 'left', paddingLeft: '6.5rem' }}>
+                    <td style={{ textAlign: "left", paddingLeft: "6.5rem" }}>
                       <span
                         style={{
-                          display: 'inline-block',
-                          verticalAlign: 'middle'
+                          display: "inline-block",
+                          verticalAlign: "middle",
                         }}
                       >
                         <img
                           src={result.image || noImageIcon}
                           alt={`${result.name} 로고`}
                           style={{
-                            width: '3.2rem',
-                            height: '3.2rem',
-                            marginRight: '0.8rem',
-                            verticalAlign: 'middle',
-                            borderRadius: '50%',
-                            backgroundColor: 'white',
-                            objectFit: 'cover'
+                            width: "3.2rem",
+                            height: "3.2rem",
+                            marginRight: "0.8rem",
+                            verticalAlign: "middle",
+                            borderRadius: "50%",
+                            backgroundColor: "white",
+                            objectFit: "cover",
                           }}
                         />
                       </span>
                       <span
                         style={{
-                          display: 'inline-block',
-                          verticalAlign: 'middle'
+                          display: "inline-block",
+                          verticalAlign: "middle",
                         }}
                       >
                         {result.name}
@@ -457,13 +457,13 @@ export default function MySelection() {
                     </td>
                     <td className={styles.description}>{result.description}</td>
                     <td>{result.category.category}</td>
-                    <td style={{ textAlign: 'center' }}>
+                    <td style={{ textAlign: "center" }}>
                       {formatAmount(result.simInvest)} 원
                     </td>
-                    <td style={{ textAlign: 'center' }}>
+                    <td style={{ textAlign: "center" }}>
                       {formatAmount(result.revenue)} 원
                     </td>
-                    <td style={{ textAlign: 'right', paddingRight: '5.5rem' }}>
+                    <td style={{ textAlign: "right", paddingRight: "5.5rem" }}>
                       {formatAmount(result.employees)} 명
                     </td>
                   </tr>
@@ -479,17 +479,17 @@ export default function MySelection() {
             <h2 className={styles.doneTxt}>기업 순위 확인하기</h2>
             <RankDropdown setSortOptionBy={setSortOptionBy} />
           </div>
-          <div style={{ width: '100%', overflowX: 'auto' }}>
+          <div style={{ width: "100%", overflowX: "auto" }}>
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th style={{ width: '6.8rem' }}>순위</th>
-                  <th style={{ width: '21.3rem' }}>기업명</th>
-                  <th style={{ width: '30.4rem' }}>기업소개</th>
-                  <th style={{ width: '15.4rem' }}>카테고리</th>
-                  <th style={{ width: '15.4rem' }}>누적 투자 금액</th>
-                  <th style={{ width: '15.4rem' }}>매출액</th>
-                  <th style={{ width: '15.4rem' }}>고용 인원</th>
+                  <th style={{ width: "6.8rem" }}>순위</th>
+                  <th style={{ width: "21.3rem" }}>기업명</th>
+                  <th style={{ width: "30.4rem" }}>기업소개</th>
+                  <th style={{ width: "15.4rem" }}>카테고리</th>
+                  <th style={{ width: "15.4rem" }}>누적 투자 금액</th>
+                  <th style={{ width: "15.4rem" }}>매출액</th>
+                  <th style={{ width: "15.4rem" }}>고용 인원</th>
                 </tr>
               </thead>
               <tbody>
@@ -501,35 +501,35 @@ export default function MySelection() {
                         (startup) => startup.id === result.id
                       )
                         ? styles.selectedStartupRow
-                        : ''
+                        : ""
                     }
                   >
                     <td>{result.rank}위</td>
-                    <td style={{ textAlign: 'left' }}>
+                    <td style={{ textAlign: "left" }}>
                       <span
                         style={{
-                          display: 'inline-block',
-                          verticalAlign: 'middle'
+                          display: "inline-block",
+                          verticalAlign: "middle",
                         }}
                       >
                         <img
                           src={result.image || noImageIcon}
                           alt={`${result.name} 로고`}
                           style={{
-                            width: '3.2rem',
-                            height: '3.2rem',
-                            marginRight: '0.8rem',
-                            verticalAlign: 'middle',
-                            borderRadius: '50%',
-                            backgroundColor: 'white',
-                            objectFit: 'cover'
+                            width: "3.2rem",
+                            height: "3.2rem",
+                            marginRight: "0.8rem",
+                            verticalAlign: "middle",
+                            borderRadius: "50%",
+                            backgroundColor: "white",
+                            objectFit: "cover",
                           }}
                         />
                       </span>
                       <span
                         style={{
-                          display: 'inline-block',
-                          verticalAlign: 'middle'
+                          display: "inline-block",
+                          verticalAlign: "middle",
                         }}
                       >
                         {result.name}
@@ -537,13 +537,13 @@ export default function MySelection() {
                     </td>
                     <td className={styles.description}>{result.description}</td>
                     <td>{result.categoryName}</td>
-                    <td style={{ textAlign: 'center' }}>
+                    <td style={{ textAlign: "center" }}>
                       {formatAmount(result.simInvest)} 원
                     </td>
-                    <td style={{ textAlign: 'center' }}>
+                    <td style={{ textAlign: "center" }}>
                       {formatAmount(result.revenue)} 원
                     </td>
-                    <td style={{ textAlign: 'right', paddingRight: '5rem' }}>
+                    <td style={{ textAlign: "right", paddingRight: "5rem" }}>
                       {formatAmount(result.employees)} 명
                     </td>
                   </tr>

@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import StartupPage from './pages/StartupPage';
-import StartupDetailPage from './pages/StartupDetailPage.js';
+import StartupDetailPage from './pages/StartupDetailPage';
 import MyComparisonPage from './pages/MyComparisonPage';
 import ComparisonPage from './pages/ComparisonPage';
 import InvestmentPage from './pages/InvestmentPage';
 import App from './components/App';
-import NotFoundPage from './pages/NotFoundPage.js';
-import TermsPage from './pages/TermsPage.js';
-import PrivacyPage from './pages/PrivacyPage.js';
-import AboutPage from './pages/AboutPage.js';
+import NotFoundPage from './pages/NotFoundPage';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
+import AboutPage from './pages/AboutPage';
 
 export default function Main() {
   return (
