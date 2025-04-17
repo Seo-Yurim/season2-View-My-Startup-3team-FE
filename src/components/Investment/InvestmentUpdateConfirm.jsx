@@ -1,6 +1,6 @@
 import styles from "./InvestmentUpdateConfirm.module.css";
 import X from "../../assets/ic_x.svg";
-import ModalContainer from "../Common/Modal/ModalContainer";
+import ModalContainer from "../Modal/ModalContainer";
 
 export default function InvestmentUpdateConfirm({ onUpdate, onClose }) {
   return (

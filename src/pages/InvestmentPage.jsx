@@ -10,6 +10,13 @@ import {
   INVESTMENT_TABLE_DATA,
 } from "../constant";
 import Loading from "../components/Common/Loading/Loading";
+import {
+  Complete,
+  DeleteConfirm,
+  PasswordFail,
+  UpdateConfirm,
+} from "../components/Modal/ConfirmModal";
+import InvestmentDeleteConfirm from "../components/Investment/InvestmentDeleteConfirm";
 
 export default function InvestmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,6 +50,10 @@ export default function InvestmentPage() {
       {isError && <div>Error..</div>}
       {!isLoading && !isError && (
         <>
+          {/* <Complete onClose="a" /> */}
+          {/* <DeleteConfirm /> */}
+          {/* <UpdateConfirm /> */}
+          {/* <PasswordFail /> */}
           <div className={styles.header}>
             <h1 className={styles.title}>투자 현황</h1>
             <Dropdown

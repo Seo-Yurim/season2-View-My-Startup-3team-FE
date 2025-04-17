@@ -5,7 +5,7 @@ import visibilityOff from "../../assets/btn_visibility_off.svg";
 import { useState } from "react";
 import { createInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
-import Modal from "../Common/Modal/ModalContainer";
+import Modal from "../Modal/ModalContainer";
 import InvestLink from "./InvestLink";
 
 export default function InvestModal({ onClose, startup }) {

@@ -2,7 +2,7 @@ import styles from "./InvestmentDelete.module.css";
 import X from "../../assets/ic_x.svg";
 import visibilityOff from "../../assets/btn_visibility_on.svg";
 import visibilityOn from "../../assets/btn_visibility_off.svg";
-import ModalContainer from "../Common/Modal/ModalContainer";
+import ModalContainer from "../Modal/ModalContainer";
 import { useState, useRef, useEffect } from "react";
 import { deleteInvestment } from "../../api/InvestmentService";
 import InvestmentPasswordFail from "./InvestmentPasswordFail";
