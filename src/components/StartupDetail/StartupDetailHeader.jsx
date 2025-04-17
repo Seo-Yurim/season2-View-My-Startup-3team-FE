@@ -1,8 +1,8 @@
-import styles from "./StartupDetailHeader.module.css";
-import noImageIcon from "../../assets/no-image.png";
-import useFetchStartup from "../../hooks/useFetchStartupDetail";
-import Warn from "../Warn";
-import { useParams } from "react-router-dom";
+import styles from './StartupDetailHeader.module.css';
+import noImageIcon from '../../assets/no-image.png';
+import useFetchStartup from '../../hooks/useFetchStartupDetail';
+import Warn from '../Common/Warning/Warn';
+import { useParams } from 'react-router-dom';
 
 export default function StartupDetailHeader() {
   const { id } = useParams();

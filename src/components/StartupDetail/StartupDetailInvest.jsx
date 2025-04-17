@@ -10,7 +10,7 @@ import StartupDetailDropdown from './StartupDetailDropdown';
 import { useParams } from 'react-router-dom';
 import useFetchInvestors from '../../hooks/useFetchInvestors';
 import useFetchStartup from '../../hooks/useFetchStartupDetail';
-import Warn from '../Warn';
+import Warn from '../Common/Warning/Warn';
 
 const MAX_ITEMS = 5;
 

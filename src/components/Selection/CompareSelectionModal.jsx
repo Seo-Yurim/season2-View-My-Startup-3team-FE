@@ -1,18 +1,18 @@
-import styles from './CompareSelectionModal.module.css';
-import ic_X from '../../assets/ic_x.svg';
-import ic_search from '../../assets/ic_search.svg';
-import ic_x_circle_small from '../../assets/ic_x_circle_small.svg';
-import ic_check from '../../assets/ic_check.svg';
-import useFetchMyStartup from '../../hooks/useFetchMyStartup.js';
-import SelectionPagination from './SelectionPagination.js';
-import { useState, useEffect } from 'react';
-import noImageIcon from '../../assets/no-image.png';
+import styles from "./CompareSelectionModal.module.css";
+import ic_X from "../../assets/ic_x.svg";
+import ic_search from "../../assets/ic_search.svg";
+import ic_x_circle_small from "../../assets/ic_x_circle_small.svg";
+import ic_check from "../../assets/ic_check.svg";
+import useFetchMyStartup from "../../hooks/useFetchMyStartup";
+import SelectionPagination from "./SelectionPagination";
+import { useState, useEffect } from "react";
+import noImageIcon from "../../assets/no-image.png";
 
 export default function CompareSelectionModal({
   onClose,
   onSelectStartup,
   selectedStartups,
-  existingSelectedStartups
+  existingSelectedStartups,
 }) {
   const {
     startups,
@@ -20,12 +20,12 @@ export default function CompareSelectionModal({
     totalPages,
     searchStartups,
     goToPage,
-    totalCount
+    totalCount,
   } = useFetchMyStartup();
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const [selectCompareStartups, setSelectComparedStartups] =
     useState(selectedStartups);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     setSelectComparedStartups(selectedStartups);
@@ -51,12 +51,12 @@ export default function CompareSelectionModal({
   };
 
   const handleClear = () => {
-    setSearchText('');
+    setSearchText("");
     searchStartups([]);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleSearch();
     }
@@ -69,7 +69,7 @@ export default function CompareSelectionModal({
     );
     setSelectComparedStartups(newSelected);
     onSelectStartup(newSelected);
-    setErrorMessage('');
+    setErrorMessage("");
   };
 
   const handleSelectCompareStartups = (startup) => {
@@ -81,7 +81,7 @@ export default function CompareSelectionModal({
       const newSelected = selectCompareStartups.filter((s) => s !== startup);
       setSelectComparedStartups(newSelected);
       onSelectStartup(newSelected);
-      setErrorMessage('');
+      setErrorMessage("");
     } else {
       // 새 스타트업을 선택
       if (selectCompareStartups.length < 5) {
@@ -89,12 +89,12 @@ export default function CompareSelectionModal({
         setSelectComparedStartups(newSelected);
         onSelectStartup(newSelected);
       } else {
-        setErrorMessage('*비교할 기업은 최대 5개까지 선택 가능합니다.'); // 오류 메시지 설정
+        setErrorMessage("*비교할 기업은 최대 5개까지 선택 가능합니다."); // 오류 메시지 설정
       }
     }
   };
 
-  const inputPadding = searchText ? '1.2rem' : '1.2rem 1.2rem 1.2rem 3.7rem';
+  const inputPadding = searchText ? "1.2rem" : "1.2rem 1.2rem 1.2rem 3.7rem";
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -106,7 +106,7 @@ export default function CompareSelectionModal({
     title,
     startups,
     selectCompareStartups,
-    handleSelectCompareStartups
+    handleSelectCompareStartups,
   }) => (
     <div>
       <h3 className={styles.title}>
@@ -120,13 +120,13 @@ export default function CompareSelectionModal({
                 src={startup.image || noImageIcon}
                 alt={`${startup.name} 로고`}
                 style={{
-                  width: '3.2rem',
-                  height: '3.2rem',
-                  marginRight: '0.8rem',
-                  verticalAlign: 'middle',
-                  borderRadius: '50%',
-                  backgroundColor: 'white',
-                  objectFit: 'cover'
+                  width: "3.2rem",
+                  height: "3.2rem",
+                  marginRight: "0.8rem",
+                  verticalAlign: "middle",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  objectFit: "cover",
                 }}
               />
               <span className={styles.name}>{startup.name}</span>
@@ -180,7 +180,7 @@ export default function CompareSelectionModal({
                     선택완료
                   </>
                 ) : (
-                  '선택하기'
+                  "선택하기"
                 )}
               </button>
             )}
@@ -235,13 +235,13 @@ export default function CompareSelectionModal({
                       src={startup.image || noImageIcon}
                       alt={`${startup.name} 로고`}
                       style={{
-                        width: '3.2rem',
-                        height: '3.2rem',
-                        marginRight: '0.8rem',
-                        verticalAlign: 'middle',
-                        borderRadius: '50%',
-                        backgroundColor: 'white',
-                        objectFit: 'cover'
+                        width: "3.2rem",
+                        height: "3.2rem",
+                        marginRight: "0.8rem",
+                        verticalAlign: "middle",
+                        borderRadius: "50%",
+                        backgroundColor: "white",
+                        objectFit: "cover",
                       }}
                     />
                     <span className={styles.name}>{startup.name}</span>

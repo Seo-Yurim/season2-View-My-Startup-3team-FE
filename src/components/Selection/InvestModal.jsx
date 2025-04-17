@@ -1,12 +1,12 @@
-import styles from './InvestModal.module.css';
-import X from '../../assets/ic_x.svg';
-import visibilityOn from '../../assets/btn_visibility_on.svg';
-import visibilityOff from '../../assets/btn_visibility_off.svg';
-import { useState } from 'react';
-import { createInvestment } from '../../api/InvestmentService';
-import useValidate from '../../hooks/useValidate';
-import Modal from '../Common/Modal/Modal';
-import InvestLink from './InvestLink.js';
+import styles from "./InvestModal.module.css";
+import X from "../../assets/ic_x.svg";
+import visibilityOn from "../../assets/btn_visibility_on.svg";
+import visibilityOff from "../../assets/btn_visibility_off.svg";
+import { useState } from "react";
+import { createInvestment } from "../../api/InvestmentService";
+import useValidate from "../../hooks/useValidate";
+import Modal from "../Common/Modal/Modal";
+import InvestLink from "./InvestLink";
 
 export default function InvestModal({ onClose, startup }) {
   const selectedStartup = startup[0]; // 배열의 첫 번째 요소를 선택
@@ -16,16 +16,16 @@ export default function InvestModal({ onClose, startup }) {
   const categoryName = selectedStartup.category.category;
   const { values, errors, handleChange, validate, handleBlur, getRawValues } =
     useValidate({
-      name: '',
-      investAmount: '',
-      comment: '',
-      password: '',
-      checkPassword: ''
+      name: "",
+      investAmount: "",
+      comment: "",
+      password: "",
+      checkPassword: "",
     });
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [checkPasswordVisible, setCheckPasswordVisible] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isComplete, setIsComplete] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -38,11 +38,11 @@ export default function InvestModal({ onClose, startup }) {
 
   const isInputEmpty = () => {
     return (
-      values.name.trim() !== '' &&
-      values.investAmount.trim() !== '' &&
-      values.comment.trim() !== '' &&
-      values.password.trim() !== '' &&
-      values.checkPassword.trim() !== ''
+      values.name.trim() !== "" &&
+      values.investAmount.trim() !== "" &&
+      values.comment.trim() !== "" &&
+      values.password.trim() !== "" &&
+      values.checkPassword.trim() !== ""
     );
   };
 
@@ -63,19 +63,19 @@ export default function InvestModal({ onClose, startup }) {
       const res = await createInvestment(investment);
 
       if (!res) {
-        setError('투자 생성 요청이 실패했습니다.');
+        setError("투자 생성 요청이 실패했습니다.");
         return;
       }
 
       const investmentID = res.id;
 
       if (!investmentID) {
-        setError('투자 ID를 얻는 데 실패하였습니다.');
+        setError("투자 ID를 얻는 데 실패하였습니다.");
       } else {
         setIsComplete(true);
       }
     } catch (error) {
-      setError('투자에 실패하였습니다.');
+      setError("투자에 실패하였습니다.");
     }
   };
 
@@ -93,7 +93,7 @@ export default function InvestModal({ onClose, startup }) {
             <img
               src={X}
               onClick={(e) => onClose(e)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
               alt="close btn"
             />
           </div>
@@ -118,8 +118,8 @@ export default function InvestModal({ onClose, startup }) {
               onBlur={handleBlur}
               style={{
                 border: errors.name
-                  ? '0.1rem solid var(--error-color)'
-                  : '0.1rem solid var(--secondary-gray-200)'
+                  ? "0.1rem solid var(--error-color)"
+                  : "0.1rem solid var(--secondary-gray-200)",
               }}
             />
             {errors.name && <div className={styles.error}>{errors.name}</div>}
@@ -137,8 +137,8 @@ export default function InvestModal({ onClose, startup }) {
               onBlur={handleBlur}
               style={{
                 border: errors.investAmount
-                  ? '0.1rem solid var(--error-color)'
-                  : '0.1rem solid var(--secondary-gray-200)'
+                  ? "0.1rem solid var(--error-color)"
+                  : "0.1rem solid var(--secondary-gray-200)",
               }}
             />
             {errors.investAmount && (
@@ -158,8 +158,8 @@ export default function InvestModal({ onClose, startup }) {
               onBlur={handleBlur}
               style={{
                 border: errors.comment
-                  ? '0.1rem solid var(--error-color)'
-                  : '0.1rem solid var(--secondary-gray-200)'
+                  ? "0.1rem solid var(--error-color)"
+                  : "0.1rem solid var(--secondary-gray-200)",
               }}
             />
             {errors.comment && (
@@ -172,7 +172,7 @@ export default function InvestModal({ onClose, startup }) {
             <label htmlFor="password">비밀번호</label>
             <div className={styles.password}>
               <input
-                type={isPasswordVisible ? 'text' : 'password'}
+                type={isPasswordVisible ? "text" : "password"}
                 id="password"
                 placeholder="비밀번호를 입력해 주세요"
                 value={values.password}
@@ -180,13 +180,13 @@ export default function InvestModal({ onClose, startup }) {
                 onBlur={handleBlur}
                 style={{
                   border: errors.password
-                    ? '0.1rem solid var(--error-color)'
-                    : '0.1rem solid var(--secondary-gray-200)'
+                    ? "0.1rem solid var(--error-color)"
+                    : "0.1rem solid var(--secondary-gray-200)",
                 }}
               />
               <img
                 src={isPasswordVisible ? visibilityOff : visibilityOn}
-                alt={isPasswordVisible ? '비밀번호 표시' : '비밀번호 숨기기'}
+                alt={isPasswordVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
                 onClick={togglePasswordVisibility}
               />
             </div>
@@ -200,7 +200,7 @@ export default function InvestModal({ onClose, startup }) {
             <label htmlFor="checkPassword">비밀번호 확인</label>
             <div className={styles.password}>
               <input
-                type={checkPasswordVisible ? 'text' : 'password'}
+                type={checkPasswordVisible ? "text" : "password"}
                 id="checkPassword"
                 placeholder="비밀번호를 다시 한 번 입력해 주세요"
                 value={values.checkPassword}
@@ -208,13 +208,13 @@ export default function InvestModal({ onClose, startup }) {
                 onBlur={handleBlur}
                 style={{
                   border: errors.checkPassword
-                    ? '0.1rem solid var(--error-color)'
-                    : '0.1rem solid var(--secondary-gray-200)'
+                    ? "0.1rem solid var(--error-color)"
+                    : "0.1rem solid var(--secondary-gray-200)",
                 }}
               />
               <img
                 src={checkPasswordVisible ? visibilityOff : visibilityOn}
-                alt={checkPasswordVisible ? '비밀번호 표시' : '비밀번호 숨기기'}
+                alt={checkPasswordVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
                 onClick={toggleCheckPasswordVisibility}
               />
             </div>
