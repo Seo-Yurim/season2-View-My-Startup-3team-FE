@@ -25,11 +25,8 @@ export default function InvestmentPage() {
     sort: params.sort,
   });
 
-  if (isLoading) return <Loading />;
-  if (isError) return <div>Error..</div>;
-
-  const list = data.list;
-  const totalPages = Math.ceil(data.totalCount / PAGE_SIZE);
+  const list = data?.list;
+  const totalPages = Math.ceil(data?.totalCount / PAGE_SIZE);
 
   // 정렬 처리 함수
   const handleSortChange = (order, sort) => {
@@ -42,21 +39,27 @@ export default function InvestmentPage() {
 
   return (
     <>
-      <div className={styles.header}>
-        <h1 className={styles.title}>투자 현황</h1>
-        <Dropdown
-          sortOptions={INVESTMENT_SORT_OPTIONS}
-          setSortOrder={handleSortChange}
-          order={params.order}
-          sort={params.sort}
-        />
-      </div>
-      <TableList tableData={INVESTMENT_TABLE_DATA} list={list} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={(page) => setCurrentPage(page)}
-      />
+      {isLoading && <Loading />}
+      {isError && <div>Error..</div>}
+      {!isLoading && !isError && (
+        <>
+          <div className={styles.header}>
+            <h1 className={styles.title}>투자 현황</h1>
+            <Dropdown
+              sortOptions={INVESTMENT_SORT_OPTIONS}
+              setSortOrder={handleSortChange}
+              order={params.order}
+              sort={params.sort}
+            />
+          </div>
+          <TableList tableData={INVESTMENT_TABLE_DATA} list={list} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </>
+      )}
     </>
   );
 }
