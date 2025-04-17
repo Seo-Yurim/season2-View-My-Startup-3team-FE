@@ -1,0 +1,33 @@
+.button {
+    height: 4.8rem;
+
+    margin: 0 auto;
+    padding: 1.3rem 4.8rem;
+
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.909rem;
+
+    cursor: pointer;
+}
+
+.button:disabled {
+    background-color: var(--secondary-gray-300);
+    cursor: default;
+}
+
+.default {
+    border-radius: 5rem;
+    border: none;
+
+    color: white;
+    background-color: var(--primary-orange);
+}
+
+.solid {
+    border-radius: 5rem;
+    border: 0.1rem solid var(--primary-orange);
+
+    color: var(--primary-orange);
+    background-color: transparent;
+}

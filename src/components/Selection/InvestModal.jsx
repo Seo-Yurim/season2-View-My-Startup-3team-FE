@@ -5,8 +5,8 @@ import visibilityOff from "../../assets/btn_visibility_off.svg";
 import { useState } from "react";
 import { createInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
-import Modal from "../Common/Modal/Modal";
-import InvestLink from "./InvestLink";
+import ModalContainer from "../Modal/ModalContainer/ModalContainer";
+import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
 
 export default function InvestModal({ onClose, startup }) {
   const selectedStartup = startup[0]; // 배열의 첫 번째 요소를 선택
@@ -86,7 +86,7 @@ export default function InvestModal({ onClose, startup }) {
 
   return (
     <>
-      <Modal>
+      <ModalContainer>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div>
             <h1>기업에 투자하기</h1>
@@ -236,11 +236,11 @@ export default function InvestModal({ onClose, startup }) {
           </div>
           {error && <div className={styles.error}>{error}</div>}
         </form>
-      </Modal>
+      </ModalContainer>
       {isComplete && (
-        <InvestLink
+        <ConfirmModal
           onClose={handleCloseCompleteModal}
-          startup={selectedStartup}
+          data={selectedStartup}
         />
       )}
     </>

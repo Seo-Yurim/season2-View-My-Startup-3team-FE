@@ -6,37 +6,37 @@
   color: var(--primary-white);
 }
 
-h1 {
+.aboutContainer h1 {
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
 
-h2 {
+.aboutContainer h2 {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1.2rem;
 }
 
-section {
+.aboutContainer section {
   margin-bottom: 3rem;
 }
 
-p {
+.aboutContainer p {
   font-size: 1.4rem;
   line-height: 2rem;
 }
 
-p span {
+.aboutContainer p span {
   color: var(--secondary-gray-200);
 }
 
-ul {
+.aboutContainer ul {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+.aboutContainer li {
   font-size: 1.4rem;
   line-height: 2rem;
   margin-bottom: 0.5rem;
