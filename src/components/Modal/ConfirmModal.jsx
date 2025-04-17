@@ -14,7 +14,6 @@ import ModalContainer from "./ModalContainer";
 
 export function ConfirmModal({
   type = "complete",
-  description,
   onClose,
   onDelete,
   onUpdate,
@@ -22,31 +21,43 @@ export function ConfirmModal({
 }) {
   const modalType =
     type === "passwordFail" ? (
-      <button className={styles.fail} onClick={handleCloseFailModal}>
-        확인
-      </button>
-    ) : type === "deleteConfirm" ? (
-      <div className={styles.buttons}>
-        <button className={styles.cancel} onClick={onClose}>
-          취소
-        </button>
-        <button className={styles.confirm} onClick={onDelete}>
+      <>
+        <span>잘못된 비밀번호입니다.</span>
+        <button className={styles.complete} onClick={setFail}>
           확인
         </button>
-      </div>
+      </>
     ) : type === "deleteConfirm" ? (
-      <div className={styles.buttons}>
-        <button className={styles.cancel} onClick={onClose}>
-          취소
-        </button>
-        <button className={styles.confirm} onClick={onUpdate}>
-          확인
-        </button>
-      </div>
+      <>
+        <span>해당 정보를 삭제하시겠습니까?</span>
+        <div className={styles.buttons}>
+          <button className={styles.cancel} onClick={onClose}>
+            취소
+          </button>
+          <button className={styles.confirm} onClick={onDelete}>
+            확인
+          </button>
+        </div>
+      </>
+    ) : type === "updateConfirm" ? (
+      <>
+        <span>수정하시겠습니까?</span>
+        <div className={styles.buttons}>
+          <button className={styles.cancel} onClick={onClose}>
+            취소
+          </button>
+          <button className={styles.confirm} onClick={onUpdate}>
+            확인
+          </button>
+        </div>
+      </>
     ) : (
-      <button className={styles.complete} onClick={onClose}>
-        확인
-      </button>
+      <>
+        <span>투자가 완료되었어요!</span>
+        <button className={styles.complete} onClick={onClose}>
+          확인
+        </button>
+      </>
     );
 
   const handleCloseFailModal = () => {
@@ -62,7 +73,6 @@ export function ConfirmModal({
           style={{ cursor: "pointer" }}
           alt="close btn"
         />
-        <span>{description}</span>
         {modalType}
       </div>
     </ModalContainer>
