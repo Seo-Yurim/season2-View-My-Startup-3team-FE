@@ -1,7 +1,7 @@
 import styles from "./ConfirmModal.module.css";
-import X from "../../assets/ic_x.svg";
-import ModalContainer from "./ModalContainer";
-import Button from "../Common/Button/Button";
+import X from "../../../assets/ic_x.svg";
+import ModalContainer from "../ModalContainer/ModalContainer";
+import Button from "../../Common/Button/Button";
 import { useNavigate } from "react-router-dom";
 
 export default function ConfirmModal({

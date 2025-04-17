@@ -5,8 +5,8 @@ import visibilityOn from "../../assets/btn_visibility_off.svg";
 import { useState } from "react";
 import { patchInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
-import ModalContainer from "../Modal/ModalContainer";
-import ConfirmModal from "../Modal/ConfirmModal";
+import ModalContainer from "../Modal/ModalContainer/ModalContainer";
+import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
 
 export default function InvestmentUpdate({
   onClose,

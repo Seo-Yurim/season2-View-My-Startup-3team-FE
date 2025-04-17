@@ -10,8 +10,6 @@ import {
   INVESTMENT_TABLE_DATA,
 } from "../constant";
 import Loading from "../components/Common/Loading/Loading";
-import { ConfirmModal } from "../components/Modal/ConfirmModal";
-import Button from "../components/Common/Button/Button";
 
 export default function InvestmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
