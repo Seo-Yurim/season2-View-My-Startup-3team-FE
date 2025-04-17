@@ -9,6 +9,7 @@ import {
   INVESTMENT_SORT_OPTIONS,
   INVESTMENT_TABLE_DATA,
 } from "../constant";
+import Loading from "../components/Common/Loading/Loading";
 
 export default function InvestmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +25,7 @@ export default function InvestmentPage() {
     sort: params.sort,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
   if (isError) return <div>Error..</div>;
 
   const list = data.list;
