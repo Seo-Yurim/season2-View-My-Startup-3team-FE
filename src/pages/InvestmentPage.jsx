@@ -11,6 +11,7 @@ import {
 } from "../constant";
 import Loading from "../components/Common/Loading/Loading";
 import { ConfirmModal } from "../components/Modal/ConfirmModal";
+import Button from "../components/Common/Button/Button";
 
 export default function InvestmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,7 +45,7 @@ export default function InvestmentPage() {
       {isError && <div>Error..</div>}
       {!isLoading && !isError && (
         <>
-          <ConfirmModal type="d" onClose="d" />
+          <Button label="확인" />
           <div className={styles.header}>
             <h1 className={styles.title}>투자 현황</h1>
             <Dropdown
