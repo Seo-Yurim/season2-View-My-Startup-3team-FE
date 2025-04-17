@@ -3,7 +3,6 @@ import Nav from './Nav/Nav.js';
 import Container from './Container.js';
 import Footer from './Footer/Footer.js';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect, useState } from 'react';
 
 const queryClient = new QueryClient();
@@ -25,7 +24,6 @@ export default function App() {
         </div>
       </Container>
       <Footer />
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
