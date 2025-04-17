@@ -12,6 +12,16 @@ export default function ConfirmModal({
   setFail,
   data,
 }) {
+  const navigate = useNavigate();
+
+  const handleRowClick = (id) => {
+    navigate(`/startup/${id}`);
+  };
+
+  const handleCloseFailModal = () => {
+    setFail(false);
+  };
+
   const modalType =
     type === "passwordFail" ? (
       <>
@@ -50,15 +60,6 @@ export default function ConfirmModal({
         />
       </>
     );
-
-  const handleCloseFailModal = () => {
-    setFail(false);
-  };
-
-  const navigate = useNavigate();
-  const handleRowClick = (id) => {
-    navigate(`/startup/${id}`);
-  };
 
   return (
     <ModalContainer>
