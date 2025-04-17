@@ -4,7 +4,7 @@ import StartupDetailPage from './pages/StartupDetailPage.js';
 import MyComparisonPage from './pages/MyComparisonPage';
 import ComparisonPage from './pages/ComparisonPage';
 import InvestmentPage from './pages/InvestmentPage';
-import App from './components/App.js';
+import App from './components/App';
 import NotFoundPage from './pages/NotFoundPage.js';
 import TermsPage from './pages/TermsPage.js';
 import PrivacyPage from './pages/PrivacyPage.js';

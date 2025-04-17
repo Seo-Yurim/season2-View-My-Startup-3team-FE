@@ -1,4 +1,4 @@
-import Warn from '../components/Warn';
+import Warn from '../components/Common/Warning/Warn';
 
 export default function NotFoundPage() {
   return (

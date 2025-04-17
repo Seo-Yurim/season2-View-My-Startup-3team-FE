@@ -6,7 +6,7 @@ import Pagination from '../Common/Pagination/Pagination';
 import noImageIcon from '../../assets/no-image.png';
 import { formatAmount } from '../../utils/formatAmount';
 import StartupHeader from './StartupHeader';
-import Warn from '../Warn';
+import Warn from '../Common/Warning/Warn';
 
 const MAX_ITEMS = 10;
 
