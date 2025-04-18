@@ -31,6 +31,21 @@ button {
   font-family: inherit;
 }
 
+label {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.148rem;
+}
+
+.form-error {
+  padding-left: 1rem;
+
+  color: var(--error-color);
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.671rem;
+}
+
 .fade-transition {
   animation: fadeIn 0.7s ease;
 }

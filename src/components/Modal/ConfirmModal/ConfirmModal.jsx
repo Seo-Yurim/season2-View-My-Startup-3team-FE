@@ -12,6 +12,16 @@ export default function ConfirmModal({
   setFail,
   data,
 }) {
+  const navigate = useNavigate();
+
+  const handleRowClick = (id) => {
+    navigate(`/startup/${id}`);
+  };
+
+  const handleCloseFailModal = () => {
+    setFail(false);
+  };
+
   const modalType =
     type === "passwordFail" ? (
       <>
@@ -22,7 +32,7 @@ export default function ConfirmModal({
       <>
         <span>해당 정보를 삭제하시겠습니까?</span>
         <div className={styles.buttons}>
-          <Button type="solid" label="취소" onClick={onClose} />
+          <Button styleType="solid" label="취소" onClick={onClose} />
           <Button label="확인" onClick={onDelete} />
         </div>
       </>
@@ -30,7 +40,7 @@ export default function ConfirmModal({
       <>
         <span>수정하시겠습니까?</span>
         <div className={styles.buttons}>
-          <Button type="solid" label="취소" onClick={onClose} />
+          <Button styleType="solid" label="취소" onClick={onClose} />
           <Button label="확인" onClick={onUpdate} />
         </div>
       </>
@@ -50,15 +60,6 @@ export default function ConfirmModal({
         />
       </>
     );
-
-  const handleCloseFailModal = () => {
-    setFail(false);
-  };
-
-  const navigate = useNavigate();
-  const handleRowClick = (id) => {
-    navigate(`/startup/${id}`);
-  };
 
   return (
     <ModalContainer>
