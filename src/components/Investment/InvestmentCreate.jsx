@@ -7,7 +7,7 @@ import { createInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
 import ModalContainer from "../Modal/ModalContainer/ModalContainer";
 import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
-import Input from "../Common/Input/Input";
+import Input from "../Common/Inputs/Input/Input";
 
 export default function InvestmentCreate({ onClose, startup }) {
   const { id: startupId, image, name, categoryName } = startup || {};
