@@ -7,6 +7,7 @@ import { createInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
 import ModalContainer from "../Modal/ModalContainer/ModalContainer";
 import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
+import Input from "../Common/Input/Input";
 
 export default function InvestmentCreate({ onClose, startup }) {
   const { id: startupId, image, name, categoryName } = startup || {};
@@ -105,42 +106,30 @@ export default function InvestmentCreate({ onClose, startup }) {
 
           {/* 투자자 이름 */}
           <div className={styles.group}>
-            <label htmlFor="name">투자자 이름</label>
-            <input
+            <Input
+              label="투자자 이름"
               type="text"
               id="name"
               placeholder="투자자 이름을 입력해 주세요"
               value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
-              style={{
-                border: errors.name
-                  ? "0.1rem solid var(--error-color)"
-                  : "0.1rem solid var(--secondary-gray-200)",
-              }}
+              error={errors.name}
             />
-            {errors.name && <div className={styles.error}>{errors.name}</div>}
           </div>
 
           {/* 투자 금액 */}
           <div className={styles.group}>
-            <label htmlFor="investAmount">투자 금액</label>
-            <input
+            <Input
+              label="투자 금액"
               type="text"
               id="investAmount"
               placeholder="투자 금액을 입력해 주세요"
               value={values.investAmount}
               onChange={handleChange}
               onBlur={handleBlur}
-              style={{
-                border: errors.investAmount
-                  ? "0.1rem solid var(--error-color)"
-                  : "0.1rem solid var(--secondary-gray-200)",
-              }}
+              error={errors.investAmount}
             />
-            {errors.investAmount && (
-              <div className={styles.error}>{errors.investAmount}</div>
-            )}
           </div>
 
           {/* 투자 코멘트 */}

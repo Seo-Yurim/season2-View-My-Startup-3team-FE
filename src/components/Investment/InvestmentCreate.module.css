@@ -76,14 +76,9 @@ form,
     gap: 1.6rem;
 }
 
-.group label {
-    font-size: 1.8rem;
-    font-weight: 700;
-    line-height: 2.148rem;
-}
-
-.group input,
 .group textarea {
+    height: 10.8rem;
+
     padding: 1.6rem 2rem;
     border-radius: 1rem;
 
@@ -91,7 +86,6 @@ form,
     background-color: transparent;
 }
 
-.group input::placeholder,
 .group textarea::placeholder {
     font-size: 1.4rem;
     font-weight: 400;
@@ -99,13 +93,8 @@ form,
 
 }
 
-.group input:focus,
 .group textarea:focus {
     outline: 0.1rem solid var(--secondary-gray-100);
-}
-
-.group textarea {
-    height: 10.8rem;
 }
 
 /**** 비밀번호 인풋 설정 ****/
@@ -171,13 +160,6 @@ form,
 .submit:disabled {
     background-color: var(--secondary-gray-300);
     cursor: default;
-}
-
-.error {
-    color: var(--error-color);
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 1.671rem;
 }
 
 /***** Mobile *****/

@@ -1,0 +1,32 @@
+.label {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.148rem;
+}
+
+.input {
+    padding: 1.6rem 2rem;
+    border-radius: 1rem;
+
+    color: var(--secondary-gray-100);
+    background-color: transparent;
+}
+
+.input::placeholder {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.671rem;
+}
+
+.input:focus {
+    outline: 0.1rem solid var(--secondary-gray-100);
+}
+
+.error {
+    padding-left: 1rem;
+
+    color: var(--error-color);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.671rem;
+}
