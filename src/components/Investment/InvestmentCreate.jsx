@@ -8,6 +8,7 @@ import useValidate from "../../hooks/useValidate";
 import ModalContainer from "../Modal/ModalContainer/ModalContainer";
 import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
 import Input from "../Common/Inputs/Input/Input";
+import TextArea from "../Common/Inputs/TextArea/TextArea";
 
 export default function InvestmentCreate({ onClose, startup }) {
   const { id: startupId, image, name, categoryName } = startup || {};
@@ -134,23 +135,15 @@ export default function InvestmentCreate({ onClose, startup }) {
 
           {/* 투자 코멘트 */}
           <div className={styles.group}>
-            <label htmlFor="comment">투자 코멘트</label>
-            <textarea
-              type="text"
+            <TextArea
+              label="투자 코멘트"
               id="comment"
               placeholder="투자에 대한 코멘트를 입력해 주세요"
               value={values.comment}
               onChange={handleChange}
               onBlur={handleBlur}
-              style={{
-                border: errors.comment
-                  ? "0.1rem solid var(--error-color)"
-                  : "0.1rem solid var(--secondary-gray-200)",
-              }}
+              error={errors.comment}
             />
-            {errors.comment && (
-              <div className={styles.error}>{errors.comment}</div>
-            )}
           </div>
 
           {/* 비밀번호 */}

@@ -76,7 +76,7 @@ form,
     gap: 1.6rem;
 }
 
-.group textarea {
+/* .group textarea {
     height: 10.8rem;
 
     padding: 1.6rem 2rem;
@@ -95,7 +95,7 @@ form,
 
 .group textarea:focus {
     outline: 0.1rem solid var(--secondary-gray-100);
-}
+} */
 
 /**** 비밀번호 인풋 설정 ****/
 .password {

@@ -1,8 +1,7 @@
-import styles from "./Input.module.css";
+import styles from "./TextArea.module.css";
 
-export default function Input({
+export default function TextArea({
   label,
-  type,
   id,
   placeholder,
   value,
@@ -17,14 +16,13 @@ export default function Input({
           {label}
         </label>
       )}
-      <input
-        type={type}
+      <textarea
         id={id}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className={styles.input}
+        className={styles.textarea}
         style={{
           border: error
             ? "0.1rem solid var(--error-color)"
