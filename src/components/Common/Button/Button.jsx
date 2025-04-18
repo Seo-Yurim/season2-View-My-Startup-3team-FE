@@ -1,7 +1,8 @@
 import styles from "./Button.module.css";
 
 export default function Button({
-  type = "default",
+  type = "button",
+  styleType = "default",
   label,
   onClick,
   isDisabled = false,
@@ -9,7 +10,8 @@ export default function Button({
   return (
     <>
       <button
-        className={`${styles.button} ${styles[type]}`}
+        type={type}
+        className={`${styles.button} ${styles[styleType]}`}
         onClick={onClick}
         disabled={isDisabled}
       >

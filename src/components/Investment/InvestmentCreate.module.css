@@ -1,7 +1,8 @@
 form,
 .form>:first-child,
 .form>:nth-child(2),
-.group {
+.group,
+.buttons {
     width: 100%;
 }
 
@@ -81,65 +82,4 @@ form,
     align-items: center;
 
     gap: 1.6rem;
-}
-
-.buttons button {
-    height: 4.8rem;
-
-    padding: 1.3rem 4.8rem;
-    border-radius: 5rem;
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.cancel {
-    width: 19.4rem;
-
-    border: 0.1rem solid var(--primary-orange);
-
-    color: var(--primary-orange);
-    font-size: 1.8rem;
-    line-height: 2.148rem;
-    background-color: transparent;
-}
-
-.submit {
-    width: 18.3rem;
-
-    border: none;
-
-    color: white;
-    font-size: 1.6rem;
-    line-height: 1.909rem;
-
-    background-color: var(--primary-orange);
-}
-
-.submit:disabled {
-    background-color: var(--secondary-gray-300);
-    cursor: default;
-}
-
-/***** Mobile *****/
-@media (max-width: 743px) {
-    .form {
-        max-width: 31.1rem;
-    }
-
-    .buttons button {
-        height: 4rem;
-
-        font-size: 1.4rem;
-        line-height: 1.671rem;
-    }
-
-    .cancel {
-        width: 13rem;
-    }
-
-    .submit {
-        width: 15rem;
-    }
 }

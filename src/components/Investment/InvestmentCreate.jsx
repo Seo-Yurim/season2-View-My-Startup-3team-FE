@@ -8,6 +8,7 @@ import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
 import Input from "../Common/Inputs/Input/Input";
 import TextArea from "../Common/Inputs/TextArea/TextArea";
 import PasswordInput from "../Common/Inputs/PasswordInput/PasswordInput";
+import Button from "../Common/Button/Button";
 
 export default function InvestmentCreate({ onClose, startup }) {
   const { id: startupId, image, name, categoryName } = startup || {};
@@ -176,18 +177,10 @@ export default function InvestmentCreate({ onClose, startup }) {
           </div>
 
           <div className={styles.buttons}>
-            <button className={styles.cancel} onClick={onClose}>
-              취소
-            </button>
-            <button
-              className={styles.submit}
-              type="submit"
-              disabled={!isInputEmpty()}
-            >
-              투자하기
-            </button>
+            <Button styleType="solid" label="취소" onClick={onClose} />
+            <Button type="submit" label="확인" isDisabled={!isInputEmpty()} />
           </div>
-          {error && <div className={styles.error}>{error}</div>}
+          {error && <div className="form-error">{error}</div>}
         </form>
       </ModalContainer>
       {isComplete && <ConfirmModal onClose={handleCloseCompleteModal} />}
