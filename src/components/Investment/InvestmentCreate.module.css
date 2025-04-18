@@ -1,6 +1,6 @@
-form,
-.form>:first-child,
-.form>:nth-child(2),
+.form,
+.form .form-header,
+.form .startup-info,
 .group,
 .buttons {
     width: 100%;
@@ -18,7 +18,7 @@ form,
 }
 
 /**** 폼 제목 및 X 아이콘 설정 ****/
-.form>:first-child {
+.form .form-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +29,7 @@ form,
 }
 
 /**** 폼 투자 기업 정보 설정 ****/
-.form>:nth-child(2) {
+.form .startup-info {
     display: flex;
     flex-direction: column;
 
@@ -55,13 +55,13 @@ form,
     background-color: white;
 }
 
-.startup h1 {
+.startup .name {
     font-size: 1.8rem;
     font-weight: 500;
     line-height: 2.148rem;
 }
 
-.startup p {
+.startup .category {
     color: var(--secondary-gray-200);
     font-size: 1.6rem;
     font-weight: 400;

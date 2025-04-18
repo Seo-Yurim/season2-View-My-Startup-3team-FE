@@ -36,11 +36,11 @@ export default function InvestmentCreate({ onClose, startup }) {
 
   const isInputEmpty = () => {
     return (
-      values.name.trim() !== "" &&
-      values.investAmount.trim() !== "" &&
-      values.comment.trim() !== "" &&
-      values.password.trim() !== "" &&
-      values.checkPassword.trim() !== ""
+      values.name.trim() === "" &&
+      values.investAmount.trim() === "" &&
+      values.comment.trim() === "" &&
+      values.password.trim() === "" &&
+      values.checkPassword.trim() === ""
     );
   };
 
@@ -87,7 +87,7 @@ export default function InvestmentCreate({ onClose, startup }) {
     <>
       <ModalContainer>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <div>
+          <div className={styles[`form-header`]}>
             <h1>기업에 투자하기</h1>
             <img
               src={X}
@@ -96,12 +96,12 @@ export default function InvestmentCreate({ onClose, startup }) {
               alt="close btn"
             />
           </div>
-          <div>
-            <h1>투자 기업 정보</h1>
+          <div className={styles[`startup-info`]}>
+            <label>투자 기업 정보</label>
             <div className={styles.startup}>
               <img src={image} alt={name} />
-              <h1>{name}</h1>
-              <p>{categoryName}</p>
+              <p className={styles.name}>{name}</p>
+              <p className={styles.category}>{categoryName}</p>
             </div>
           </div>
 
@@ -178,7 +178,7 @@ export default function InvestmentCreate({ onClose, startup }) {
 
           <div className={styles.buttons}>
             <Button styleType="solid" label="취소" onClick={onClose} />
-            <Button type="submit" label="확인" isDisabled={!isInputEmpty()} />
+            <Button type="submit" label="확인" isDisabled={isInputEmpty()} />
           </div>
           {error && <div className="form-error">{error}</div>}
         </form>
