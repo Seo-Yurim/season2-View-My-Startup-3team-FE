@@ -12,11 +12,7 @@ export default function Input({
 }) {
   return (
     <>
-      {label && (
-        <label htmlFor={id} className={styles.label}>
-          {label}
-        </label>
-      )}
+      {label && <label htmlFor={id}>{label}</label>}
       <input
         type={type}
         id={id}

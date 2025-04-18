@@ -11,11 +11,7 @@ export default function TextArea({
 }) {
   return (
     <>
-      {label && (
-        <label htmlFor={id} className={styles.label}>
-          {label}
-        </label>
-      )}
+      {label && <label htmlFor={id}>{label}</label>}
       <textarea
         id={id}
         placeholder={placeholder}

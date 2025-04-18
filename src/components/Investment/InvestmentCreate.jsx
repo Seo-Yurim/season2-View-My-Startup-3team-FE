@@ -1,7 +1,5 @@
 import styles from "./InvestmentCreate.module.css";
 import X from "../../assets/ic_x.svg";
-import visibilityOff from "../../assets/btn_visibility_on.svg";
-import visibilityOn from "../../assets/btn_visibility_off.svg";
 import { useState } from "react";
 import { createInvestment } from "../../api/InvestmentService";
 import useValidate from "../../hooks/useValidate";
@@ -9,6 +7,7 @@ import ModalContainer from "../Modal/ModalContainer/ModalContainer";
 import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
 import Input from "../Common/Inputs/Input/Input";
 import TextArea from "../Common/Inputs/TextArea/TextArea";
+import PasswordInput from "../Common/Inputs/PasswordInput/PasswordInput";
 
 export default function InvestmentCreate({ onClose, startup }) {
   const { id: startupId, image, name, categoryName } = startup || {};
@@ -148,59 +147,34 @@ export default function InvestmentCreate({ onClose, startup }) {
 
           {/* 비밀번호 */}
           <div className={styles.group}>
-            <label htmlFor="password">비밀번호</label>
-            <div className={styles.password}>
-              <input
-                type={isPasswordVisible ? "text" : "password"}
-                id="password"
-                placeholder="비밀번호를 입력해 주세요"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                style={{
-                  border: errors.password
-                    ? "0.1rem solid var(--error-color)"
-                    : "0.1rem solid var(--secondary-gray-200)",
-                }}
-              />
-              <img
-                src={isPasswordVisible ? visibilityOff : visibilityOn}
-                alt={isPasswordVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
-                onClick={togglePasswordVisibility}
-              />
-            </div>
-            {errors.password && (
-              <div className={styles.error}>{errors.password}</div>
-            )}
+            <PasswordInput
+              label="비밀번호"
+              id="password"
+              placeholder="비밀번호를 입력해 주세요"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.password}
+              onToggle={togglePasswordVisibility}
+              isVisible={isPasswordVisible}
+            />
           </div>
 
           {/* 비밀번호 확인 */}
           <div className={styles.group}>
-            <label htmlFor="checkPassword">비밀번호 확인</label>
-            <div className={styles.password}>
-              <input
-                type={checkPasswordVisible ? "text" : "password"}
-                id="checkPassword"
-                placeholder="비밀번호를 다시 한 번 입력해 주세요"
-                value={values.checkPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                style={{
-                  border: errors.checkPassword
-                    ? "0.1rem solid var(--error-color)"
-                    : "0.1rem solid var(--secondary-gray-200)",
-                }}
-              />
-              <img
-                src={checkPasswordVisible ? visibilityOff : visibilityOn}
-                alt={checkPasswordVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
-                onClick={toggleCheckPasswordVisibility}
-              />
-            </div>
-            {errors.checkPassword && (
-              <div className={styles.error}>{errors.checkPassword}</div>
-            )}
+            <PasswordInput
+              label="비밀번호 확인"
+              id="checkPassword"
+              placeholder="비밀번호를 입력해 주세요"
+              value={values.checkPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.checkPassword}
+              onToggle={toggleCheckPasswordVisibility}
+              isVisible={checkPasswordVisible}
+            />
           </div>
+
           <div className={styles.buttons}>
             <button className={styles.cancel} onClick={onClose}>
               취소

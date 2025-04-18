@@ -31,6 +31,12 @@ button {
   font-family: inherit;
 }
 
+label {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.148rem;
+}
+
 .form-error {
   padding-left: 1rem;
 
