@@ -1,16 +1,16 @@
-import styles from './StartupDetailInvest.module.css';
-import kebab from '../../assets/ic_kebab.svg';
-import { useState, useEffect, useRef } from 'react';
-import Pagination from '../Common/Pagination/Pagination';
-import { formatAmount } from '../../utils/formatAmount';
-import InvestmentCreate from '../Investment/InvestmentCreate';
-import InvestmentPatch from '../Investment/InvestmentPatch';
-import InvestmentDelete from '../Investment/InvestmentDelete';
-import StartupDetailDropdown from './StartupDetailDropdown';
-import { useParams } from 'react-router-dom';
-import useFetchInvestors from '../../hooks/useFetchInvestors';
-import useFetchStartup from '../../hooks/useFetchStartupDetail';
-import Warn from '../Common/Warning/Warn';
+import styles from "./StartupDetailInvest.module.css";
+import kebab from "../../assets/ic_kebab.svg";
+import { useState, useEffect, useRef } from "react";
+import Pagination from "../Common/Pagination/Pagination";
+import { formatAmount } from "../../utils/formatAmount";
+import CreateInvestModal from "../Modal/CreateInvestModal/CreateInvestModal";
+import StartupDetailDropdown from "./StartupDetailDropdown";
+import { useParams } from "react-router-dom";
+import Warn from "../Common/Warning/Warn";
+import Loading from "../Common/Loading/Loading";
+import VerifyPwdModal from "../Modal/VerifyPwdModal/VerifyPwdModal";
+import Button from "../Common/Button/Button";
+import { useGetStartupDetail } from "../../api/queries/startupQuery";
 
 const MAX_ITEMS = 5;
 
@@ -19,14 +19,6 @@ export default function StartupDetailInvest() {
   const maxItems = MAX_ITEMS;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { investors, error, totalCount, showLoading } = useFetchInvestors(
-    id,
-    currentPage,
-    maxItems
-  );
-
-  const { startup } = useFetchStartup(id);
-
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isPatchModalOpen, setPatchModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -34,29 +26,6 @@ export default function StartupDetailInvest() {
   const [selectedInvestor, setSelectedInvestor] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  const handleOpenCreateModal = () => setCreateModalOpen(true);
-  const handleCloseCreateModal = () => setCreateModalOpen(false);
-
-  const handleOpenPatchModal = () => setPatchModalOpen(true);
-  const handleClosePatchModal = () => setPatchModalOpen(false);
-
-  const handleOpenDeleteModal = () => setDeleteModalOpen(true);
-  const handleCloseDeleteModal = () => setDeleteModalOpen(false);
-
-  const handleMenuClick = (investor) => {
-    setSelectedInvestor(investor);
-    setDropdownOpen((prev) => !prev);
-  };
-
-  const handleDropdownOptionClick = (action) => {
-    setDropdownOpen(false);
-    if (action === 'patch') {
-      handleOpenPatchModal();
-    } else if (action === 'delete') {
-      handleOpenDeleteModal();
-    }
-  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -69,50 +38,77 @@ export default function StartupDetailInvest() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownOpen]);
 
-  if (error) {
-    return <Warn variant="error" title="오류발생" description={error} />;
+  const { data, isLoading, isError } = useGetStartupDetail(
+    id,
+    currentPage,
+    MAX_ITEMS
+  );
+
+  if (isError) {
+    return (
+      <Warn
+        variant="error"
+        title="오류발생"
+        description={"기업 상세 정보를 불러오는 데 실패했습니다."}
+      />
+    );
   }
 
-  if (showLoading && !investors) {
-    return <div>목록을 불러오는 중입니다....</div>;
+  if (isLoading && !data) {
+    return <Loading />;
   }
 
-  if (!startup) {
-    return;
-  }
-
+  const investors = data?.mockInvestors;
+  const startup = data?.startup;
+  const totalCount = investors?.totalCount;
   const totalPages = Math.ceil(totalCount / maxItems);
+
+  const handleMenuClick = (investor) => {
+    setSelectedInvestor(investor);
+    setDropdownOpen((prev) => !prev);
+  };
+
+  const handleDropdownOptionClick = (action) => {
+    setDropdownOpen(false);
+    if (action === "patch") {
+      setPatchModalOpen(true);
+    } else if (action === "delete") {
+      setDeleteModalOpen(true);
+    }
+  };
 
   return (
     <div className={styles.content}>
       <div className={styles.headerBox}>
         <div className={styles.header}>
           <h1>View My Startup에서 받은 투자</h1>
-          <button onClick={handleOpenCreateModal} style={{ cursor: 'pointer' }}>
-            기업 투자하기
-          </button>
+          <Button
+            width="auto"
+            label="기업 투자하기"
+            onClick={() => setCreateModalOpen(true)}
+          />
         </div>
       </div>
       <div>
-        <h1>총 {formatAmount(startup.startup.simInvest)}원</h1>
+        <h1>총 {formatAmount(startup.simInvest)}원</h1>
         <div className={styles.wrapper}>
-          {investors && investors.list.length > 0 ? (
+          {investors ? (
             <>
               <div className={styles.tableContainer}>
                 <table className={styles.table}>
                   <thead>
                     <tr>
-                      <th style={{ width: '8.4rem' }}>투자자 이름</th>
-                      <th style={{ width: '8.4rem' }}>순위</th>
-                      <th style={{ width: '8.4rem' }}>투자 금액</th>
-                      <th style={{ width: 'auto' }}>투자 코멘트</th>
-                      <th style={{ width: '6.4rem' }}> </th>
+                      <th style={{ width: "8.4rem" }}>투자자 이름</th>
+                      <th style={{ width: "8.4rem" }}>순위</th>
+                      <th style={{ width: "8.4rem" }}>투자 금액</th>
+                      <th style={{ width: "auto" }}>투자 코멘트</th>
+                      <th style={{ width: "6.4rem" }}> </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -121,22 +117,22 @@ export default function StartupDetailInvest() {
                         <td className={styles.name}>{item.name}</td>
                         <td>{item.rank}위</td>
                         <td>{formatAmount(item.investAmount)} 원</td>
-                        <td style={{ textAlign: 'left' }}>{item.comment}</td>
-                        <td style={{ position: 'relative' }}>
+                        <td style={{ textAlign: "left" }}>{item.comment}</td>
+                        <td style={{ position: "relative" }}>
                           <img
                             src={kebab}
                             alt="더보기 아이콘"
                             onClick={() => handleMenuClick(item)}
-                            style={{ cursor: 'pointer' }}
+                            style={{ cursor: "pointer" }}
                           />
                           {selectedInvestor?.id === item.id && dropdownOpen && (
                             <div ref={dropdownRef}>
                               <StartupDetailDropdown
                                 onPatch={() =>
-                                  handleDropdownOptionClick('patch')
+                                  handleDropdownOptionClick("patch")
                                 }
                                 onDelete={() =>
-                                  handleDropdownOptionClick('delete')
+                                  handleDropdownOptionClick("delete")
                                 }
                               />
                             </div>
@@ -162,22 +158,28 @@ export default function StartupDetailInvest() {
           )}
         </div>
       </div>
+
       {isCreateModalOpen && (
-        <InvestmentCreate
-          onClose={handleCloseCreateModal}
-          startup={startup.startup}
+        <CreateInvestModal
+          onClose={() => setCreateModalOpen(false)}
+          startup={startup}
+          setCurrentPage={setCurrentPage}
         />
       )}
       {isPatchModalOpen && selectedInvestor && (
-        <InvestmentPatch
-          onClose={handleClosePatchModal}
-          startup={startup.startup}
+        <VerifyPwdModal
+          type="update"
+          label="수정 권한 인증"
+          onClose={() => setPatchModalOpen(false)}
+          startup={startup}
           mockInvestor={selectedInvestor}
         />
       )}
       {isDeleteModalOpen && selectedInvestor && (
-        <InvestmentDelete
-          onClose={handleCloseDeleteModal}
+        <VerifyPwdModal
+          type="delete"
+          label="삭제 권한 인증"
+          onClose={() => setDeleteModalOpen(false)}
           mockInvestor={selectedInvestor}
         />
       )}

@@ -1,0 +1,85 @@
+form,
+.form>:first-child,
+.form>:nth-child(2),
+.group,
+.buttons {
+    width: 100%;
+}
+
+/**** 폼 레이아웃 설정 ****/
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 44.8rem;
+
+    gap: 2.4rem;
+}
+
+/**** 폼 제목 및 X 아이콘 설정 ****/
+.form .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.387rem;
+}
+
+/**** 폼 투자 기업 정보 설정 ****/
+.form .startup-info {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.148rem;
+
+    gap: 1.6rem;
+}
+
+.startup {
+    display: flex;
+    align-items: center;
+
+    gap: 0.8rem;
+}
+
+.startup img {
+    width: 4rem;
+    height: 4rem;
+
+    border-radius: 100%;
+    background-color: white;
+}
+
+.startup .name {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 2.148rem;
+}
+
+.startup .category {
+    color: var(--secondary-gray-200);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.909rem;
+}
+
+/**** 인풋 그룹 설정 ****/
+.group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.6rem;
+}
+
+/**** 모달 버튼 설정 ****/
+.buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 1.6rem;
+}
