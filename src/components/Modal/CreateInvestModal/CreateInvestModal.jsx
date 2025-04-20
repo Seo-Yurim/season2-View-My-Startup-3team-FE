@@ -10,11 +10,7 @@ import PasswordInput from "../../Common/Inputs/PasswordInput/PasswordInput";
 import Button from "../../Common/Button/Button";
 import { useCreateInvestment } from "../../../api/queries/investmentQuery";
 
-export default function CreateInvestModal({
-  onClose,
-  startup,
-  setCurrentPage,
-}) {
+export default function CreateInvestModal({ onClose, startup }) {
   const { id: startupId, image, name, categoryName } = startup || {};
   const {
     values,
@@ -52,7 +48,6 @@ export default function CreateInvestModal({
     createInvest.mutate(investData, {
       onSuccess: () => {
         setIsComplete(true);
-        setCurrentPage(1);
       },
       onError: () => {
         setError("투자에 실패하였습니다.");
