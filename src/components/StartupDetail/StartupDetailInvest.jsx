@@ -6,12 +6,11 @@ import { formatAmount } from "../../utils/formatAmount";
 import InvestmentCreate from "../Investment/InvestmentCreate";
 import StartupDetailDropdown from "./StartupDetailDropdown";
 import { useParams } from "react-router-dom";
-import useFetchInvestors from "../../hooks/useFetchInvestors";
-import useFetchStartup from "../../hooks/useFetchStartupDetail";
 import Warn from "../Common/Warning/Warn";
 import Loading from "../Common/Loading/Loading";
 import VerifyPwdModal from "../Modal/VerifyPwdModal/VerifyPwdModal";
 import Button from "../Common/Button/Button";
+import { useGetInvestor } from "../../api/queries/startupQuery";
 
 const MAX_ITEMS = 5;
 
@@ -20,14 +19,6 @@ export default function StartupDetailInvest() {
   const maxItems = MAX_ITEMS;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { investors, error, totalCount, showLoading } = useFetchInvestors(
-    id,
-    currentPage,
-    maxItems
-  );
-
-  const { startup } = useFetchStartup(id);
-
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isPatchModalOpen, setPatchModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -35,20 +26,6 @@ export default function StartupDetailInvest() {
   const [selectedInvestor, setSelectedInvestor] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  const handleMenuClick = (investor) => {
-    setSelectedInvestor(investor);
-    setDropdownOpen((prev) => !prev);
-  };
-
-  const handleDropdownOptionClick = (action) => {
-    setDropdownOpen(false);
-    if (action === "patch") {
-      setPatchModalOpen(true);
-    } else if (action === "delete") {
-      setDeleteModalOpen(true);
-    }
-  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -67,19 +44,44 @@ export default function StartupDetailInvest() {
     };
   }, [dropdownOpen]);
 
-  if (error) {
-    return <Warn variant="error" title="오류발생" description={error} />;
+  const { data, isLoading, isError } = useGetInvestor(
+    id,
+    currentPage,
+    MAX_ITEMS
+  );
+
+  if (isError) {
+    return (
+      <Warn
+        variant="error"
+        title="오류발생"
+        description={"기업 상세 정보를 불러오는 데 실패했습니다."}
+      />
+    );
   }
 
-  if (showLoading && !investors) {
+  if (isLoading && !data) {
     return <Loading />;
   }
 
-  if (!startup) {
-    return;
-  }
-
+  const investors = data?.mockInvestors;
+  const startup = data?.startup;
+  const totalCount = investors?.totalCount;
   const totalPages = Math.ceil(totalCount / maxItems);
+
+  const handleMenuClick = (investor) => {
+    setSelectedInvestor(investor);
+    setDropdownOpen((prev) => !prev);
+  };
+
+  const handleDropdownOptionClick = (action) => {
+    setDropdownOpen(false);
+    if (action === "patch") {
+      setPatchModalOpen(true);
+    } else if (action === "delete") {
+      setDeleteModalOpen(true);
+    }
+  };
 
   return (
     <div className={styles.content}>
@@ -94,9 +96,9 @@ export default function StartupDetailInvest() {
         </div>
       </div>
       <div>
-        <h1>총 {formatAmount(startup.startup.simInvest)}원</h1>
+        <h1>총 {formatAmount(startup.simInvest)}원</h1>
         <div className={styles.wrapper}>
-          {investors && investors.list.length > 0 ? (
+          {investors ? (
             <>
               <div className={styles.tableContainer}>
                 <table className={styles.table}>
@@ -160,7 +162,8 @@ export default function StartupDetailInvest() {
       {isCreateModalOpen && (
         <InvestmentCreate
           onClose={() => setCreateModalOpen(false)}
-          startup={startup.startup}
+          startup={startup}
+          setCurrentPage={setCurrentPage}
         />
       )}
       {isPatchModalOpen && selectedInvestor && (
@@ -168,7 +171,7 @@ export default function StartupDetailInvest() {
           type="update"
           label="수정 권한 인증"
           onClose={() => setPatchModalOpen(false)}
-          startup={startup.startup}
+          startup={startup}
           mockInvestor={selectedInvestor}
         />
       )}
