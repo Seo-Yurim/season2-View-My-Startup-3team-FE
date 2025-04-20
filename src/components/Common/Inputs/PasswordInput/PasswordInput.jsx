@@ -8,6 +8,7 @@ export default function PasswordInput({
   placeholder,
   value,
   onChange,
+  onKeyDown,
   onBlur,
   error,
   onToggle,
@@ -23,6 +24,7 @@ export default function PasswordInput({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           onBlur={onBlur}
           style={{
             border: error

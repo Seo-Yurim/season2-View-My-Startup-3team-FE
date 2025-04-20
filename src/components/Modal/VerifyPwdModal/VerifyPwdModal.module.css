@@ -1,0 +1,51 @@
+.content {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 44.8rem;
+    width: 100%;
+
+    gap: 2.4rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.387rem;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.2rem;
+}
+
+.group h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.148rem;
+}
+
+/***** Mobile *****/
+@media (max-width: 743px) {
+    .content {
+        max-width: 31.1rem;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+        line-height: 1.909rem;
+    }
+
+    .group h1 {
+        font-size: 1.4rem;
+        line-height: 1.671rem;
+    }
+}
