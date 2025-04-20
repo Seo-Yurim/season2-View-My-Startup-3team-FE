@@ -28,24 +28,7 @@
   margin: 0;
 }
 
-.header button {
-  width: auto;
-  height: 4rem;
-
-  padding: 0.8rem 2.4rem;
-  border-radius: 5rem;
-  border: none;
-
-  color: white;
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1.909rem;
-  text-align: center;
-
-  background-color: var(--primary-orange);
-}
-
-.content > :nth-child(2) h1 {
+.content> :nth-child(2) h1 {
   padding: 1.6rem 0;
   border-top: 0.1rem solid var(--secondary-black-100);
 
@@ -132,6 +115,7 @@
 
 /***** Tablet *****/
 @media (max-width: 1199px) and (min-width: 744px) {
+
   /* 전체 스크롤바 */
   .wrapper::-webkit-scrollbar {
     width: 100%;
@@ -175,13 +159,9 @@
     white-space: nowrap;
   }
 
-  .content > :nth-child(2) h1 {
+  .content> :nth-child(2) h1 {
     font-size: 1.6rem;
     line-height: 1.909rem;
-  }
-
-  .headerBox {
-    margin-right: 1.6rem;
   }
 
   /* 전체 스크롤바 */

@@ -81,10 +81,6 @@
 
 /***** Mobile *****/
 @media (max-width: 743px) {
-  .infos {
-    margin-right: 1.6rem;
-  }
-
   .info {
     flex-direction: column;
     justify-content: center;
@@ -107,9 +103,5 @@
 
   .description {
     margin-bottom: 1.6rem;
-  }
-
-  .descriptionContainer {
-    margin-right: 1.6rem;
   }
 }

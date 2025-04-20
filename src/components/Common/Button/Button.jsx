@@ -6,12 +6,14 @@ export default function Button({
   label,
   onClick,
   isDisabled = false,
+  width = "100%",
 }) {
   return (
     <>
       <button
         type={type}
         className={`${styles.button} ${styles[styleType]}`}
+        style={{ width: width }}
         onClick={onClick}
         disabled={isDisabled}
       >

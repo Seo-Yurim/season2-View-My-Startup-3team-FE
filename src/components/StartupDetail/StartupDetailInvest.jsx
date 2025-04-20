@@ -11,6 +11,7 @@ import useFetchStartup from "../../hooks/useFetchStartupDetail";
 import Warn from "../Common/Warning/Warn";
 import Loading from "../Common/Loading/Loading";
 import VerifyPwdModal from "../Modal/VerifyPwdModal/VerifyPwdModal";
+import Button from "../Common/Button/Button";
 
 const MAX_ITEMS = 5;
 
@@ -85,12 +86,11 @@ export default function StartupDetailInvest() {
       <div className={styles.headerBox}>
         <div className={styles.header}>
           <h1>View My Startup에서 받은 투자</h1>
-          <button
+          <Button
+            width="auto"
+            label="기업 투자하기"
             onClick={() => setCreateModalOpen(true)}
-            style={{ cursor: "pointer" }}
-          >
-            기업 투자하기
-          </button>
+          />
         </div>
       </div>
       <div>
