@@ -3,7 +3,7 @@ import kebab from "../../assets/ic_kebab.svg";
 import { useState, useEffect, useRef } from "react";
 import Pagination from "../Common/Pagination/Pagination";
 import { formatAmount } from "../../utils/formatAmount";
-import InvestmentCreate from "../Investment/InvestmentCreate";
+import CreateInvestModal from "../Modal/CreateInvestModal/CreateInvestModal";
 import StartupDetailDropdown from "./StartupDetailDropdown";
 import { useParams } from "react-router-dom";
 import Warn from "../Common/Warning/Warn";
@@ -160,7 +160,7 @@ export default function StartupDetailInvest() {
       </div>
 
       {isCreateModalOpen && (
-        <InvestmentCreate
+        <CreateInvestModal
           onClose={() => setCreateModalOpen(false)}
           startup={startup}
           setCurrentPage={setCurrentPage}

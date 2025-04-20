@@ -1,16 +1,20 @@
-import styles from "./InvestmentCreate.module.css";
-import X from "../../assets/ic_x.svg";
+import styles from "./CreateInvestModal.module.css";
+import X from "../../../assets/ic_x.svg";
 import { useState } from "react";
-import useValidate from "../../hooks/useValidate";
-import ModalContainer from "../Modal/ModalContainer/ModalContainer";
-import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
-import Input from "../Common/Inputs/Input/Input";
-import TextArea from "../Common/Inputs/TextArea/TextArea";
-import PasswordInput from "../Common/Inputs/PasswordInput/PasswordInput";
-import Button from "../Common/Button/Button";
-import { useCreateInvestment } from "../../api/queries/investmentQuery";
+import useValidate from "../../../hooks/useValidate";
+import ModalContainer from "../ModalContainer/ModalContainer";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import Input from "../../Common/Inputs/Input/Input";
+import TextArea from "../../Common/Inputs/TextArea/TextArea";
+import PasswordInput from "../../Common/Inputs/PasswordInput/PasswordInput";
+import Button from "../../Common/Button/Button";
+import { useCreateInvestment } from "../../../api/queries/investmentQuery";
 
-export default function InvestmentCreate({ onClose, startup, setCurrentPage }) {
+export default function CreateInvestModal({
+  onClose,
+  startup,
+  setCurrentPage,
+}) {
   const { id: startupId, image, name, categoryName } = startup || {};
   const {
     values,

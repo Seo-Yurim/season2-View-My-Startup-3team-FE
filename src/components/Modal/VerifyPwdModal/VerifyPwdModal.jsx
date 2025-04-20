@@ -5,7 +5,7 @@ import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import ModalContainer from "../ModalContainer/ModalContainer";
 import PasswordInput from "../../Common/Inputs/PasswordInput/PasswordInput";
 import Button from "../../Common/Button/Button";
-import InvestmentUpdate from "../../Investment/InvestmentUpdate";
+import UpdateInvestModal from "../UpdateInvestModal/UpdateInvestModal";
 import { useDeleteInvestment } from "../../../api/queries/investmentQuery";
 
 export default function VerifyPwdModal({
@@ -75,6 +75,7 @@ export default function VerifyPwdModal({
             />
           </div>
           <Button
+            width="12rem"
             label={type === "delete" ? "삭제하기" : "수정하기"}
             onClick={handleSubmit}
           />
@@ -91,7 +92,7 @@ export default function VerifyPwdModal({
       )}
 
       {type === "update" && showInvestmentUpdate && (
-        <InvestmentUpdate
+        <UpdateInvestModal
           onClose={() => {
             setShowInvestmentUpdate(false);
             onClose();

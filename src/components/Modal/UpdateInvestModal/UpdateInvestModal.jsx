@@ -1,19 +1,19 @@
-import styles from "./InvestmentCreate.module.css";
-import X from "../../assets/ic_x.svg";
+import styles from "./UpdateInvestModal.module.css";
+import X from "../../../assets/ic_x.svg";
 import { useState } from "react";
-import useValidate from "../../hooks/useValidate";
-import ModalContainer from "../Modal/ModalContainer/ModalContainer";
-import ConfirmModal from "../Modal/ConfirmModal/ConfirmModal";
-import Input from "../Common/Inputs/Input/Input";
-import PasswordInput from "../Common/Inputs/PasswordInput/PasswordInput";
-import Button from "../Common/Button/Button";
-import TextArea from "../Common/Inputs/TextArea/TextArea";
-import { usePatchInvestment } from "../../api/queries/investmentQuery";
+import useValidate from "../../../hooks/useValidate";
+import ModalContainer from "../ModalContainer/ModalContainer";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import Input from "../../Common/Inputs/Input/Input";
+import PasswordInput from "../../Common/Inputs/PasswordInput/PasswordInput";
+import Button from "../../Common/Button/Button";
+import TextArea from "../../Common/Inputs/TextArea/TextArea";
+import { usePatchInvestment } from "../../../api/queries/investmentQuery";
 
-export default function InvestmentUpdate({
+export default function UpdateInvestModal({
   onClose,
   startup,
-  mockInvestor,
+  investorId,
   initialValues,
 }) {
   const { image, name, categoryName } = startup || {};
@@ -46,7 +46,7 @@ export default function InvestmentUpdate({
     setConfirm(true);
   };
 
-  const updateInvest = usePatchInvestment(mockInvestor.id);
+  const updateInvest = usePatchInvestment(investorId);
   const handleSubmit = () => {
     const rawValues = getRawValues();
     const investAmount = parseFloat(rawValues.investAmount);

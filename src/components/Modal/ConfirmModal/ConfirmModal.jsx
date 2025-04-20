@@ -22,28 +22,39 @@ export default function ConfirmModal({
     type === "passwordFail" ? (
       <>
         <span>잘못된 비밀번호입니다.</span>
-        <Button label="확인" onClick={() => setFail(false)} />
+        <Button width="12rem" label="확인" onClick={() => setFail(false)} />
       </>
     ) : type === "deleteConfirm" ? (
       <>
         <span>해당 정보를 삭제하시겠습니까?</span>
         <div className={styles.buttons}>
-          <Button styleType="solid" label="취소" onClick={onClose} />
-          <Button label="확인" onClick={onDelete} />
+          <Button
+            width="12rem"
+            styleType="solid"
+            label="취소"
+            onClick={onClose}
+          />
+          <Button width="12rem" label="확인" onClick={onDelete} />
         </div>
       </>
     ) : type === "updateConfirm" ? (
       <>
         <span>수정하시겠습니까?</span>
         <div className={styles.buttons}>
-          <Button styleType="solid" label="취소" onClick={onClose} />
-          <Button type="submit" label="확인" onClick={onUpdate} />
+          <Button
+            width="12rem"
+            styleType="solid"
+            label="취소"
+            onClick={onClose}
+          />
+          <Button width="12rem" type="submit" label="확인" onClick={onUpdate} />
         </div>
       </>
     ) : (
       <>
         <span>투자가 완료되었어요!</span>
         <Button
+          width="12rem"
           label="확인"
           onClick={
             data
