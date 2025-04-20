@@ -91,12 +91,23 @@ export default function useValidate(initialValues) {
     };
   };
 
+  const isInputEmpty = () => {
+    return (
+      values.name.trim() === '' ||
+      values.investAmount.trim() === '' ||
+      values.comment.trim() === '' ||
+      values.password.trim() === '' ||
+      values.checkPassword.trim() === ''
+    );
+  };
+
   return {
     values,
     errors,
     validate,
     handleChange,
     handleBlur,
-    getRawValues
+    getRawValues,
+    isInputEmpty
   };
 }

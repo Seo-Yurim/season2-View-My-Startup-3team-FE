@@ -12,29 +12,23 @@ import { useCreateInvestment } from "../../api/queries/investmentQuery";
 
 export default function InvestmentCreate({ onClose, startup, setCurrentPage }) {
   const { id: startupId, image, name, categoryName } = startup || {};
-  const { values, errors, handleChange, validate, handleBlur, getRawValues } =
-    useValidate({
-      name: "",
-      investAmount: "",
-      comment: "",
-      password: "",
-      checkPassword: "",
-    });
-
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [checkPasswordVisible, setCheckPasswordVisible] = useState(false);
+  const {
+    values,
+    errors,
+    handleChange,
+    validate,
+    handleBlur,
+    getRawValues,
+    isInputEmpty,
+  } = useValidate({
+    name: "",
+    investAmount: "",
+    comment: "",
+    password: "",
+    checkPassword: "",
+  });
   const [error, setError] = useState("");
   const [isComplete, setIsComplete] = useState(false);
-
-  const isInputEmpty = () => {
-    return (
-      values.name.trim() === "" &&
-      values.investAmount.trim() === "" &&
-      values.comment.trim() === "" &&
-      values.password.trim() === "" &&
-      values.checkPassword.trim() === ""
-    );
-  };
 
   const createInvest = useCreateInvestment(startupId);
   const handleSubmit = (e) => {
@@ -139,8 +133,6 @@ export default function InvestmentCreate({ onClose, startup, setCurrentPage }) {
             onChange={handleChange}
             onBlur={handleBlur}
             error={errors.password}
-            onToggle={() => setIsPasswordVisible(!isPasswordVisible)}
-            isVisible={isPasswordVisible}
           />
         </div>
 
@@ -154,8 +146,6 @@ export default function InvestmentCreate({ onClose, startup, setCurrentPage }) {
             onChange={handleChange}
             onBlur={handleBlur}
             error={errors.checkPassword}
-            onToggle={() => setCheckPasswordVisible(!checkPasswordVisible)}
-            isVisible={checkPasswordVisible}
           />
         </div>
 

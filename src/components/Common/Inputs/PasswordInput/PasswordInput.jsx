@@ -1,6 +1,7 @@
 import styles from "./PasswordInput.module.css";
 import visibilityOff from "../../../../assets/btn_visibility_off.svg";
 import visibilityOn from "../../../../assets/btn_visibility_on.svg";
+import { useState } from "react";
 
 export default function PasswordInput({
   label,
@@ -11,9 +12,9 @@ export default function PasswordInput({
   onKeyDown,
   onBlur,
   error,
-  onToggle,
-  isVisible,
 }) {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
     <>
       {label && <label htmlFor={id}>{label}</label>}
@@ -35,7 +36,7 @@ export default function PasswordInput({
         <img
           src={isVisible ? visibilityOff : visibilityOn}
           alt={isVisible ? "비밀번호 표시" : "비밀번호 숨기기"}
-          onClick={onToggle}
+          onClick={() => setIsVisible((prev) => !prev)}
         />
       </div>
       {error && <div className="form-error">{error}</div>}

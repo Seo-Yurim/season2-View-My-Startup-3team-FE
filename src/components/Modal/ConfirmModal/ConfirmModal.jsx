@@ -37,7 +37,7 @@ export default function ConfirmModal({
         <span>수정하시겠습니까?</span>
         <div className={styles.buttons}>
           <Button styleType="solid" label="취소" onClick={onClose} />
-          <Button label="확인" onClick={onUpdate} />
+          <Button type="submit" label="확인" onClick={onUpdate} />
         </div>
       </>
     ) : (

@@ -18,7 +18,6 @@ export default function VerifyPwdModal({
   const { id, password: storedPassword } = mockInvestor || {};
 
   const [password, setPassword] = useState("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showInvestmentUpdate, setShowInvestmentUpdate] = useState(false);
   const [fail, setFail] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -72,9 +71,7 @@ export default function VerifyPwdModal({
               placeholder="비밀번호를 입력해 주세요"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onToggle={() => setIsPasswordVisible(!isPasswordVisible)}
               onKeyDown={handleKeyDown}
-              isVisible={isPasswordVisible}
             />
           </div>
           <Button
@@ -100,7 +97,7 @@ export default function VerifyPwdModal({
             onClose();
           }}
           startup={startup}
-          mockInvestor={mockInvestor}
+          investorId={mockInvestor.id}
           initialValues={{
             name: mockInvestor.name,
             investAmount: mockInvestor.investAmount,
