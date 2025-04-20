@@ -10,7 +10,7 @@ import Warn from "../Common/Warning/Warn";
 import Loading from "../Common/Loading/Loading";
 import VerifyPwdModal from "../Modal/VerifyPwdModal/VerifyPwdModal";
 import Button from "../Common/Button/Button";
-import { useGetInvestor } from "../../api/queries/startupQuery";
+import { useGetStartupDetail } from "../../api/queries/startupQuery";
 
 const MAX_ITEMS = 5;
 
@@ -44,7 +44,7 @@ export default function StartupDetailInvest() {
     };
   }, [dropdownOpen]);
 
-  const { data, isLoading, isError } = useGetInvestor(
+  const { data, isLoading, isError } = useGetStartupDetail(
     id,
     currentPage,
     MAX_ITEMS
