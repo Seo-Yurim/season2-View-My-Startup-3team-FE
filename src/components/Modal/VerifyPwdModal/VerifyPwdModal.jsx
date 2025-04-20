@@ -6,7 +6,7 @@ import ModalContainer from "../ModalContainer/ModalContainer";
 import PasswordInput from "../../Common/Inputs/PasswordInput/PasswordInput";
 import Button from "../../Common/Button/Button";
 import InvestmentUpdate from "../../Investment/InvestmentUpdate";
-import { deleteInvestment } from "../../../api/InvestmentService";
+import { useDeleteInvestment } from "../../../api/queries/investmentQuery";
 
 export default function VerifyPwdModal({
   type,
@@ -23,15 +23,13 @@ export default function VerifyPwdModal({
   const [fail, setFail] = useState(false);
   const [confirm, setConfirm] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible(!isPasswordVisible);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
   };
 
-  const handleChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (password !== storedPassword) {
@@ -43,61 +41,55 @@ export default function VerifyPwdModal({
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(e);
-    }
-  };
-
-  const confirmDelete = async () => {
-    try {
-      await deleteInvestment(id, { password });
-      onClose();
-      window.location.reload();
-    } catch (err) {
-      console.error("삭제 요청 중 오류 발생:", err);
-      console.error(err.response.data);
-    }
+  const deleteInvest = useDeleteInvestment(id);
+  const confirmDelete = () => {
+    deleteInvest.mutate(null, {
+      onSuccess: () => {
+        onClose();
+      },
+    });
   };
 
   return (
-    <ModalContainer>
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <h1>{label}</h1>
-          <img
-            src={X}
-            onClick={onClose}
-            style={{ cursor: "pointer" }}
-            alt="close btn"
-          />
-        </div>
+    <>
+      <ModalContainer>
+        <div className={styles.content}>
+          <div className={styles.header}>
+            <h1>{label}</h1>
+            <img
+              src={X}
+              onClick={onClose}
+              style={{ cursor: "pointer" }}
+              alt="close btn"
+            />
+          </div>
 
-        {/* 비밀번호 입력 */}
-        <div className={styles.group}>
-          <PasswordInput
-            label="비밀번호"
-            id="password"
-            placeholder="비밀번호를 입력해 주세요"
-            value={password}
-            onChange={handleChange}
-            onToggle={togglePasswordVisibility}
-            onKeyDown={handleKeyDown}
-            isVisible={isPasswordVisible}
+          {/* 비밀번호 입력 */}
+          <div className={styles.group}>
+            <PasswordInput
+              label="비밀번호"
+              id="password"
+              placeholder="비밀번호를 입력해 주세요"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onToggle={() => setIsPasswordVisible(!isPasswordVisible)}
+              onKeyDown={handleKeyDown}
+              isVisible={isPasswordVisible}
+            />
+          </div>
+          <Button
+            label={type === "delete" ? "삭제하기" : "수정하기"}
+            onClick={handleSubmit}
           />
         </div>
-        <Button
-          label={type === "delete" ? "삭제하기" : "수정하기"}
-          onClick={handleSubmit}
-        />
-      </div>
+      </ModalContainer>
 
       {fail && <ConfirmModal type="passwordFail" setFail={setFail} />}
       {type === "delete" && confirm && (
         <ConfirmModal
           type="deleteConfirm"
-          onDelete={confirmDelete}
           onClose={() => setConfirm(false)}
+          onDelete={confirmDelete}
         />
       )}
 
@@ -117,6 +109,6 @@ export default function VerifyPwdModal({
           }}
         />
       )}
-    </ModalContainer>
+    </>
   );
 }

@@ -3,7 +3,7 @@ import { getInvestors } from '../StartupDetailService';
 
 export const useGetStartupDetail = (startupId, page, limit) => {
   return useQuery({
-    queryKey: ['startup-list', startupId, page],
+    queryKey: ['startup-detail', startupId, page],
     queryFn: () => getInvestors(startupId, page, limit),
     keepPreviousData: true
   });

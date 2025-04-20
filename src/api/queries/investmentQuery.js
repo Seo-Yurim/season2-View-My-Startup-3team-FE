@@ -22,12 +22,14 @@ export const useGetInvestmentList = ({
 };
 
 // 투자하기
-export const useCreateInvestment = (startupId) => {
+export const useCreateInvestment = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (investment) => createInvestment(investment),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['startup-list', startupId] });
+      queryClient.invalidateQueries({
+        queryKey: ['startup-detail']
+      });
     },
     onError: (error) => {
       console.error('투자 실패하였습니다.', error.message);
@@ -41,7 +43,9 @@ export const usePatchInvestment = (investorId) => {
   return useMutation({
     mutationFn: (investment) => patchInvestment(investorId, investment),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['startup-list', investorId] });
+      queryClient.invalidateQueries({
+        queryKey: ['startup-detail']
+      });
     },
     onError: (error) => {
       console.error('투자 수정에 실패하였습니다.', error.message);
@@ -55,7 +59,9 @@ export const useDeleteInvestment = (investorId) => {
   return useMutation({
     mutationFn: () => deleteInvestment(investorId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['startup-list', investorId] });
+      queryClient.invalidateQueries({
+        queryKey: ['startup-detail']
+      });
     },
     onError: (error) => {
       console.error('투자 삭제에 실패하였습니다.', error.message);

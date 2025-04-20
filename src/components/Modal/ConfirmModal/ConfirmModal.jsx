@@ -18,15 +18,11 @@ export default function ConfirmModal({
     navigate(`/startup/${id}`);
   };
 
-  const handleCloseFailModal = () => {
-    setFail(false);
-  };
-
   const modalType =
     type === "passwordFail" ? (
       <>
         <span>잘못된 비밀번호입니다.</span>
-        <Button label="확인" onClick={handleCloseFailModal} />
+        <Button label="확인" onClick={() => setFail(false)} />
       </>
     ) : type === "deleteConfirm" ? (
       <>
@@ -66,7 +62,7 @@ export default function ConfirmModal({
       <div className={styles.content}>
         <img
           src={X}
-          onClick={onClose}
+          onClick={type === "passwordFail" ? () => setFail(false) : onClose}
           style={{ cursor: "pointer" }}
           alt="modal close"
         />
