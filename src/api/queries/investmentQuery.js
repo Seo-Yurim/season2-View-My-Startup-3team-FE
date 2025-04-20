@@ -1,7 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   createInvestment,
-  getInvestmentList
+  deleteInvestment,
+  getInvestmentList,
+  patchInvestment
 } from '../../api/InvestmentService';
 
 // 투자 현황 전체 조회
@@ -29,6 +31,34 @@ export const useCreateInvestment = (startupId) => {
     },
     onError: (error) => {
       console.error('투자 실패하였습니다.', error.message);
+    }
+  });
+};
+
+// 투자 수정
+export const usePatchInvestment = (investorId) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (investment) => patchInvestment(investorId, investment),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['startup-list', investorId] });
+    },
+    onError: (error) => {
+      console.error('투자 수정에 실패하였습니다.', error.message);
+    }
+  });
+};
+
+// 투자 삭제
+export const useDeleteInvestment = (investorId) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => deleteInvestment(investorId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['startup-list', investorId] });
+    },
+    onError: (error) => {
+      console.error('투자 삭제에 실패하였습니다.', error.message);
     }
   });
 };
