@@ -6,6 +6,7 @@ import StartupInfo from "../components/StartupDetail/StartupInfo";
 import InvestorList from "../components/StartupDetail/InvestorList";
 import { useState } from "react";
 import Pagination from "../components/Common/Pagination/Pagination";
+import { Helmet } from "react-helmet-async";
 
 const MAX_ITEMS = 5;
 
@@ -39,14 +40,33 @@ export default function StartupDetailPage() {
   const totalPages = Math.ceil(totalCount / MAX_ITEMS);
 
   return (
-    <main style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}>
-      <StartupInfo startup={startup} />
-      <InvestorList startup={startup} investors={investors.list} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
-    </main>
+    <>
+      <Helmet>
+        <title>전체 스타트업 목록 - View My Startup</title>
+        <meta
+          name="description"
+          content="모든 스타트업을 한눈에 보고 비교해보세요!"
+        />
+        <meta property="og:title" content="전체 스타트업 목록" />
+        <meta
+          property="og:description"
+          content="모든 스타트업을 한눈에 보고 비교해보세요!"
+        />
+        <meta
+          property="og:url"
+          content="http://view-my-startup-s3-fe.s3-website.ap-northeast-2.amazonaws.com/"
+        />
+      </Helmet>
+
+      <main style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}>
+        <StartupInfo startup={startup} />
+        <InvestorList startup={startup} investors={investors.list} />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
+      </main>
+    </>
   );
 }
