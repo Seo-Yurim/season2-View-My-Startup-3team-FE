@@ -5,8 +5,7 @@
   width: 100%;
 
   margin: 4rem auto;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
+  padding: 0 2.4rem;
 
   animation: fadeIn 0.7s ease;
 }

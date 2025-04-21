@@ -1,12 +1,12 @@
-import styles from './Nav.module.css';
-import siteLogo from '../../assets/img_logo_pc.svg';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import styles from "./Nav.module.css";
+import siteLogo from "../../assets/img_logo_pc.svg";
+import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function getLinkStyle({ isActive }) {
   return {
-    color: isActive ? '#ffffff' : '',
-    fontWeight: isActive ? 700 : ''
+    color: isActive ? "#ffffff" : "",
+    fontWeight: isActive ? 700 : "",
   };
 }
 
@@ -15,23 +15,28 @@ export default function Nav() {
   const navigate = useNavigate();
 
   const hanleLogoClick = () => {
-    if (location.pathname === '/') {
+    if (location.pathname === "/") {
       window.location.reload();
     } else {
-      navigate('/');
+      navigate("/");
     }
-  }
+  };
+
   return (
-    <nav className={styles.nav}>
-      <div className={styles.container}>
-        <img 
-          className={styles.logo} 
-          src={siteLogo} 
-          onClick={hanleLogoClick}
-          alt="View My Startup Logo" 
-          style={{ cursor: 'pointer' }}
-        />
+    <header className={styles.header}>
+      <img
+        className={styles.logo}
+        src={siteLogo}
+        onClick={hanleLogoClick}
+        alt="View My Startup Logo"
+      />
+      <nav>
         <ul className={styles.menu}>
+          <li>
+            <NavLink to="/startup" style={getLinkStyle}>
+              전체 스타트업 목록
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/my-comparison" style={getLinkStyle}>
               나의 기업 비교
@@ -48,7 +53,7 @@ export default function Nav() {
             </NavLink>
           </li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
