@@ -11,8 +11,8 @@ export default function Container({ children }) {
   }, [location.pathname]);
 
   return (
-    <main key={fadeKey} className={styles.container}>
+    <div key={fadeKey} className={styles.container}>
       {children}
-    </main>
+    </div>
   );
 }

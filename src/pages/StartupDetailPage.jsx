@@ -2,8 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetStartupDetail } from "../api/queries/startupQuery";
 import Loading from "../components/Common/Loading/Loading";
 import Warn from "../components/Common/Warning/Warn";
-import StartupDetailHeader from "../components/StartupDetail/StartupDetailHeader";
-import StartupDetailInfo from "../components/StartupDetail/StartupDetailInfo";
+import StartupInfo from "../components/StartupDetail/StartupInfo";
 import StartupDetailInvest from "../components/StartupDetail/StartupDetailInvest";
 import { useState } from "react";
 import Pagination from "../components/Common/Pagination/Pagination";
@@ -40,15 +39,14 @@ export default function StartupDetailPage() {
   const totalPages = Math.ceil(totalCount / MAX_ITEMS);
 
   return (
-    <div>
-      <StartupDetailHeader startup={startup} />
-      <StartupDetailInfo startup={startup} />
+    <main style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}>
+      <StartupInfo startup={startup} />
       <StartupDetailInvest startup={startup} investors={investors} />
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
-    </div>
+    </main>
   );
 }

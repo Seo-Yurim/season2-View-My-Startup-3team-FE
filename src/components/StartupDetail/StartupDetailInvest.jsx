@@ -48,7 +48,7 @@ export default function StartupDetailInvest({ startup, investors }) {
   };
 
   return (
-    <div className={styles.content}>
+    <section className={styles.content}>
       <div className={styles.headerBox}>
         <div className={styles.header}>
           <h1>View My Startup에서 받은 투자</h1>
@@ -137,6 +137,6 @@ export default function StartupDetailInvest({ startup, investors }) {
           mockInvestor={selectedInvestor}
         />
       )}
-    </div>
+    </section>
   );
 }
