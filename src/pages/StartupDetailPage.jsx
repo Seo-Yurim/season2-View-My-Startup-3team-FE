@@ -3,7 +3,7 @@ import { useGetStartupDetail } from "../api/queries/startupQuery";
 import Loading from "../components/Common/Loading/Loading";
 import Warn from "../components/Common/Warning/Warn";
 import StartupInfo from "../components/StartupDetail/StartupInfo";
-import StartupDetailInvest from "../components/StartupDetail/StartupDetailInvest";
+import InvestorList from "../components/StartupDetail/InvestorList";
 import { useState } from "react";
 import Pagination from "../components/Common/Pagination/Pagination";
 
@@ -41,7 +41,7 @@ export default function StartupDetailPage() {
   return (
     <main style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}>
       <StartupInfo startup={startup} />
-      <StartupDetailInvest startup={startup} investors={investors} />
+      <InvestorList startup={startup} investors={investors.list} />
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
