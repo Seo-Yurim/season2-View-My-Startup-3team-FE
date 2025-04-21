@@ -15,7 +15,7 @@ export default function Main() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<StartupPage />} />
+          <Route path="/startup" element={<StartupPage />} />
           <Route path="/startup/:id" element={<StartupDetailPage />} />
           <Route path="/my-comparison" element={<MyComparisonPage />} />
           <Route path="/comparison" element={<ComparisonPage />} />

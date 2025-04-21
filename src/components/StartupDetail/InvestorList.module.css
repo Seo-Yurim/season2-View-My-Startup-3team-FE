@@ -1,70 +1,55 @@
-.content {
+.wrap {
   display: flex;
   flex-direction: column;
 
   gap: 2.4rem;
 }
 
-.content h1 {
-  margin: 0;
-}
-
-.header {
+/** 리스트 제목 **/
+.title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  width: 100%;
-  height: 100%;
+  padding-bottom: 1.6rem;
+  border-bottom: 0.1rem solid var(--secondary-black-100);
 }
 
-.header button {
+.title button {
   margin: 0;
 }
 
-.header h1 {
+.title p {
   font-size: 2rem;
   font-weight: 700;
   line-height: 2.387rem;
-  height: 2.387rem;
-
-  align-items: center;
-  margin: 0;
 }
 
-.content> :nth-child(2) h1 {
-  padding: 1.6rem 0;
-  border-top: 0.1rem solid var(--secondary-black-100);
+/** 리스트 **/
+.list-wrap {
+  display: flex;
+  flex-direction: column;
 
+  gap: 1.6rem
+}
+
+.list-wrap .amount {
   font-size: 2rem;
   font-weight: 700;
   line-height: 2.387rem;
+}
+
+/** 테이블 **/
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 0.4rem;
 }
 
 .table {
+  min-width: 80rem;
   width: 100%;
 
-  min-width: 80rem;
-  border-radius: 0.4rem;
-
-  position: relative;
-}
-
-.tableContainer {
-  padding-bottom: 7rem;
-}
-
-.wrapper {
-  overflow-x: auto;
-  overflow-y: visible;
-  border-radius: 0.4rem;
-  position: relative;
-}
-
-.table tr:hover {
-  background-color: var(--secondary-black-200);
-  /* 부드러운 전환 효과 추가 */
-  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
 }
 
 .table th,
@@ -74,7 +59,6 @@
   font-size: 1.4rem;
   line-height: 1.671rem;
   text-align: center;
-  vertical-align: middle;
 }
 
 .table thead {
@@ -83,7 +67,6 @@
   border-bottom: 1.6rem solid var(--secondary-black-400);
 
   background-color: var(--secondary-black-100);
-  color: white;
   font-weight: 500;
 }
 
@@ -92,18 +75,20 @@
   font-weight: 400;
 }
 
-.table tbody td {
-  height: 6.4rem;
-}
-
-.name {
-  text-wrap: balance;
+.table tbody tr:hover {
+  background-color: var(--secondary-black-200);
+  transition: background-color 0.3s ease;
 }
 
 .table tbody tr:not(:last-child) {
   border-bottom: 0.1rem solid var(--secondary-gray-300);
 }
 
+.table tbody td {
+  height: 6.4rem;
+}
+
+/** 데이터 없을 때 **/
 .null {
   width: 100%;
   height: 40rem;
@@ -120,75 +105,73 @@
 /***** Tablet *****/
 @media (max-width: 1199px) and (min-width: 744px) {
 
+  .table thead tr th:nth-child(1),
+  .table tbody tr td:nth-child(1) {
+    display: table-cell;
+  }
+
   /* 전체 스크롤바 */
-  .wrapper::-webkit-scrollbar {
+  .table-wrap::-webkit-scrollbar {
     width: 100%;
     height: 1.2rem;
   }
 
   /* 스크롤바의 트랙 */
-  .wrapper::-webkit-scrollbar-track {
+  .table-wrap::-webkit-scrollbar-track {
     background: var(--secondary-black-300);
     border-radius: 0.8rem;
   }
 
   /* 스크롤바 핸들 */
-  .wrapper::-webkit-scrollbar-thumb {
+  .table-wrap::-webkit-scrollbar-thumb {
     background: var(--secondary-black-400);
     border: 0.3rem solid var(--secondary-black-300);
     border-radius: 0.8rem;
-  }
-
-  .table thead th:nth-child(1),
-  .table tbody td:nth-child(1) {
-    display: table-cell;
   }
 }
 
 /***** Mobile *****/
 @media (max-width: 743px) {
-  .header h1 {
+  .title p {
     font-size: 1.6rem;
     line-height: 1.909rem;
     white-space: nowrap;
   }
 
-  .header button {
-    height: 3.2rem;
-    width: 9.7rem;
-    padding: 0.75rem 1.2rem;
-
-    font-size: 1.4rem;
-    line-height: 1.671rem;
-    white-space: nowrap;
-  }
-
-  .content> :nth-child(2) h1 {
+  .list-wrap .amount {
     font-size: 1.6rem;
     line-height: 1.909rem;
+  }
+
+  .title button {
+    height: fit-content;
+    padding: 1rem;
+
+    font-size: 1.2rem;
+  }
+
+
+  .table thead th:nth-child(1),
+  .table tbody td:nth-child(1) {
+    display: table-cell;
   }
 
   /* 전체 스크롤바 */
-  .wrapper::-webkit-scrollbar {
+  .table-wrap::-webkit-scrollbar {
     width: 3.48rem;
     height: 1.2rem;
   }
 
   /* 스크롤바의 트랙 */
-  .wrapper::-webkit-scrollbar-track {
+  .table-wrap::-webkit-scrollbar-track {
     background: var(--secondary-black-300);
     border-radius: 0.8rem;
   }
 
   /* 스크롤바 핸들 */
-  .wrapper::-webkit-scrollbar-thumb {
+  .table-wrap::-webkit-scrollbar-thumb {
     background: var(--secondary-black-400);
     border: 0.3rem solid var(--secondary-black-300);
     border-radius: 0.8rem;
-  }
-
-  .table thead th:nth-child(1),
-  .table tbody td:nth-child(1) {
-    display: table-cell;
   }
 }

@@ -1,0 +1,140 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.6rem;
+}
+
+/** 로고 + 타이틀 **/
+.logo-title {
+  display: flex;
+  align-items: center;
+
+  padding-bottom: 3.2rem;
+  border-bottom: 0.1rem solid var(--secondary-black-100);
+
+  gap: 1.8rem;
+}
+
+.logo-title img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.logo-title .title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 0.8rem;
+}
+
+.logo-title .title h1 {
+  color: white;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 2.864rem;
+}
+
+.logo-title .title p {
+  color: var(--secondary-gray-200);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.387rem;
+}
+
+/** 기업 정보 **/
+.infos {
+  display: flex;
+
+  gap: 1.6rem;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 9.3rem;
+
+  padding: 3.6rem 2.4rem;
+  border-radius: 1rem;
+
+  background-color: var(--secondary-black-200);
+}
+
+.label {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.909rem;
+  text-wrap: nowrap;
+}
+
+.value {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 2.4rem;
+  border-radius: 1rem;
+
+  gap: 1.6rem;
+
+  background-color: var(--secondary-black-300);
+}
+
+.description .value {
+  font-size: 1.4rem;
+  line-height: 1.671rem;
+
+  text-align: justify;
+}
+
+/***** Mobile *****/
+@media (max-width: 743px) {
+  .logo-title img {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .logo-title .title {
+    gap: 0.4rem;
+  }
+
+  .logo-title .title h1 {
+    font-size: 2rem;
+    line-height: 2.387rem;
+  }
+
+  .logo-title .title p {
+    font-size: 1.6rem;
+    line-height: 1.909rem;
+  }
+
+  .info {
+    flex-direction: column;
+
+    height: 100%;
+
+    padding: 3.6rem 1.1rem;
+    gap: 1.6rem;
+  }
+
+  .label {
+    font-size: 1.4rem;
+    line-height: 1.671rem;
+  }
+
+  .info .value {
+    font-size: 1.4rem;
+  }
+}
