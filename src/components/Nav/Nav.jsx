@@ -34,12 +34,14 @@ export default function Nav() {
             className={styles.logo}
             src={siteLogo}
             onClick={hanleLogoClick}
+            fetchpriority="high"
             alt="View My Startup Logo"
           />
           <img
             className={styles[`mobile-menu`]}
             src={mobileMenu}
             onClick={() => setDropdownOpen((prev) => !prev)}
+            loading="lazy"
             alt="mobile menu"
           />
         </div>

@@ -6,7 +6,11 @@ export default function StartupInfo({ startup }) {
   return (
     <section className={styles.wrapper}>
       <div className={styles[`logo-title`]}>
-        <img src={startup.image || noImageIcon} alt="기업 로고" />
+        <img
+          src={startup.image || noImageIcon}
+          loading="lazy"
+          alt="기업 로고"
+        />
         <div className={styles.title}>
           <h1>{startup.name}</h1>
           <p>{startup.categoryName}</p>
