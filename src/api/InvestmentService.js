@@ -1,35 +1,4 @@
-import axios from 'axios';
-
-const instance = axios.create({
-  baseURL: 'http://3.39.23.207:3000'
-});
-
-instance.interceptors.response.use(
-  (res) => res,
-  (err) => {
-    console.log(
-      '주의 : 에러 발생!',
-      err.response ? err.response.data : err.message
-    );
-    throw err;
-  }
-);
-
-async function get(url, params = {}) {
-  return await instance.get(url, { params });
-}
-
-async function post(url, body) {
-  return instance.post(url, body);
-}
-
-async function patch(url, body) {
-  return instance.patch(url, body);
-}
-
-async function remove(url, body) {
-  return instance.delete(url, body);
-}
+import { get, post, patch, remove } from './method';
 
 export async function getInvestmentList({ page, limit, order, sort }) {
   const res = await get(`/api/investments`, { page, limit, order, sort });
