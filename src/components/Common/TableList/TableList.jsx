@@ -6,7 +6,7 @@ export default function TableList({ tableData, list }) {
   const emptyRowCount = Math.max(0, 10 - list.length);
 
   return (
-    <div className={styles.wrapper}>
+    <section className={styles.wrapper}>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -42,6 +42,6 @@ export default function TableList({ tableData, list }) {
           ))}
         </tbody>
       </table>
-    </div>
+    </section>
   );
 }

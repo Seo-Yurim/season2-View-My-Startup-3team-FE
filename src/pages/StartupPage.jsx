@@ -58,10 +58,10 @@ export default function StartupPage() {
         />
       )}
       {!isLoading && !isError && (
-        <>
+        <main>
           <div className={styles.header}>
             <h1>전체 스타트업 목록</h1>
-            <div className={styles.searchDropdownContainer}>
+            <div className={styles[`search-dropdown`]}>
               <SearchInput setSearchKeyword={handleSearch} />
               <Dropdown
                 sortOptions={STARTUP_SORT_OPTIONS}
@@ -77,7 +77,7 @@ export default function StartupPage() {
             totalPages={totalPages}
             onPageChange={(page) => setCurrentPage(page)}
           />
-        </>
+        </main>
       )}
     </>
   );
