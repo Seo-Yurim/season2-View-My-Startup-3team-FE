@@ -14,11 +14,10 @@ export default function StartupDetailPage() {
   const { id } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isLoading, isError } = useGetStartupDetail(
-    id,
-    currentPage,
-    MAX_ITEMS
-  );
+  const { data, isLoading, isError } = useGetStartupDetail(id, {
+    page: currentPage,
+    limit: MAX_ITEMS,
+  });
 
   if (isError) {
     return (
