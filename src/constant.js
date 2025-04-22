@@ -11,6 +11,15 @@ export const INVESTMENT_SORT_OPTIONS = {
   '실제 누적 투자 금액 낮은 순': ['actual_invest', 'asc']
 };
 
+export const STARTUP_SORT_OPTIONS = {
+  '누적 투자 금액 높은 순': ['total_investment', 'desc'],
+  '누적 투자 금액 낮은 순': ['total_investment', 'asc'],
+  '매출액 높은 순': ['revenue', 'desc'],
+  '매출액 낮은 순': ['revenue', 'asc'],
+  '고용인원 높은 순': ['employee_count', 'desc'],
+  '고용인원 낮은 순': ['employee_count', 'asc']
+};
+
 export const INVESTMENT_TABLE_DATA = [
   {
     title: '순위',
@@ -20,12 +29,12 @@ export const INVESTMENT_TABLE_DATA = [
   {
     title: '기업 명',
     width: '21.3rem',
-    render: (item) => <StartupTitle item={item} />
+    render: (item) => <StartupTitle item={item.startup} />
   },
   {
     title: '기업 소개',
     width: '30.4rem',
-    render: (item) => <Description item={item} />
+    render: (item) => <Description item={item.startup} />
   },
   {
     title: '카테고리',
@@ -41,5 +50,38 @@ export const INVESTMENT_TABLE_DATA = [
     title: '실제 누적 투자 금액',
     width: '23rem',
     render: (item) => formatAmount(item.startup.actualInvest)
+  }
+];
+
+export const STARTUP_TABLE_DATA = [
+  {
+    title: '순위',
+    width: '6.8rem',
+    render: (item) => item.rank + '위'
+  },
+  {
+    title: '기업 명',
+    render: (item) => <StartupTitle item={item} />
+  },
+  {
+    title: '기업 소개',
+    width: '30rem',
+    render: (item) => <Description item={item} />
+  },
+  {
+    title: '카테고리',
+    render: (item) => item.categoryName
+  },
+  {
+    title: '누적 투자 금액',
+    render: (item) => formatAmount(item.simInvest)
+  },
+  {
+    title: '매출액',
+    render: (item) => formatAmount(item.revenue)
+  },
+  {
+    title: '고용 인원',
+    render: (item) => formatAmount(item.employees)
   }
 ];

@@ -21,7 +21,7 @@ export default function TableList({ tableData, list }) {
           {list.map((item) => (
             <tr
               key={item.id}
-              onClick={() => navigate(`/startup/${item?.startup.id}`)}
+              onClick={() => navigate(`/startup/${item?.id}`)}
               style={{ cursor: "pointer" }}
             >
               {tableData.map((col, colIndex) => (
