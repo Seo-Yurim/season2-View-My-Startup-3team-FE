@@ -35,11 +35,15 @@ export default function StartupPage() {
 
   // 검색 처리 함수
   const handleSearch = (keyword) => {
-    setParams({ keyword });
+    setParams((prevParams) => ({
+      ...prevParams,
+      keyword,
+    }));
   };
 
   // 정렬 처리 함수
   const handleSortChange = (order, sort) => {
+    console.log(order, sort);
     setParams((prevParams) => ({
       ...prevParams,
       order,

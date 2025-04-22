@@ -4,7 +4,7 @@ import { getStartupDetail, getStartupList } from '../StartupService';
 // 전체 스타트업 목록 조회
 export const useGetStartupList = ({ page, limit, order, sort, keyword }) => {
   return useQuery({
-    queryKey: ['startup-list', page],
+    queryKey: ['startup-list', page, order, sort, keyword],
     queryFn: () => getStartupList({ page, limit, order, sort, keyword }),
     keepPreviousData: true
   });

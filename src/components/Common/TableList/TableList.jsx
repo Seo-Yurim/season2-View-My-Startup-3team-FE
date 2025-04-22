@@ -37,7 +37,9 @@ export default function TableList({ tableData, list }) {
               key={`empty-${idx}`}
               style={{ visibility: "hidden", borderBottom: "none" }}
             >
-              &nbsp;
+              {tableData.map((_, i) => (
+                <td key={i}>&nbsp;</td>
+              ))}
             </tr>
           ))}
         </tbody>
