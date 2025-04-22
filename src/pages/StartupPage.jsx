@@ -12,6 +12,7 @@ import {
 } from "../constant";
 import SearchInput from "../components/Common/Search/SearchInput";
 import Dropdown from "../components/Common/Dropdown/Dropdown";
+import { Helmet } from "react-helmet-async";
 
 export default function StartupPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,6 +54,23 @@ export default function StartupPage() {
 
   return (
     <>
+      <Helmet>
+        <title>전체 스타트업 목록 - View My Startup</title>
+        <meta
+          name="description"
+          content="모든 스타트업을 한눈에 보고 비교해보세요!"
+        />
+        <meta property="og:title" content="전체 스타트업 목록" />
+        <meta
+          property="og:description"
+          content="모든 스타트업을 한눈에 보고 비교해보세요!"
+        />
+        <meta
+          property="og:url"
+          content="http://view-my-startup-s3-fe.s3-website.ap-northeast-2.amazonaws.com/startups"
+        />
+      </Helmet>
+
       {isLoading && <Loading />}
       {isError && (
         <Warn

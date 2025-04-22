@@ -41,19 +41,19 @@ export default function StartupDetailPage() {
   return (
     <>
       <Helmet>
-        <title>전체 스타트업 목록 - View My Startup</title>
+        <title>스타트업 상세 정보 - View My Startup</title>
         <meta
           name="description"
-          content="모든 스타트업을 한눈에 보고 비교해보세요!"
+          content={`${startup.name}에 대한 정보를 확인해보세요!`}
         />
-        <meta property="og:title" content="전체 스타트업 목록" />
+        <meta property="og:title" content="스타트업 상세 정보" />
         <meta
           property="og:description"
-          content="모든 스타트업을 한눈에 보고 비교해보세요!"
+          content={`${startup.name}에 대한 정보를 확인해보세요!`}
         />
         <meta
           property="og:url"
-          content="http://view-my-startup-s3-fe.s3-website.ap-northeast-2.amazonaws.com/"
+          content={`http://view-my-startup-s3-fe.s3-website.ap-northeast-2.amazonaws.com/startups/${id}`}
         />
       </Helmet>
 
