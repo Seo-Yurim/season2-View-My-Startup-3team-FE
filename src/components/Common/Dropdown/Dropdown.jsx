@@ -38,6 +38,11 @@ export default function Dropdown({ sortOptions, setSortOrder, order, sort }) {
         <p className={styles.currentLabel}>{currentLabel}</p>
         <img className={styles.icon} src={arrowDown} alt="드롭다운 아이콘" />
       </div>
+      <img
+        className={styles[`mobile-icon`]}
+        src={arrowDown}
+        onClick={() => setIsOpen(!isOpen)}
+      />
       {isOpen && (
         <ul className={styles.options}>
           {Object.keys(sortOptions).map((option, idx) => (

@@ -6,7 +6,7 @@ export default function TableList({ tableData, list }) {
   const emptyRowCount = Math.max(0, 10 - list.length);
 
   return (
-    <div className={styles.wrapper}>
+    <section className={styles.wrapper}>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -21,7 +21,7 @@ export default function TableList({ tableData, list }) {
           {list.map((item) => (
             <tr
               key={item.id}
-              onClick={() => navigate(`/startup/${item?.startup.id}`)}
+              onClick={() => navigate(`/startup/${item?.id}`)}
               style={{ cursor: "pointer" }}
             >
               {tableData.map((col, colIndex) => (
@@ -37,11 +37,13 @@ export default function TableList({ tableData, list }) {
               key={`empty-${idx}`}
               style={{ visibility: "hidden", borderBottom: "none" }}
             >
-              &nbsp;
+              {tableData.map((_, i) => (
+                <td key={i}>&nbsp;</td>
+              ))}
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </section>
   );
 }

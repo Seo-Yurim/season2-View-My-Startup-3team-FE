@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
-import { getStartupList } from "../api/StartupService";
+import { useEffect, useState } from 'react';
+import { getStartupList } from '../api/StartupService';
 
-  const useFetchStartups = (currentPage, maxItems = 10, initialOrder = 'total_investment', initialSort = 'desc') => {
+const useFetchStartups = (
+  currentPage,
+  maxItems = 10,
+  initialOrder = 'total_investment',
+  initialSort = 'desc'
+) => {
   const [startups, setStartups] = useState([]);
   const [error, setError] = useState(null);
   const [order, setOrder] = useState(initialOrder);
@@ -9,18 +14,24 @@ import { getStartupList } from "../api/StartupService";
   const [totalCount, setTotalCount] = useState(0);
 
   const [search, setSearch] = useState('');
-  const [showLoading, setShowLoading] = useState(false);  // 로딩 화면을 표시할지 여부
+  const [showLoading, setShowLoading] = useState(false); // 로딩 화면을 표시할지 여부
 
   const MIN_LOADING_TIME = 1000; // 최소 로딩 시간, 로딩 화면이 짧게 깜빡이는 것을 방지
 
   useEffect(() => {
     const fetchStartups = async () => {
       const loadingTimer = setTimeout(() => {
-        setShowLoading(true);  // 최소 로딩시간이 지나면 로딩 화면 표시
+        setShowLoading(true); // 최소 로딩시간이 지나면 로딩 화면 표시
       }, MIN_LOADING_TIME);
-      
+
       try {
-        const startupList = await getStartupList(currentPage, maxItems, order, sort, search);
+        const startupList = await getStartupList({
+          currentPage,
+          maxItems,
+          order,
+          sort,
+          search
+        });
         setStartups(startupList.list || []);
         setTotalCount(startupList.totalCount || 0);
       } catch (e) {
@@ -42,7 +53,7 @@ import { getStartupList } from "../api/StartupService";
     setSort,
     totalCount,
     setSearch,
-    showLoading,
+    showLoading
   };
 };
 
