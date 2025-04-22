@@ -96,6 +96,7 @@
 
     .options {
         top: 4rem;
+        width: fit-content;
     }
 
     .options li {
