@@ -1,15 +1,15 @@
 .header {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .header h1 {
     color: white;
-    min-width: 14.8rem;
     font-size: 2rem;
     font-weight: 700;
     line-height: 2.4rem;

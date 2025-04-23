@@ -44,7 +44,6 @@ export default function StartupPage() {
 
   // 정렬 처리 함수
   const handleSortChange = (order, sort) => {
-    console.log(order, sort);
     setParams((prevParams) => ({
       ...prevParams,
       order,
