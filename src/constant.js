@@ -20,6 +20,13 @@ export const STARTUP_SORT_OPTIONS = {
   '고용인원 낮은 순': ['employee_count', 'asc']
 };
 
+export const COMPARISON_SORT_OPTIONS = {
+  '나의 기업 선택 횟수 높은 순': ['selected_count', 'desc'],
+  '나의 기업 선택 횟수 낮은 순': ['selected_count', 'asc'],
+  '비교 기업 선택 횟수 높은 순': ['compared_count', 'desc'],
+  '비교 기업 선택 횟수 낮은 순': ['compared_count', 'asc']
+};
+
 export const INVESTMENT_TABLE_DATA = [
   {
     title: '순위',
@@ -83,5 +90,38 @@ export const STARTUP_TABLE_DATA = [
   {
     title: '고용 인원',
     render: (item) => formatAmount(item.employees)
+  }
+];
+
+export const COMPARISON_TABLE_DATA = [
+  {
+    title: '순위',
+    width: '6.8rem',
+    render: (item) => item.rank + '위'
+  },
+  {
+    title: '기업 명',
+    width: '21.3rem',
+    render: (item) => <StartupTitle item={item} />
+  },
+  {
+    title: '기업 소개',
+    width: '30.5rem',
+    render: (item) => <Description item={item} />
+  },
+  {
+    title: '카테고리',
+    width: '15.4rem',
+    render: (item) => item.categoryName
+  },
+  {
+    title: '나의 기업 선택 횟수',
+    width: '23rem',
+    render: (item) => formatAmount(item.selectedCount)
+  },
+  {
+    title: '비교 기업 선택 횟수',
+    width: '23rem',
+    render: (item) => formatAmount(item.comparedCount)
   }
 ];
