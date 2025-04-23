@@ -16,7 +16,7 @@ import { Helmet } from "react-helmet-async";
 export default function ComparisonPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [params, setParams] = useState({
-    order: "total_investment",
+    order: "selected_count",
     sort: "desc",
   });
 
@@ -32,7 +32,6 @@ export default function ComparisonPage() {
 
   // 정렬 처리 함수
   const handleSortChange = (order, sort) => {
-    console.log(order, sort);
     setParams((prevParams) => ({
       ...prevParams,
       order,
