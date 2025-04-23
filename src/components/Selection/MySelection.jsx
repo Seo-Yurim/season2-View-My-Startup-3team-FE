@@ -13,7 +13,7 @@ import { formatAmount } from "../../utils/formatAmount";
 import useFetchCancelMySelection from "../../hooks/useFetchCancelMySelection";
 import useFetchCancelCompare from "../../hooks/useFetchCancelCompare";
 import CompareDropdown from "./CompareDropdown";
-import InvestModal from "./InvestModal";
+import CreateInvestModal from "../Modal/CreateInvestModal/CreateInvestModal";
 import useFetchRank from "../../hooks/useFetchRanck";
 import RankDropdown from "./RankDropdown";
 
@@ -559,9 +559,9 @@ export default function MySelection() {
         </button>
       )}
       {isInvestModal && (
-        <InvestModal
+        <CreateInvestModal
           onClose={handleCloseInvestModal}
-          startup={selectedStartup}
+          startup={selectedStartup[0]}
         />
       )}
     </div>
