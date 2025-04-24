@@ -1,11 +1,19 @@
 import styles from "./StartupTitle.module.css";
 import noImageIcon from "../../../assets/no-image.png";
 
-export default function StartupTitle({ item }) {
+export default function StartupTitle({ item, isCategory = false }) {
+  console.log(item);
   return (
-    <div className={styles.name}>
+    <div className={styles.wrap}>
       <img src={item.image || noImageIcon} alt="기업 로고" loading="lazy" />
-      {item.name}
+      <div className={styles.title}>
+        <p className={styles.name}>{item.name}</p>
+        {isCategory && (
+          <p className={styles.category}>
+            {item.categoryName || item.category?.category}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

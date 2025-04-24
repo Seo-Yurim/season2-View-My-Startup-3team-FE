@@ -27,6 +27,13 @@ export const COMPARISON_SORT_OPTIONS = {
   '비교 기업 선택 횟수 낮은 순': ['compared_count', 'asc']
 };
 
+export const RANK_SORT_OPTIONS = {
+  '매출액 높은 순': ['revenue', 'desc'],
+  '매출액 낮은 순': ['revenue', 'asc'],
+  '고용인원 높은 순': ['employee_count', 'desc'],
+  '고용인원 낮은 순': ['employee_count', 'asc']
+};
+
 export const INVESTMENT_TABLE_DATA = [
   {
     title: '순위',
