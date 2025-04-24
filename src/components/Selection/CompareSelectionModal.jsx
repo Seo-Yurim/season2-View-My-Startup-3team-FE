@@ -9,6 +9,7 @@ import Loading from "../Common/Loading/Loading";
 import Warn from "../Common/Warning/Warn";
 import ModalContainer from "../Modal/ModalContainer/ModalContainer";
 import StartupTitle from "../Common/StartupTitle/StartupTitle";
+import Button from "../Common/Button/Button";
 
 export default function CompareSelectionModal({
   onClose,
@@ -77,76 +78,7 @@ export default function CompareSelectionModal({
     }
   };
 
-  // 모달 안 기업 리스트
-  const StartupList = ({
-    title,
-    startups,
-    selectCompareStartups,
-    handleSelectCompareStartups,
-  }) => (
-    <div>
-      <h3 className={styles.title}>
-        {title} ({totalCount})
-      </h3>
-      <ul className={styles.list}>
-        {startups.map((startup) => (
-          <li key={startup.id}>
-            <StartupTitle item={startup} isCategory={true} />
-            {existingSelectedStartups.some(
-              (existing) => existing.id === startup.id
-            ) && (
-              <button
-                type="button"
-                className={styles.mySelectedBtn}
-                onClick={() => handleSelectCompareStartups(startup)}
-                disabled={true}
-              >
-                나의 기업
-              </button>
-            )}
-            {!existingSelectedStartups.some(
-              (existing) => existing.id === startup.id
-            ) && (
-              <button
-                type="button"
-                className={`${styles.selectionBtn} ${
-                  selectCompareStartups.includes(startup) ||
-                  selectedStartups.some(
-                    (selected) => selected.id === startup.id
-                  )
-                    ? styles.completeBtn
-                    : styles.selectionBtn
-                }`}
-                onClick={() => handleSelectCompareStartups(startup)}
-                disabled={
-                  selectCompareStartups.includes(startup) ||
-                  selectedStartups.some(
-                    (selected) => selected.id === startup.id
-                  )
-                }
-              >
-                {selectCompareStartups.includes(startup) ||
-                selectedStartups.some(
-                  (selected) => selected.id === startup.id
-                ) ? (
-                  <>
-                    <img
-                      src={ic_check}
-                      alt="checkImg"
-                      className={styles.checkIcon}
-                    />
-                    선택완료
-                  </>
-                ) : (
-                  "선택하기"
-                )}
-              </button>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  console.log(selectCompareStartups);
 
   return (
     <ModalContainer>
@@ -158,48 +90,84 @@ export default function CompareSelectionModal({
           description={"데이터를 불러오는 중 오류가 발생했습니다."}
         />
       )}
-      {!isLoading && !isError && (
-        <div className={styles.form}>
-          <div className={styles.header}>
-            <h2>비교할 기업 선택하기</h2>
-            <img src={ic_X} alt="ic_X" onClick={onClose} />
-          </div>
-          <SearchInput setSearchKeyword={(search) => setSearch(search)} />
-          {selectCompareStartups.length > 0 && (
-            <div className={styles.selectStartup}>
-              <h3 className={styles.title}>
-                선택한 기업 ({selectCompareStartups.length})
-              </h3>
-              <ul className={styles.list}>
-                {selectCompareStartups.map((startup) => (
-                  <li key={startup.id}>
-                    <StartupTitle item={startup} isCategory={true} />
-                    <button
-                      type="button"
-                      className={`${styles.selectionBtn} ${styles.canselBtn}`}
-                      onClick={() => handleDeselectCompareStartups(startup)}
-                    >
-                      선택 해제
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          <StartupList
-            title="기업"
-            startups={startups}
-            selectCompareStartups={selectCompareStartups}
-            handleSelectCompareStartups={handleSelectCompareStartups}
-          />
-          {errorMessage && <p className="form-error">{errorMessage}</p>}
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
+      <div className={styles.wrap}>
+        <div className={styles.header}>
+          <h2>비교할 기업 선택하기</h2>
+          <img src={ic_X} alt="ic_X" onClick={onClose} />
         </div>
-      )}
+        <SearchInput setSearchKeyword={(search) => setSearch(search)} />
+
+        {selectCompareStartups.length > 0 && (
+          <div className={styles.startups}>
+            <h3 className={styles.title}>
+              선택한 기업 ({selectCompareStartups.length})
+            </h3>
+            <ul className={styles.list}>
+              {selectCompareStartups.map((startup) => (
+                <li key={startup.id}>
+                  <StartupTitle item={startup} isCategory={true} />
+                  <Button
+                    label="선택 해제"
+                    styleType="square"
+                    width="11rem"
+                    color="var(--secondary-gray-200)"
+                    onClick={() => handleDeselectCompareStartups(startup)}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {!isLoading && !isError && (
+          <div className={styles.startups}>
+            <h3 className={styles.title}>기업 ({totalCount})</h3>
+            <ul className={styles.list}>
+              {startups.map((startup) => (
+                <li key={startup.id}>
+                  <StartupTitle item={startup} isCategory={true} />
+                  {/* 나의 기업으로 선택한 기업일 때 */}
+                  {existingSelectedStartups[0].id === startup.id ? (
+                    <Button
+                      label="나의 기업"
+                      styleType="square"
+                      width="11rem"
+                      color="var(--primary-blue)"
+                      onClick={() => handleSelectCompareStartups(startup)}
+                      isDisabled={true}
+                    />
+                  ) : selectCompareStartups.some((s) => s.id === startup.id) ||
+                    selectedStartups.some((s) => s.id === startup.id) ? (
+                    <Button
+                      label="선택완료"
+                      styleType="square"
+                      img={ic_check}
+                      width="11rem"
+                      color="var(--secondary-gray-100)"
+                      isDisabled={true}
+                    />
+                  ) : (
+                    <Button
+                      label="선택하기"
+                      styleType="square"
+                      width="11rem"
+                      color="var(--primary-orange)"
+                      onClick={() => handleSelectCompareStartups(startup)}
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {errorMessage && <p className="form-error">{errorMessage}</p>}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      </div>
     </ModalContainer>
   );
 }

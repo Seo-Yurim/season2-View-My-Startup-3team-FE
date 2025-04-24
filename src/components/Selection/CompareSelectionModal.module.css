@@ -1,4 +1,4 @@
-.form {
+.wrap {
   display: flex;
   flex-direction: column;
 
@@ -29,13 +29,12 @@
   font-size: 1.8rem;
   font-weight: 700;
   line-height: 2.2rem;
-  text-align: left;
-  margin-bottom: 1rem;
 }
 
 .list {
   display: flex;
   flex-direction: column;
+
   gap: 1rem;
 }
 
@@ -43,6 +42,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.list li button {
+  margin: 0;
 }
 
 .selectionBtn {
@@ -61,26 +64,33 @@
   cursor: pointer;
 }
 
+.startups {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
 /*스크롤바*/
-.form::-webkit-scrollbar {
+.wrap::-webkit-scrollbar {
   width: 0.5rem;
 }
 
 /* 스크롤바 배경 */
-.form::-webkit-scrollbar-track {
+.wrap::-webkit-scrollbar-track {
   background: var(--secondary-black-300);
   border-radius: 1rem;
   /* 트랙 둥글기 */
 }
 
 /* 스크롤바 핸들 */
-.form::-webkit-scrollbar-thumb {
+.wrap::-webkit-scrollbar-thumb {
   background: var(--secondary-gray-200);
   border-radius: 1rem;
 }
 
 /* 핸들 호버 시 색상 변화 */
-.form::-webkit-scrollbar-thumb:hover {
+.wrap::-webkit-scrollbar-thumb:hover {
   background: var(--secondary-gray-400);
 }
 
