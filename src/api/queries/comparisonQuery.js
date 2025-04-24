@@ -6,10 +6,10 @@ import {
 } from '../ComparisonService';
 
 // 전체 스타트업 목록 조회
-export const useGetStartupList = ({ page, keyword }) => {
+export const useGetStartupList = ({ page, search }) => {
   return useQuery({
-    queryKey: ['comparison-list', page, keyword],
-    queryFn: () => getStartupList({ page, limit: 5, keyword }),
+    queryKey: ['comparison-list', page, search],
+    queryFn: () => getStartupList({ page, limit: 5, search }),
     keepPreviousData: true
   });
 };

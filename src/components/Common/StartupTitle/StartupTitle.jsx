@@ -2,7 +2,6 @@ import styles from "./StartupTitle.module.css";
 import noImageIcon from "../../../assets/no-image.png";
 
 export default function StartupTitle({ item, isCategory = false }) {
-  console.log(item);
   return (
     <div className={styles.wrap}>
       <img src={item.image || noImageIcon} alt="기업 로고" loading="lazy" />

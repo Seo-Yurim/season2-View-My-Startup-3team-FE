@@ -6,6 +6,7 @@ import Pagination from "../Common/Pagination/Pagination";
 import { useGetStartupList } from "../../api/queries/comparisonQuery";
 import SearchInput from "../Common/Search/SearchInput";
 import Loading from "../Common/Loading/Loading";
+import Warn from "../Common/Warning/Warn";
 import ModalContainer from "../Modal/ModalContainer/ModalContainer";
 import StartupTitle from "../Common/StartupTitle/StartupTitle";
 
@@ -16,7 +17,7 @@ export default function CompareSelectionModal({
   existingSelectedStartups,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [keyword, setkeyword] = useState("");
+  const [search, setSearch] = useState("");
 
   const [selectCompareStartups, setSelectComparedStartups] =
     useState(selectedStartups);
@@ -28,11 +29,8 @@ export default function CompareSelectionModal({
 
   const { data, isLoading, isError } = useGetStartupList({
     page: currentPage,
-    keyword,
+    search,
   });
-
-  if (isLoading) return <Loading />;
-  if (isError) return <div>error</div>;
 
   const startups = data?.list;
   const totalCount = data?.totalCount;
@@ -152,46 +150,56 @@ export default function CompareSelectionModal({
 
   return (
     <ModalContainer>
-      <form className={styles.form}>
-        <div className={styles.header}>
-          <h2>비교할 기업 선택하기</h2>
-          <img src={ic_X} alt="ic_X" onClick={onClose} />
-        </div>
-        <SearchInput setSearchKeyword={(keyword) => setkeyword(keyword)} />
-        {selectCompareStartups.length > 0 && (
-          <div className={styles.selectStartup}>
-            <h3 className={styles.title}>
-              선택한 기업 ({selectCompareStartups.length})
-            </h3>
-            <ul className={styles.list}>
-              {selectCompareStartups.map((startup) => (
-                <li key={startup.id}>
-                  <StartupTitle item={startup} isCategory={true} />
-                  <button
-                    type="button"
-                    className={`${styles.selectionBtn} ${styles.canselBtn}`}
-                    onClick={() => handleDeselectCompareStartups(startup)}
-                  >
-                    선택 해제
-                  </button>
-                </li>
-              ))}
-            </ul>
+      {isLoading && <Loading />}
+      {isError && (
+        <Warn
+          variant="error"
+          title="오류발생"
+          description={"데이터를 불러오는 중 오류가 발생했습니다."}
+        />
+      )}
+      {!isLoading && !isError && (
+        <div className={styles.form}>
+          <div className={styles.header}>
+            <h2>비교할 기업 선택하기</h2>
+            <img src={ic_X} alt="ic_X" onClick={onClose} />
           </div>
-        )}
-        <StartupList
-          title="기업"
-          startups={startups}
-          selectCompareStartups={selectCompareStartups}
-          handleSelectCompareStartups={handleSelectCompareStartups}
-        />
-        {errorMessage && <p className="form-error">{errorMessage}</p>}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={(page) => setCurrentPage(page)}
-        />
-      </form>
+          <SearchInput setSearchKeyword={(search) => setSearch(search)} />
+          {selectCompareStartups.length > 0 && (
+            <div className={styles.selectStartup}>
+              <h3 className={styles.title}>
+                선택한 기업 ({selectCompareStartups.length})
+              </h3>
+              <ul className={styles.list}>
+                {selectCompareStartups.map((startup) => (
+                  <li key={startup.id}>
+                    <StartupTitle item={startup} isCategory={true} />
+                    <button
+                      type="button"
+                      className={`${styles.selectionBtn} ${styles.canselBtn}`}
+                      onClick={() => handleDeselectCompareStartups(startup)}
+                    >
+                      선택 해제
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <StartupList
+            title="기업"
+            startups={startups}
+            selectCompareStartups={selectCompareStartups}
+            handleSelectCompareStartups={handleSelectCompareStartups}
+          />
+          {errorMessage && <p className="form-error">{errorMessage}</p>}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </div>
+      )}
     </ModalContainer>
   );
 }

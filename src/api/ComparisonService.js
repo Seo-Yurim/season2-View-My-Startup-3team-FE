@@ -1,8 +1,8 @@
 import { get } from './method';
 
 // 전체 스타트업 조회
-export async function getStartupList({ page, limit, keyword }) {
-  const res = await get('/comparisons', { page, limit, keyword });
+export async function getStartupList({ page, limit, search }) {
+  const res = await get('/comparisons', { page, limit, search });
   return res.data;
 }
 
