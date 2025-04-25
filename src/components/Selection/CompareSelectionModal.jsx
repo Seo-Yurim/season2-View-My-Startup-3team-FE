@@ -78,8 +78,6 @@ export default function CompareSelectionModal({
     }
   };
 
-  console.log(selectCompareStartups);
-
   return (
     <ModalContainer>
       {isLoading && <Loading />}
@@ -92,14 +90,16 @@ export default function CompareSelectionModal({
       )}
       <div className={styles.wrap}>
         <div className={styles.header}>
-          <h2>비교할 기업 선택하기</h2>
-          <img src={ic_X} alt="ic_X" onClick={onClose} />
+          <div className={styles.title}>
+            <h2>비교할 기업 선택하기</h2>
+            <img src={ic_X} alt="ic_X" onClick={onClose} />
+          </div>
+          <SearchInput setSearchKeyword={(search) => setSearch(search)} />
         </div>
-        <SearchInput setSearchKeyword={(search) => setSearch(search)} />
 
         {selectCompareStartups.length > 0 && (
           <div className={styles.startups}>
-            <h3 className={styles.title}>
+            <h3 className={styles[`sub-title`]}>
               선택한 기업 ({selectCompareStartups.length})
             </h3>
             <ul className={styles.list}>
@@ -121,7 +121,7 @@ export default function CompareSelectionModal({
 
         {!isLoading && !isError && (
           <div className={styles.startups}>
-            <h3 className={styles.title}>기업 ({totalCount})</h3>
+            <h3 className={styles[`sub-title`]}>기업 ({totalCount})</h3>
             <ul className={styles.list}>
               {startups.map((startup) => (
                 <li key={startup.id}>
