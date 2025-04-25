@@ -23,7 +23,7 @@ export const useSelectMyStartup = () => {
     mutationFn: ({ id, sessionId }) => selectMyStartup({ id, sessionId }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['startup-list']
+        queryKey: ['selected-startups']
       });
     },
     onError: (error) => {
@@ -40,7 +40,7 @@ export const useSelectCompareStartups = () => {
       selectCompareStartups({ ids, sessionId }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['startup-list']
+        queryKey: ['selected-startups']
       });
     },
     onError: (error) => {
@@ -56,7 +56,7 @@ export const useCancelMyStartup = () => {
     mutationFn: ({ id, sessionId }) => cancelMyStartup({ id, sessionId }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['startup-list']
+        queryKey: ['selected-startups']
       });
     },
     onError: (error) => {
@@ -73,7 +73,7 @@ export const useCancelCompreStartups = () => {
       cancelCompareStartups({ ids, sessionId }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['startup-list']
+        queryKey: ['selected-startups']
       });
     },
     onError: (error) => {

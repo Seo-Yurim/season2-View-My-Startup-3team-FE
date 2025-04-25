@@ -17,10 +17,10 @@
 
 .content {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    gap: 0.2rem;
+    gap: 1rem;
 }
 
 .content img {
