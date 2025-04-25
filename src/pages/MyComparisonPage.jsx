@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { useGetSelectedStartups } from "../api/queries/selectionQuery";
+import {
+  useCancelCompreStartups,
+  useCancelMyStartup,
+  useGetSelectedStartups,
+} from "../api/queries/selectionQuery";
 import Button from "../components/Common/Button/Button";
 import Loading from "../components/Common/Loading/Loading";
 import Warn from "../components/Common/Warning/Warn";
@@ -30,9 +34,25 @@ export default function MyComparisonPage() {
     }
   }, [data]);
 
+  const canceltMyStartup = useCancelMyStartup();
+  const handleCancelMyStartup = () => {
+    canceltMyStartup.mutate({ id: selectedStartup.id, sessionId });
+  };
+
+  const cancelCompareStartup = useCancelCompreStartups();
+  const handleCancelCompareStartup = () => {
+    let compareSelectedIds = compareStartups.map((startup) => startup.id);
+    cancelCompareStartup.mutate({ ids: compareSelectedIds, sessionId });
+  };
+
   const handleReset = () => {
-    setSelectedStartup(null);
-    setCompareStartups([]);
+    handleCancelMyStartup();
+    handleCancelCompareStartup();
+    setIsComparisonDone(false);
+  };
+
+  const handleShowResult = () => {
+    setIsComparisonDone(true);
   };
 
   return (
@@ -68,17 +88,15 @@ export default function MyComparisonPage() {
         <Button
           width="20rem"
           label="기업 비교하기"
+          onClick={handleShowResult}
           isDisabled={selectedStartup && compareStartups.length ? false : true}
         />
       )}
 
       {isComparisonDone && (
         <>
-          <CompareResult
-            sessionId={sessionId}
-            startupId={selectedStartup[0]?.id}
-          />
-          <RankResult startupId={selectedStartup[0]?.id} />
+          <CompareResult sessionId={sessionId} startupId={selectedStartup.id} />
+          <RankResult startupId={selectedStartup.id} />
           <Button
             label="나의 기업에 투자하기"
             width="20rem"
@@ -90,7 +108,7 @@ export default function MyComparisonPage() {
       {isInvestModal && (
         <CreateInvestModal
           onClose={() => setIsInvestModal(false)}
-          startup={selectedStartup[0]}
+          startup={selectedStartup}
         />
       )}
     </main>

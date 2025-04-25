@@ -1,6 +1,6 @@
 import styles from "./CompareSelection.module.css";
 import { useState } from "react";
-import CompareSelectionModal from "./CompareSelectionModal";
+import CompareSelectionModal from "../Modal/CompareSelectionModal/CompareSelectionModal";
 import Button from "../Common/Button/Button";
 import StartupTitle from "../Common/StartupTitle/StartupTitle";
 import ic_minus from "../../assets/ic_minus.svg";

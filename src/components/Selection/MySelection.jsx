@@ -1,6 +1,6 @@
 import styles from "./MySelection.module.css";
 import btn_plus from "../../assets/btn_plus.svg";
-import MySelectionModal from "./MySelectionModal";
+import MySelectionModal from "../Modal/MySelectionModal/MySelectionModal";
 import { useState } from "react";
 import ic_restart from "../../assets/ic_restart.svg";
 import StartupTitle from "../Common/StartupTitle/StartupTitle";
@@ -70,6 +70,7 @@ export default function MySelection({
       {isModal && (
         <MySelectionModal
           sessionId={sessionId}
+          compareStartups={compareStartups}
           onClose={() => setIsModal(false)}
         />
       )}

@@ -1,18 +1,22 @@
 import styles from "./MySelectionModal.module.css";
-import ic_X from "../../assets/ic_x.svg";
+import ic_X from "../../../assets/ic_x.svg";
 import { useState } from "react";
-import { useGetRecentSelectionList } from "../../api/queries/comparisonQuery.js";
-import { useGetStartupList } from "../../api/queries/comparisonQuery.js";
-import SearchInput from "../Common/Search/SearchInput.jsx";
-import Loading from "../Common/Loading/Loading.jsx";
-import ModalContainer from "../Modal/ModalContainer/ModalContainer.jsx";
-import StartupTitle from "../Common/StartupTitle/StartupTitle.jsx";
-import Button from "../Common/Button/Button.jsx";
-import Pagination from "../Common/Pagination/Pagination.jsx";
-import Warn from "../Common/Warning/Warn.jsx";
-import { useSelectMyStartup } from "../../api/queries/selectionQuery.js";
+import { useGetRecentSelectionList } from "../../../api/queries/comparisonQuery.js";
+import { useGetStartupList } from "../../../api/queries/comparisonQuery.js";
+import SearchInput from "../../Common/Search/SearchInput.jsx";
+import Loading from "../../Common/Loading/Loading.jsx";
+import ModalContainer from "../ModalContainer/ModalContainer.jsx";
+import StartupTitle from "../../Common/StartupTitle/StartupTitle.jsx";
+import Button from "../../Common/Button/Button.jsx";
+import Pagination from "../../Common/Pagination/Pagination.jsx";
+import Warn from "../../Common/Warning/Warn.jsx";
+import { useSelectMyStartup } from "../../../api/queries/selectionQuery.js";
 
-export default function MySelectionModal({ sessionId, onClose }) {
+export default function MySelectionModal({
+  sessionId,
+  onClose,
+  compareStartups,
+}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
 
@@ -73,26 +77,26 @@ export default function MySelectionModal({ sessionId, onClose }) {
               {recentStartups.slice(0, 5).map((startup) => (
                 <li key={startup.id}>
                   <StartupTitle item={startup.startup} isCategory={true} />
-                  <Button
-                    type="submit"
-                    label="선택하기"
-                    styleType="square"
-                    width="11rem"
-                    color="var(--primary-orange)"
-                    onClick={() => handleSelect(startup)}
-                  />
-                  {/* {existingSelectedStartups.some(
-                  (existing) => existing.id === startup.startup.id
-                ) && (
-                  <button
-                    type="button"
-                    className={styles.compareSelectedBtn}
-                    onClick={() => handleSelect(startup.startup)}
-                    disabled={true}
-                  >
-                    비교 기업
-                  </button>
-                )} */}
+                  {compareStartups.some(
+                    (compare) => compare.id === startup.startup.id
+                  ) ? (
+                    <Button
+                      label="비교 기업"
+                      styleType="square"
+                      width="11rem"
+                      color="var(--primary-blue)"
+                      isDisabled={true}
+                    />
+                  ) : (
+                    <Button
+                      type="submit"
+                      label="선택하기"
+                      styleType="square"
+                      width="11rem"
+                      color="var(--primary-orange)"
+                      onClick={() => handleSelect(startup)}
+                    />
+                  )}
                 </li>
               ))}
             </ul>
@@ -104,13 +108,25 @@ export default function MySelectionModal({ sessionId, onClose }) {
               {startups.map((startup) => (
                 <li key={startup.id}>
                   <StartupTitle item={startup} isCategory={true} />
-                  <Button
-                    label="선택하기"
-                    styleType="square"
-                    width="11rem"
-                    color="var(--primary-orange)"
-                    onClick={() => handleSelect(startup)}
-                  />
+                  {compareStartups.some(
+                    (compare) => compare.id === startup.id
+                  ) ? (
+                    <Button
+                      label="비교 기업"
+                      styleType="square"
+                      width="11rem"
+                      color="var(--primary-blue)"
+                      isDisabled={true}
+                    />
+                  ) : (
+                    <Button
+                      label="선택하기"
+                      styleType="square"
+                      width="11rem"
+                      color="var(--primary-orange)"
+                      onClick={() => handleSelect(startup)}
+                    />
+                  )}
                 </li>
               ))}
             </ul>

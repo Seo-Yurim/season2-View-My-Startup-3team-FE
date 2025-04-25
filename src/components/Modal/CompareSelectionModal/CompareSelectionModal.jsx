@@ -1,16 +1,16 @@
 import styles from "./CompareSelectionModal.module.css";
-import ic_X from "../../assets/ic_x.svg";
-import ic_check from "../../assets/ic_check.svg";
-import { useEffect, useState } from "react";
-import Pagination from "../Common/Pagination/Pagination";
-import { useGetStartupList } from "../../api/queries/comparisonQuery";
-import SearchInput from "../Common/Search/SearchInput";
-import Loading from "../Common/Loading/Loading";
-import Warn from "../Common/Warning/Warn";
-import ModalContainer from "../Modal/ModalContainer/ModalContainer";
-import StartupTitle from "../Common/StartupTitle/StartupTitle";
-import Button from "../Common/Button/Button";
-import { useSelectCompareStartups } from "../../api/queries/selectionQuery";
+import ic_X from "../../../assets/ic_x.svg";
+import ic_check from "../../../assets/ic_check.svg";
+import { useState } from "react";
+import Pagination from "../../Common/Pagination/Pagination";
+import { useGetStartupList } from "../../../api/queries/comparisonQuery";
+import SearchInput from "../../Common/Search/SearchInput";
+import Loading from "../../Common/Loading/Loading";
+import Warn from "../../Common/Warning/Warn";
+import ModalContainer from "../ModalContainer/ModalContainer";
+import StartupTitle from "../../Common/StartupTitle/StartupTitle";
+import Button from "../../Common/Button/Button";
+import { useSelectCompareStartups } from "../../../api/queries/selectionQuery";
 
 export default function CompareSelectionModal({
   sessionId,
