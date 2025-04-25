@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./TableList.module.css";
 
-export default function TableList({ tableData, list }) {
+export default function TableList({ tableData, list, pageSize = 10 }) {
   const navigate = useNavigate();
-  const emptyRowCount = Math.max(0, 10 - list.length);
+  const emptyRowCount = Math.max(0, pageSize - list.length);
 
   return (
     <section className={styles.wrapper}>

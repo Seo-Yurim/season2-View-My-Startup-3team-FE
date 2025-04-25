@@ -153,7 +153,12 @@ export default function CreateInvestModal({ onClose, startup }) {
         </div>
 
         <div className={styles.buttons}>
-          <Button styleType="solid" label="취소" onClick={onClose} />
+          <Button
+            styleType="solid"
+            color="var(--primary-orange)"
+            label="취소"
+            onClick={onClose}
+          />
           <Button type="submit" label="확인" isDisabled={isInputEmpty()} />
         </div>
         {error && <div className="form-error">{error}</div>}

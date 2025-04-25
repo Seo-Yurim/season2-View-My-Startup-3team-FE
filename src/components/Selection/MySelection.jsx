@@ -16,6 +16,7 @@ import CompareDropdown from "./CompareDropdown";
 import CreateInvestModal from "../Modal/CreateInvestModal/CreateInvestModal";
 import useFetchRank from "../../hooks/useFetchRanck";
 import RankDropdown from "./RankDropdown";
+import CompareResult from "./CompareResult";
 
 export default function MySelection() {
   const [isModal, setIsModal] = useState(false);
@@ -88,14 +89,6 @@ export default function MySelection() {
     setSortBy(sortValue);
   }, [sortOptionBy, setSortBy, setOrderBy]);
 
-  const handleOpenModal = () => {
-    setIsModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModal(false);
-  };
-
   const handleSelectStartup = (startup) => {
     if (!selectedStartup.some((s) => s.id === startup.id)) {
       setSelectedStartup((prev) => [...prev, startup]);
@@ -104,18 +97,6 @@ export default function MySelection() {
 
   const handleRemoveStartup = (id) => {
     setSelectedStartup((prev) => prev.filter((startup) => startup.id !== id));
-  };
-
-  const handleOpenComparedModal = () => {
-    setIsComparedModal(true);
-  };
-
-  const handleCloseComparedModal = () => {
-    setIsComparedModal(false);
-  };
-
-  const handleCompareSelectStartups = (startups) => {
-    setCompareSelectedStartups(startups);
   };
 
   const handleCompareRemoveStartups = (id) => {
@@ -165,15 +146,6 @@ export default function MySelection() {
       return fetchCancelMySelection(startup.id);
     });
     await Promise.all(promise);
-  };
-
-  const handleOpenInvestModal = () => {
-    setIsInvestModal(true);
-  };
-
-  const handleCloseInvestModal = (e) => {
-    if (e) e.preventDefault();
-    setIsInvestModal(false);
   };
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 743);
@@ -275,7 +247,7 @@ export default function MySelection() {
                 className={styles.plusBtnImg}
                 src={btn_plus}
                 alt="Add startup"
-                onClick={handleOpenModal}
+                onClick={() => setIsModal(true)}
               />
               <h3>기업 추가</h3>
             </div>
@@ -295,7 +267,7 @@ export default function MySelection() {
               )}
 
               <button
-                onClick={handleOpenComparedModal}
+                onClick={() => setIsComparedModal(true)}
                 className={`${styles.addBtn} ${
                   compareSelectedStartups.length >= 5
                     ? styles.disabledBtn
@@ -382,7 +354,7 @@ export default function MySelection() {
       )}
       {isModal && (
         <MySelectionModal
-          onClose={handleCloseModal}
+          onClose={() => setIsModal(false)}
           onSelectStartup={handleSelectStartup}
           existingSelectedStartups={compareSelectedStartups}
         />
@@ -390,89 +362,12 @@ export default function MySelection() {
       {isComparedModal && (
         <CompareSelectionModal
           selectedStartups={compareSelectedStartups}
-          onSelectStartup={handleCompareSelectStartups}
-          onClose={handleCloseComparedModal}
+          onSelectStartup={(startups) => setCompareSelectedStartups(startups)}
+          onClose={() => setIsComparedModal(false)}
           existingSelectedStartups={selectedStartup}
         />
       )}
-      {isComparisonDone && ( // 비교 완료 상태일 때 비교 결과 표시
-        <div className={styles.comparisonDoneBox}>
-          <div className={styles.doneNav}>
-            <h2 className={styles.doneTxt}>비교 결과 확인하기</h2>
-            <CompareDropdown setSortOption={setSortOption} />
-          </div>
-          <div style={{ width: "100%", overflowX: "auto" }}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th style={{ width: "21.3rem" }}>기업명</th>
-                  <th style={{ width: "30.4rem" }}>기업소개</th>
-                  <th style={{ width: "15.4rem" }}>카테고리</th>
-                  <th style={{ width: "15.4rem" }}>누적 투자 금액</th>
-                  <th style={{ width: "15.4rem" }}>매출액</th>
-                  <th style={{ width: "15.4rem" }}>고용 인원</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allResults.map((result) => (
-                  <tr
-                    key={result.id}
-                    className={
-                      selectedStartup.some(
-                        (startup) => startup.id === result.id
-                      )
-                        ? styles.selectedStartupRow
-                        : ""
-                    }
-                  >
-                    <td style={{ textAlign: "left", paddingLeft: "6.5rem" }}>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          verticalAlign: "middle",
-                        }}
-                      >
-                        <img
-                          src={result.image || noImageIcon}
-                          alt={`${result.name} 로고`}
-                          style={{
-                            width: "3.2rem",
-                            height: "3.2rem",
-                            marginRight: "0.8rem",
-                            verticalAlign: "middle",
-                            borderRadius: "50%",
-                            backgroundColor: "white",
-                            objectFit: "cover",
-                          }}
-                        />
-                      </span>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          verticalAlign: "middle",
-                        }}
-                      >
-                        {result.name}
-                      </span>
-                    </td>
-                    <td className={styles.description}>{result.description}</td>
-                    <td>{result.category.category}</td>
-                    <td style={{ textAlign: "center" }}>
-                      {formatAmount(result.simInvest)} 원
-                    </td>
-                    <td style={{ textAlign: "center" }}>
-                      {formatAmount(result.revenue)} 원
-                    </td>
-                    <td style={{ textAlign: "right", paddingRight: "5.5rem" }}>
-                      {formatAmount(result.employees)} 명
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+      {isComparisonDone && <CompareResult sessionId={sessionId} />}
       {isComparisonDone && ( // 비교 완료 상태일 때 비교 결과 표시
         <div className={styles.comparisonDoneBox}>
           <div className={styles.doneNav}>
@@ -554,13 +449,16 @@ export default function MySelection() {
         </div>
       )}
       {isComparisonDone && (
-        <button className={styles.investBtn} onClick={handleOpenInvestModal}>
+        <button
+          className={styles.investBtn}
+          onClick={() => setIsInvestModal(true)}
+        >
           나의 기업에 투자하기
         </button>
       )}
       {isInvestModal && (
         <CreateInvestModal
-          onClose={handleCloseInvestModal}
+          onClose={() => setIsInvestModal(false)}
           startup={selectedStartup[0]}
         />
       )}

@@ -1,7 +1,7 @@
 import styles from "./CompareSelectionModal.module.css";
 import ic_X from "../../assets/ic_x.svg";
 import ic_check from "../../assets/ic_check.svg";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Pagination from "../Common/Pagination/Pagination";
 import { useGetStartupList } from "../../api/queries/comparisonQuery";
 import SearchInput from "../Common/Search/SearchInput";
@@ -23,10 +23,6 @@ export default function CompareSelectionModal({
   const [selectCompareStartups, setSelectComparedStartups] =
     useState(selectedStartups);
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    setSelectComparedStartups(selectedStartups);
-  }, [selectedStartups]);
 
   const { data, isLoading, isError } = useGetStartupList({
     page: currentPage,
@@ -50,24 +46,12 @@ export default function CompareSelectionModal({
 
   // 선택하기
   const handleSelectCompareStartups = (startup) => {
-    if (selectedStartups.some((selected) => selected.id === startup.id)) {
-      return; // 선택된 스타트업은 무시
-    }
-    if (selectCompareStartups.includes(startup)) {
-      // 이미 선택된 스타트업을 해제
-      const newSelected = selectCompareStartups.filter((s) => s !== startup);
+    if (selectCompareStartups.length < 5) {
+      const newSelected = [...selectCompareStartups, startup];
       setSelectComparedStartups(newSelected);
       onSelectStartup(newSelected);
-      setErrorMessage("");
     } else {
-      // 새 스타트업을 선택
-      if (selectCompareStartups.length < 5) {
-        const newSelected = [...selectCompareStartups, startup];
-        setSelectComparedStartups(newSelected);
-        onSelectStartup(newSelected);
-      } else {
-        setErrorMessage("*비교할 기업은 최대 5개까지 선택 가능합니다."); // 오류 메시지 설정
-      }
+      setErrorMessage("* 비교할 기업은 최대 5개까지 선택 가능합니다.");
     }
   };
 
@@ -79,7 +63,7 @@ export default function CompareSelectionModal({
   };
 
   return (
-    <ModalContainer>
+    <ModalContainer onClick={handleOverlayClick}>
       {isLoading && <Loading />}
       {isError && (
         <Warn
@@ -126,18 +110,15 @@ export default function CompareSelectionModal({
               {startups.map((startup) => (
                 <li key={startup.id}>
                   <StartupTitle item={startup} isCategory={true} />
-                  {/* 나의 기업으로 선택한 기업일 때 */}
                   {existingSelectedStartups[0].id === startup.id ? (
                     <Button
                       label="나의 기업"
                       styleType="square"
                       width="11rem"
                       color="var(--primary-blue)"
-                      onClick={() => handleSelectCompareStartups(startup)}
                       isDisabled={true}
                     />
-                  ) : selectCompareStartups.some((s) => s.id === startup.id) ||
-                    selectedStartups.some((s) => s.id === startup.id) ? (
+                  ) : selectCompareStartups.some((s) => s.id === startup.id) ? (
                     <Button
                       label="선택완료"
                       styleType="square"
