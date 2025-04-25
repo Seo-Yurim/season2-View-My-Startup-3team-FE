@@ -30,7 +30,10 @@ export default function MyComparisonPage() {
     }
   }, [data]);
 
-  console.log(compareStartups);
+  const handleReset = () => {
+    setSelectedStartup(null);
+    setCompareStartups([]);
+  };
 
   return (
     <main>
@@ -48,6 +51,7 @@ export default function MyComparisonPage() {
             sessionId={sessionId}
             selectedStartup={selectedStartup}
             compareStartups={compareStartups}
+            onReset={handleReset}
           />
           {!isComparisonDone && selectedStartup && (
             <CompareSelection

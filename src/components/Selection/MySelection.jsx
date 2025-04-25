@@ -11,6 +11,7 @@ export default function MySelection({
   sessionId,
   selectedStartup,
   compareStartups,
+  onReset,
 }) {
   const [isModal, setIsModal] = useState(false);
 
@@ -28,7 +29,12 @@ export default function MySelection({
             {selectedStartup ? "내가 선택한 기업" : "나의 기업을 선택해주세요!"}
           </h2>
           {selectedStartup && compareStartups.length > 0 && (
-            <Button img={ic_restart} label="전체 초기화" width="15rem" />
+            <Button
+              img={ic_restart}
+              label="전체 초기화"
+              width="15rem"
+              onClick={onReset}
+            />
           )}
         </div>
         <div className={styles[`border-box`]}>
