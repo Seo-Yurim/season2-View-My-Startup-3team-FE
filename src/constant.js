@@ -191,7 +191,7 @@ export const COMPARE_RANK_TABLE_DATA = [
   {
     title: '카테고리',
     width: '15.4rem',
-    render: (item) => item.category.category
+    render: (item) => item.categoryName
   },
   {
     title: '누적 투자 금액',

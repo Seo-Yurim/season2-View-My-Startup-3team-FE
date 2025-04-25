@@ -64,6 +64,10 @@
     transform: translate(-50%, -50%);
 }
 
+.table tbody .selected {
+    background-color: var(--secondary-black-100);
+}
+
 /***** Tablet *****/
 @media (max-width: 1199px) and (min-width: 744px) {
     .table th {

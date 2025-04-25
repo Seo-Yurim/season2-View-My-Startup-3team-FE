@@ -4,7 +4,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
+
+  gap: 1rem;
 }
 
 .myNav {
@@ -263,7 +264,8 @@
 
 .table {
   width: 100%;
-  min-width: 80rem; /* 최소 너비 설정 추가 */
+  min-width: 80rem;
+  /* 최소 너비 설정 추가 */
   margin-top: 1.6rem;
   border-radius: 0.25rem;
   overflow: hidden;
@@ -311,23 +313,29 @@
 /* 추가 */
 .table-container {
   width: 100%;
-  overflow-x: auto; /* 수평 스크롤 생성 */
+  overflow-x: auto;
+  /* 수평 스크롤 생성 */
 }
 
 .table td.description {
-  max-width: 30.4rem; /* 기본적으로 최대 너비를 차지함 */
+  max-width: 30.4rem;
+  /* 기본적으로 최대 너비를 차지함 */
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* 두 줄까지만 허용 */
+  -webkit-line-clamp: 2;
+  /* 두 줄까지만 허용 */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 1.5rem;
-  max-height: 4.7rem; /* 두 줄 높이만큼 설정 (line-height * 2) + padding 값 */
-  line-height: 1.7rem; /* 줄 높이를 설정 */
+  max-height: 4.7rem;
+  /* 두 줄 높이만큼 설정 (line-height * 2) + padding 값 */
+  line-height: 1.7rem;
+  /* 줄 높이를 설정 */
   text-align: left;
 
   /* 표준 line-clamp 속성을 추가 : VS Code에서 경고문구 제거를 위해 */
-  line-clamp: 2; /* 표준 속성으로 정의하지만 아직 대부분의 브라우저에서 미지원 */
+  line-clamp: 2;
+  /* 표준 속성으로 정의하지만 아직 대부분의 브라우저에서 미지원 */
 }
 
 .selectedStartupRow {
@@ -372,6 +380,7 @@
   .innerBox {
     padding-left: 2rem;
   }
+
   /* 태블릿 사이즈에서 첫 번째 열 숨기기 */
   table thead th:nth-child(1),
   table tbody td:nth-child(1) {
@@ -384,24 +393,29 @@
     width: 100%;
     padding-right: 2rem;
   }
+
   .innerBoxMobile {
     flex-wrap: wrap;
     height: 100%;
     box-sizing: border-box;
   }
+
   .compareSelectedStartup {
     width: calc(33.33% - 1rem);
     margin: 0.5rem;
   }
+
   .resetBtn,
   .addBtn,
   .disabledBtn {
     white-space: nowrap;
   }
+
   .selectedHeader,
   .headerTxt {
     font-size: 1.7rem;
   }
+
   /* 모바일 사이즈에서 첫 번째 열 숨기기 */
   table thead th:nth-child(1),
   table tbody td:nth-child(1) {
