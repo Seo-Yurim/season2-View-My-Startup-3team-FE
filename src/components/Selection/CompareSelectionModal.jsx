@@ -1,7 +1,7 @@
 import styles from "./CompareSelectionModal.module.css";
 import ic_X from "../../assets/ic_x.svg";
 import ic_check from "../../assets/ic_check.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../Common/Pagination/Pagination";
 import { useGetStartupList } from "../../api/queries/comparisonQuery";
 import SearchInput from "../Common/Search/SearchInput";
@@ -10,18 +10,18 @@ import Warn from "../Common/Warning/Warn";
 import ModalContainer from "../Modal/ModalContainer/ModalContainer";
 import StartupTitle from "../Common/StartupTitle/StartupTitle";
 import Button from "../Common/Button/Button";
+import { useSelectCompareStartups } from "../../api/queries/selectionQuery";
 
 export default function CompareSelectionModal({
+  sessionId,
   onClose,
-  onSelectStartup,
+  onCancel,
+  selectedStartup,
   selectedStartups,
-  existingSelectedStartups,
+  setCompareStartups,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-
-  const [selectCompareStartups, setSelectComparedStartups] =
-    useState(selectedStartups);
   const [errorMessage, setErrorMessage] = useState("");
 
   const { data, isLoading, isError } = useGetStartupList({
@@ -33,23 +33,14 @@ export default function CompareSelectionModal({
   const totalCount = data?.totalCount;
   const totalPages = data?.totalPages;
 
-  // 선택 해제
-  const handleDeselectCompareStartups = (startup) => {
-    // 선택된 스타트업을 해제
-    const newSelected = selectCompareStartups.filter(
-      (s) => s.id !== startup.id
-    );
-    setSelectComparedStartups(newSelected);
-    onSelectStartup(newSelected);
-    setErrorMessage("");
-  };
+  const selectCompareStartup = useSelectCompareStartups();
+  const handleSelect = (startup) => {
+    if (selectedStartups.length < 5) {
+      if (selectedStartups.some((s) => s.id === startup.id)) return;
 
-  // 선택하기
-  const handleSelectCompareStartups = (startup) => {
-    if (selectCompareStartups.length < 5) {
-      const newSelected = [...selectCompareStartups, startup];
-      setSelectComparedStartups(newSelected);
-      onSelectStartup(newSelected);
+      setCompareStartups((prev) => [...prev, startup]);
+      selectCompareStartup.mutate({ ids: [startup.id], sessionId });
+      setErrorMessage("");
     } else {
       setErrorMessage("* 비교할 기업은 최대 5개까지 선택 가능합니다.");
     }
@@ -81,13 +72,13 @@ export default function CompareSelectionModal({
           <SearchInput setSearchKeyword={(search) => setSearch(search)} />
         </div>
 
-        {selectCompareStartups.length > 0 && (
+        {selectedStartups.length > 0 && (
           <div className={styles.startups}>
             <h3 className={styles[`sub-title`]}>
-              선택한 기업 ({selectCompareStartups.length})
+              선택한 기업 ({selectedStartups.length})
             </h3>
             <ul className={styles.list}>
-              {selectCompareStartups.map((startup) => (
+              {selectedStartups.map((startup) => (
                 <li key={startup.id}>
                   <StartupTitle item={startup} isCategory={true} />
                   <Button
@@ -95,7 +86,7 @@ export default function CompareSelectionModal({
                     styleType="square"
                     width="11rem"
                     color="var(--secondary-gray-200)"
-                    onClick={() => handleDeselectCompareStartups(startup)}
+                    onClick={() => onCancel(startup)}
                   />
                 </li>
               ))}
@@ -110,7 +101,7 @@ export default function CompareSelectionModal({
               {startups.map((startup) => (
                 <li key={startup.id}>
                   <StartupTitle item={startup} isCategory={true} />
-                  {existingSelectedStartups[0].id === startup.id ? (
+                  {selectedStartup.id === startup.id ? (
                     <Button
                       label="나의 기업"
                       styleType="square"
@@ -118,7 +109,9 @@ export default function CompareSelectionModal({
                       color="var(--primary-blue)"
                       isDisabled={true}
                     />
-                  ) : selectCompareStartups.some((s) => s.id === startup.id) ? (
+                  ) : selectedStartups.some(
+                      (selected) => selected.id === startup.id
+                    ) ? (
                     <Button
                       label="선택완료"
                       styleType="square"
@@ -133,7 +126,7 @@ export default function CompareSelectionModal({
                       styleType="square"
                       width="11rem"
                       color="var(--primary-orange)"
-                      onClick={() => handleSelectCompareStartups(startup)}
+                      onClick={() => handleSelect(startup)}
                     />
                   )}
                 </li>
@@ -148,6 +141,7 @@ export default function CompareSelectionModal({
           totalPages={totalPages}
           onPageChange={(page) => setCurrentPage(page)}
         />
+        <Button label="기업 선택 완료" width="20rem" onClick={onClose} />
       </div>
     </ModalContainer>
   );

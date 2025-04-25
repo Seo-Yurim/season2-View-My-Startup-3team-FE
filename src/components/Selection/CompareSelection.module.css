@@ -25,6 +25,10 @@
     line-height: 2.4rem;
 }
 
+.title-button button {
+    margin: 0;
+}
+
 .border-box {
     padding: 1rem;
     border: 0.1rem solid var(--secondary-black-300);
@@ -43,22 +47,46 @@
     background-color: var(--secondary-black-100);
 }
 
+.selected,
+.empty {
+    display: flex;
+    align-items: center;
+}
 
 .selected {
+    gap: 2rem;
+}
+
+.selected-card {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+
+    padding: 1.6rem 4rem;
+    border-radius: 2rem;
+
+    gap: 0.8rem;
+
+    background-color: var(--secondary-black-200);
+}
+
+.selected-card img {
+    cursor: pointer;
+}
+
+.empty {
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
 
     gap: 1rem;
 }
 
-.selected img {
+.empty img {
     width: 6.7rem;
     height: 8.5rem;
 }
 
-.selected p {
+.empty p {
     color: var(--secondary-gray-200);
     line-height: 2.3rem;
     text-align: center;

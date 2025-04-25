@@ -56,8 +56,9 @@ export default function MyComparisonPage() {
           {!isComparisonDone && selectedStartup && (
             <CompareSelection
               sessionId={sessionId}
+              selectedStartup={selectedStartup}
               compareSelectedStartups={compareStartups}
-              setCompareSelectedStartups={setCompareStartups}
+              setCompareStartups={setCompareStartups}
             />
           )}
         </>
