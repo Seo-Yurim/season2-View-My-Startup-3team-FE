@@ -1,3 +1,4 @@
+import styles from "../styles/MyComparisonPage.module.css";
 import { useEffect, useState } from "react";
 import {
   useCancelCompreStartups,
@@ -56,7 +57,7 @@ export default function MyComparisonPage() {
   };
 
   return (
-    <main>
+    <main className={styles.wrap}>
       {isLoading && <Loading />}
       {isError && (
         <Warn
@@ -72,15 +73,18 @@ export default function MyComparisonPage() {
             selectedStartup={selectedStartup}
             compareStartups={compareStartups}
             onReset={handleReset}
+            isComparisonDone={isComparisonDone}
+            setIsComparisonDone={setIsComparisonDone}
           />
-          {!isComparisonDone && selectedStartup && (
-            <CompareSelection
-              sessionId={sessionId}
-              selectedStartup={selectedStartup}
-              compareSelectedStartups={compareStartups}
-              setCompareStartups={setCompareStartups}
-            />
-          )}
+          {!isComparisonDone &&
+            (selectedStartup || compareStartups.length > 0) && (
+              <CompareSelection
+                sessionId={sessionId}
+                selectedStartup={selectedStartup}
+                compareSelectedStartups={compareStartups}
+                setCompareStartups={setCompareStartups}
+              />
+            )}
         </>
       )}
 
@@ -94,7 +98,7 @@ export default function MyComparisonPage() {
       )}
 
       {isComparisonDone && (
-        <>
+        <div className={styles.result}>
           <CompareResult sessionId={sessionId} startupId={selectedStartup.id} />
           <RankResult startupId={selectedStartup.id} />
           <Button
@@ -102,7 +106,7 @@ export default function MyComparisonPage() {
             width="20rem"
             onClick={() => setIsInvestModal(true)}
           />
-        </>
+        </div>
       )}
 
       {isInvestModal && (

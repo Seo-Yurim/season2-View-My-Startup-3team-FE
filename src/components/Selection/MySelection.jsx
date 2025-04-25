@@ -12,11 +12,14 @@ export default function MySelection({
   selectedStartup,
   compareStartups,
   onReset,
+  isComparisonDone,
+  setIsComparisonDone,
 }) {
   const [isModal, setIsModal] = useState(false);
 
   const canceltMyStartup = useCancelMyStartup();
   const handleCancel = (startup) => {
+    setIsComparisonDone(false);
     const startupId = startup.startupId || startup.id;
     canceltMyStartup.mutate({ id: startupId, sessionId });
   };
@@ -28,14 +31,22 @@ export default function MySelection({
           <h2>
             {selectedStartup ? "내가 선택한 기업" : "나의 기업을 선택해주세요!"}
           </h2>
-          {selectedStartup && compareStartups.length > 0 && (
-            <Button
-              img={ic_restart}
-              label="전체 초기화"
-              width="15rem"
-              onClick={onReset}
-            />
-          )}
+          {selectedStartup &&
+            compareStartups.length > 0 &&
+            (isComparisonDone ? (
+              <Button
+                label="다른 기업 비교하기"
+                width="15rem"
+                onClick={() => setIsComparisonDone(false)}
+              />
+            ) : (
+              <Button
+                img={ic_restart}
+                label="전체 초기화"
+                width="15rem"
+                onClick={onReset}
+              />
+            ))}
         </div>
         <div className={styles[`border-box`]}>
           <div className={styles[`selecte-startup`]}>
