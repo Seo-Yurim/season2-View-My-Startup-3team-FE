@@ -27,6 +27,22 @@ export const COMPARISON_SORT_OPTIONS = {
   '비교 기업 선택 횟수 낮은 순': ['compared_count', 'asc']
 };
 
+export const COMPARE_RESULT_SORT_OPTIONS = {
+  '누적 투자 금액 높은 순': ['simInvest', 'desc'],
+  '누적 투자 금액 낮은 순': ['simInvest', 'asc'],
+  '매출액 높은 순': ['revenue', 'desc'],
+  '매출액 낮은 순': ['revenue', 'asc'],
+  '고용인원 높은 순': ['employees', 'desc'],
+  '고용인원 낮은 순': ['employees', 'asc']
+};
+
+export const RANK_SORT_OPTIONS = {
+  '매출액 높은 순': ['revenue', 'desc'],
+  '매출액 낮은 순': ['revenue', 'asc'],
+  '고용인원 높은 순': ['employee_count', 'desc'],
+  '고용인원 낮은 순': ['employee_count', 'asc']
+};
+
 export const INVESTMENT_TABLE_DATA = [
   {
     title: '순위',
@@ -123,5 +139,70 @@ export const COMPARISON_TABLE_DATA = [
     title: '비교 기업 선택 횟수',
     width: '23rem',
     render: (item) => formatAmount(item.comparedCount)
+  }
+];
+
+export const COMPARE_RESULT_TABLE_DATA = [
+  {
+    title: '기업명',
+    width: '20rem',
+    render: (item) => <StartupTitle item={item} />
+  },
+  {
+    title: '기업 소개',
+    width: '25rem',
+    render: (item) => <Description item={item} />
+  },
+  {
+    title: '카테고리',
+    width: '15.4rem',
+    render: (item) => item.category.category
+  },
+  {
+    title: '누적 투자 금액',
+    render: (item) => formatAmount(item.simInvest)
+  },
+  {
+    title: '매출액',
+    render: (item) => formatAmount(item.revenue)
+  },
+  {
+    title: '고용 인원',
+    render: (item) => formatAmount(item.employees)
+  }
+];
+
+export const COMPARE_RANK_TABLE_DATA = [
+  {
+    title: '순위',
+    width: '6.8rem',
+    render: (item) => item.rank + '위'
+  },
+  {
+    title: '기업명',
+    width: '6.8rem',
+    render: (item) => <StartupTitle item={item} />
+  },
+  {
+    title: '기업 소개',
+    width: '21.3rem',
+    render: (item) => <Description item={item} />
+  },
+  {
+    title: '카테고리',
+    width: '15.4rem',
+    render: (item) => item.categoryName
+  },
+  {
+    title: '누적 투자 금액',
+    render: (item) => formatAmount(item.simInvest)
+  },
+  {
+    title: '매출액',
+    render: (item) => formatAmount(item.revenue)
+  },
+  {
+    title: '고용 인원',
+    render: (item) => formatAmount(item.employees)
   }
 ];

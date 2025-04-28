@@ -11,7 +11,8 @@ import Button from "../../Common/Button/Button";
 import { useCreateInvestment } from "../../../api/queries/investmentQuery";
 
 export default function CreateInvestModal({ onClose, startup }) {
-  const { id: startupId, image, name, categoryName } = startup || {};
+  const { id: startupId, image, name, categoryName, category } = startup || {};
+  const categoryTitle = categoryName ? categoryName : category?.category;
   const {
     values,
     errors,
@@ -58,6 +59,9 @@ export default function CreateInvestModal({ onClose, startup }) {
   const handleCloseCompleteModal = () => {
     setIsComplete(false);
     onClose();
+    if (window.location.pathname !== `/startup/${startupId}`) {
+      window.location.href = `/startup/${startupId}`;
+    }
   };
 
   return (
@@ -77,7 +81,7 @@ export default function CreateInvestModal({ onClose, startup }) {
           <div className={styles.startup}>
             <img src={image} alt={name} />
             <p className={styles.name}>{name}</p>
-            <p className={styles.category}>{categoryName}</p>
+            <p className={styles.category}>{categoryTitle}</p>
           </div>
         </div>
 
@@ -149,7 +153,12 @@ export default function CreateInvestModal({ onClose, startup }) {
         </div>
 
         <div className={styles.buttons}>
-          <Button styleType="solid" label="취소" onClick={onClose} />
+          <Button
+            styleType="solid"
+            color="var(--primary-orange)"
+            label="취소"
+            onClick={onClose}
+          />
           <Button type="submit" label="확인" isDisabled={isInputEmpty()} />
         </div>
         {error && <div className="form-error">{error}</div>}

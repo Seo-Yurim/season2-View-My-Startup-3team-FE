@@ -1,0 +1,106 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  padding: 1.2rem;
+  border-radius: 1.6rem;
+
+  gap: 4rem;
+
+  background-color: var(--secondary-black-300);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+}
+
+
+.title img {
+  cursor: pointer;
+}
+
+.sub-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list li button {
+  margin: 0;
+}
+
+.startups {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+/*스크롤바*/
+.wrap::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* 스크롤바 배경 */
+.wrap::-webkit-scrollbar-track {
+  background: var(--secondary-black-300);
+  border-radius: 1rem;
+  /* 트랙 둥글기 */
+}
+
+/* 스크롤바 핸들 */
+.wrap::-webkit-scrollbar-thumb {
+  background: var(--secondary-gray-200);
+  border-radius: 1rem;
+}
+
+/* 핸들 호버 시 색상 변화 */
+.wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-gray-400);
+}
+
+
+@media (max-width: 743px) {
+  .wrap {
+    padding: 1rem;
+
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .sub-title {
+    font-size: 1.6rem;
+  }
+
+}

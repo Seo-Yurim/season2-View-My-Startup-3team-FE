@@ -1,11 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import { getStartupDetail, getStartupList } from '../StartupService';
+import {
+  getRankedStartupList,
+  getStartupDetail,
+  getStartupList
+} from '../StartupService';
 
 // 전체 스타트업 목록 조회
 export const useGetStartupList = ({ page, limit, order, sort, keyword }) => {
   return useQuery({
     queryKey: ['startup-list', page, order, sort, keyword],
     queryFn: () => getStartupList({ page, limit, order, sort, keyword }),
+    keepPreviousData: true
+  });
+};
+
+// 특정 기업의 순위 목록 조회
+export const useGetRankedStartupList = (startupId, { order, sort }) => {
+  return useQuery({
+    queryKey: ['startup-list', startupId, order, sort],
+    queryFn: () => getRankedStartupList(startupId, { order, sort }),
     keepPreviousData: true
   });
 };

@@ -42,6 +42,7 @@ export default function Dropdown({ sortOptions, setSortOrder, order, sort }) {
         className={styles[`mobile-icon`]}
         src={arrowDown}
         onClick={() => setIsOpen(!isOpen)}
+        alt="mobile icon"
       />
       {isOpen && (
         <ul className={styles.options}>

@@ -10,6 +10,7 @@ import {
   INVESTMENT_TABLE_DATA,
 } from "../constant";
 import Loading from "../components/Common/Loading/Loading";
+import { Helmet } from "react-helmet-async";
 
 export default function InvestmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,10 +40,24 @@ export default function InvestmentPage() {
 
   return (
     <>
+      <Helmet>
+        <title>투자 현황 - View My Startup</title>
+        <meta name="description" content="기업들의 투자 현황을 확인보세요!" />
+        <meta property="og:title" content="투자 현황" />
+        <meta
+          property="og:description"
+          content="기업들의 투자 현황을 확인보세요!"
+        />
+        <meta
+          property="og:url"
+          content="http://view-my-startup-s3-fe.s3-website.ap-northeast-2.amazonaws.com/investment"
+        />
+      </Helmet>
+
       {isLoading && <Loading />}
       {isError && <div>Error..</div>}
       {!isLoading && !isError && (
-        <>
+        <main>
           <div className={styles.header}>
             <h1 className={styles.title}>투자 현황</h1>
             <Dropdown
@@ -58,7 +73,7 @@ export default function InvestmentPage() {
             totalPages={totalPages}
             onPageChange={(page) => setCurrentPage(page)}
           />
-        </>
+        </main>
       )}
     </>
   );

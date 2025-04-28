@@ -1,9 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./TableList.module.css";
 
-export default function TableList({ tableData, list }) {
+export default function TableList({
+  tableData,
+  list,
+  pageSize = 10,
+  isEmpty = true,
+  startupId,
+}) {
   const navigate = useNavigate();
-  const emptyRowCount = Math.max(0, 10 - list.length);
+  const emptyRowCount = Math.max(0, pageSize - list.length);
 
   return (
     <section className={styles.wrapper}>
@@ -23,6 +29,7 @@ export default function TableList({ tableData, list }) {
               key={item.id}
               onClick={() => navigate(`/startup/${item?.id}`)}
               style={{ cursor: "pointer" }}
+              className={startupId === item.id ? styles.selected : ""}
             >
               {tableData.map((col, colIndex) => (
                 <td key={colIndex}>
@@ -31,17 +38,17 @@ export default function TableList({ tableData, list }) {
               ))}
             </tr>
           ))}
-
-          {Array.from({ length: emptyRowCount }).map((_, idx) => (
-            <tr
-              key={`empty-${idx}`}
-              style={{ visibility: "hidden", borderBottom: "none" }}
-            >
-              {tableData.map((_, i) => (
-                <td key={i}>&nbsp;</td>
-              ))}
-            </tr>
-          ))}
+          {isEmpty &&
+            Array.from({ length: emptyRowCount }).map((_, idx) => (
+              <tr
+                key={`empty-${idx}`}
+                style={{ visibility: "hidden", borderBottom: "none" }}
+              >
+                {tableData.map((_, i) => (
+                  <td key={i}>&nbsp;</td>
+                ))}
+              </tr>
+            ))}
         </tbody>
       </table>
     </section>
