@@ -14,6 +14,7 @@ export default function CompareSelection({
 }) {
   const [isModal, setIsModal] = useState(false);
 
+  // 비교 기업 선택 취소
   const cancelCompareStartup = useCancelCompreStartups();
   const handleCancel = (startup) => {
     setCompareStartups((prev) =>

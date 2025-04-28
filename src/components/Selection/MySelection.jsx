@@ -17,6 +17,7 @@ export default function MySelection({
 }) {
   const [isModal, setIsModal] = useState(false);
 
+  // 내 기업 선택 취소
   const canceltMyStartup = useCancelMyStartup();
   const handleCancel = (startup) => {
     setIsComparisonDone(false);

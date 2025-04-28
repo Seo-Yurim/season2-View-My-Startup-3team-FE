@@ -36,23 +36,27 @@ export default function MyComparisonPage() {
     }
   }, [data]);
 
+  // 내 기업 모두 취소
   const canceltMyStartup = useCancelMyStartup();
   const handleCancelMyStartup = () => {
     canceltMyStartup.mutate({ id: selectedStartup.id, sessionId });
   };
 
+  // 비교 기업 모두 취소
   const cancelCompareStartup = useCancelCompreStartups();
   const handleCancelCompareStartup = () => {
     let compareSelectedIds = compareStartups.map((startup) => startup.id);
     cancelCompareStartup.mutate({ ids: compareSelectedIds, sessionId });
   };
 
+  // 전체 취소
   const handleReset = () => {
     handleCancelMyStartup();
     handleCancelCompareStartup();
     setIsComparisonDone(false);
   };
 
+  // 비교 결과 보여주기
   const handleShowResult = () => {
     setIsComparisonDone(true);
   };
