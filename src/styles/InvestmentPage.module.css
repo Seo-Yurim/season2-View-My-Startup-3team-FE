@@ -1,3 +1,10 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.6rem;
+}
+
 .header {
     display: flex;
     justify-content: space-between;

@@ -57,7 +57,7 @@ export default function InvestmentPage() {
       {isLoading && <Loading />}
       {isError && <div>Error..</div>}
       {!isLoading && !isError && (
-        <main>
+        <main className={styles.wrap}>
           <div className={styles.header}>
             <h1 className={styles.title}>투자 현황</h1>
             <Dropdown
