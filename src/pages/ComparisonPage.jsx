@@ -67,7 +67,7 @@ export default function ComparisonPage() {
         />
       )}
       {!isLoading && !isError && (
-        <main>
+        <main className={styles.wrap}>
           <div className={styles.header}>
             <h1>비교 현황</h1>
             <Dropdown
