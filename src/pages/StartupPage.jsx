@@ -16,7 +16,6 @@ import { Helmet } from "react-helmet-async";
 
 export default function StartupPage() {
   const [currentPage, setCurrentPage] = useState(1);
-
   const [params, setParams] = useState({
     order: "total_investment",
     sort: "desc",
@@ -66,7 +65,7 @@ export default function StartupPage() {
         />
         <meta
           property="og:url"
-          content="http://view-my-startup-s3-fe.s3-website.ap-northeast-2.amazonaws.com/startups"
+          content="http://view-my-startup-s3-fe.s3-website.ap-northeast-2.amazonaws.com/startup"
         />
       </Helmet>
 
