@@ -32,7 +32,7 @@ export default function CompareResult({ sessionId, startupId }) {
   };
 
   return (
-    <div className={styles.wrap}>
+    <section className={styles.wrap}>
       <div className={styles.header}>
         <h2 className={styles.title}>비교 결과 확인하기</h2>
         <Dropdown
@@ -48,6 +48,6 @@ export default function CompareResult({ sessionId, startupId }) {
         tableData={COMPARE_RESULT_TABLE_DATA}
         list={data}
       />
-    </div>
+    </section>
   );
 }

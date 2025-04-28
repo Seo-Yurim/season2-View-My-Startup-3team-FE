@@ -30,7 +30,7 @@ export default function RankResult({ startupId }) {
   };
 
   return (
-    <div className={styles.wrap}>
+    <section className={styles.wrap}>
       <div className={styles.header}>
         <h2 className={styles.title}>기업 순위 확인하기</h2>
         <Dropdown
@@ -46,6 +46,6 @@ export default function RankResult({ startupId }) {
         tableData={COMPARE_RANK_TABLE_DATA}
         list={rankedList}
       />
-    </div>
+    </section>
   );
 }
