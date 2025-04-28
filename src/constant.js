@@ -84,27 +84,32 @@ export const STARTUP_TABLE_DATA = [
   },
   {
     title: '기업 명',
+    width: '20rem',
     render: (item) => <StartupTitle item={item} />
   },
   {
     title: '기업 소개',
-    width: '30rem',
+    width: '23rem',
     render: (item) => <Description item={item} />
   },
   {
     title: '카테고리',
+    width: '15rem',
     render: (item) => item.categoryName
   },
   {
     title: '누적 투자 금액',
+    width: '15rem',
     render: (item) => formatAmount(item.simInvest)
   },
   {
     title: '매출액',
+    width: '15rem',
     render: (item) => formatAmount(item.revenue)
   },
   {
     title: '고용 인원',
+    width: '15rem',
     render: (item) => formatAmount(item.employees)
   }
 ];

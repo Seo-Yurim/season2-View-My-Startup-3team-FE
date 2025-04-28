@@ -20,10 +20,6 @@
     transition: background-color 0.3s ease;
 }
 
-.table th {
-    text-wrap: nowrap;
-}
-
 .table th,
 .table td {
     padding: 1rem;
@@ -57,11 +53,9 @@
     border-bottom: 0.1rem solid var(--secondary-gray-300);
 }
 
-.null {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.table thead,
+.table tbody tr td:not(:nth-of-type(3)) {
+    text-wrap: nowrap;
 }
 
 .table tbody .selected {
