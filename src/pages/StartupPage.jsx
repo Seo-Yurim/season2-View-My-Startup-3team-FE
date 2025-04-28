@@ -79,7 +79,7 @@ export default function StartupPage() {
         />
       )}
       {!isLoading && !isError && (
-        <main>
+        <main className={styles.wrap}>
           <div className={styles.header}>
             <h1>전체 스타트업 목록</h1>
             <div className={styles[`search-dropdown`]}>
