@@ -27,7 +27,9 @@ export default function TableList({
           {list.map((item) => (
             <tr
               key={item.id}
-              onClick={() => navigate(`/startup/${item?.id}`)}
+              onClick={() =>
+                navigate(`/startup/${item.startup ? item.startup.id : item.id}`)
+              }
               style={{ cursor: "pointer" }}
               className={startupId === item.id ? styles.selected : ""}
             >
