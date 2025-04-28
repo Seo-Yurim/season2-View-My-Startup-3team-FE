@@ -104,40 +104,40 @@ export default function MyComparisonPage() {
                   setCompareStartups={setCompareStartups}
                 />
               )}
+
+            {!isComparisonDone && (
+              <Button
+                width="20rem"
+                label="기업 비교하기"
+                onClick={handleShowResult}
+                isDisabled={
+                  selectedStartup && compareStartups.length ? false : true
+                }
+              />
+            )}
+
+            {isComparisonDone && (
+              <div className={styles.result}>
+                <CompareResult
+                  sessionId={sessionId}
+                  startupId={selectedStartup.id}
+                />
+                <RankResult startupId={selectedStartup.id} />
+                <Button
+                  label="나의 기업에 투자하기"
+                  width="20rem"
+                  onClick={() => setIsInvestModal(true)}
+                />
+              </div>
+            )}
+
+            {isInvestModal && (
+              <CreateInvestModal
+                onClose={() => setIsInvestModal(false)}
+                startup={selectedStartup}
+              />
+            )}
           </>
-        )}
-
-        {!isComparisonDone && (
-          <Button
-            width="20rem"
-            label="기업 비교하기"
-            onClick={handleShowResult}
-            isDisabled={
-              selectedStartup && compareStartups.length ? false : true
-            }
-          />
-        )}
-
-        {isComparisonDone && (
-          <div className={styles.result}>
-            <CompareResult
-              sessionId={sessionId}
-              startupId={selectedStartup.id}
-            />
-            <RankResult startupId={selectedStartup.id} />
-            <Button
-              label="나의 기업에 투자하기"
-              width="20rem"
-              onClick={() => setIsInvestModal(true)}
-            />
-          </div>
-        )}
-
-        {isInvestModal && (
-          <CreateInvestModal
-            onClose={() => setIsInvestModal(false)}
-            startup={selectedStartup}
-          />
         )}
       </main>
     </>

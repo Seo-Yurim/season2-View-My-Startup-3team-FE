@@ -29,7 +29,7 @@ export default function TableList({
               key={item.id}
               onClick={() => navigate(`/startup/${item?.id}`)}
               style={{ cursor: "pointer" }}
-              className={startupId == item.id ? styles.selected : ""}
+              className={startupId === item.id ? styles.selected : ""}
             >
               {tableData.map((col, colIndex) => (
                 <td key={colIndex}>
