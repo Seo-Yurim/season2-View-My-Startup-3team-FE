@@ -44,6 +44,11 @@
     text-align: center;
 }
 
+.menu li:hover {
+    color: white;
+    font-weight: 700;
+}
+
 .active {
     color: white;
     font-weight: 700;
@@ -123,10 +128,5 @@
     .menu li:nth-last-of-type(1) {
         border-bottom-right-radius: 1.6rem;
         border-bottom-left-radius: 1.6rem;
-    }
-
-    .menu li:hover {
-        color: white;
-        font-weight: 700;
     }
 }
