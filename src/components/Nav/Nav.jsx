@@ -5,17 +5,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
-function getLinkStyle({ isActive }) {
-  return {
-    color: isActive ? "#ffffff" : "",
-    fontWeight: isActive ? 700 : "",
-  };
-}
-
 export default function Nav() {
   const location = useLocation();
   const navigate = useNavigate();
-
   const [dropdownOopen, setDropdownOpen] = useState(false);
 
   const hanleLogoClick = () => {
@@ -51,7 +43,7 @@ export default function Nav() {
             <li>
               <NavLink
                 to="/startup"
-                style={getLinkStyle}
+                className={({ isActive }) => (isActive ? styles.active : "")}
                 onClick={() => setDropdownOpen(false)}
               >
                 전체 스타트업 목록
@@ -60,7 +52,7 @@ export default function Nav() {
             <li>
               <NavLink
                 to="/my-comparison"
-                style={getLinkStyle}
+                className={({ isActive }) => (isActive ? styles.active : "")}
                 onClick={() => setDropdownOpen(false)}
               >
                 나의 기업 비교
@@ -69,7 +61,7 @@ export default function Nav() {
             <li>
               <NavLink
                 to="/comparison"
-                style={getLinkStyle}
+                className={({ isActive }) => (isActive ? styles.active : "")}
                 onClick={() => setDropdownOpen(false)}
               >
                 비교 현황
@@ -78,7 +70,7 @@ export default function Nav() {
             <li>
               <NavLink
                 to="/investment"
-                style={getLinkStyle}
+                className={({ isActive }) => (isActive ? styles.active : "")}
                 onClick={() => setDropdownOpen(false)}
               >
                 투자 현황
