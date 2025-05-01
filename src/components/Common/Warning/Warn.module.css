@@ -1,33 +1,56 @@
-/* 기본 경고 스타일 */
 .warn {
-  text-align: center;
-  height: calc(100vh - 6rem - 60rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 70vh;
+  margin: auto;
+
+  gap: 3rem;
 }
 
 .warn .icon {
-  display: block;
-  margin: 25rem auto 0;
-  width: 8rem; /* 아이콘 크기를 고정된 큰 사이즈로 지정 */
-  height: 8rem; /* 아이콘 크기를 고정된 큰 사이즈로 지정 */
+  width: 8rem;
+  height: 8rem;
 }
 
-/* 모든 타이틀은 24px로 통일 */
+.warn .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0.8rem;
+}
+
 .warn .title {
-  margin: 2rem auto 1rem;
+  color: var(--error-color);
   font-size: 2.4rem;
   font-weight: 500;
 }
 
-/* 모든 설명 텍스트 스타일 통일 */
 .warn .description {
-  margin: 0;
-  font-weight: 500;
-  line-height: 1.61;
   color: var(--secondary-gray-200);
-  margin-bottom: 1rem;
   font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
 }
 
-.warn .errorTitle {
-  color: var(--error-color);
+@media (max-width: 743px) {
+  .warn {
+    height: 60vh;
+  }
+
+  .warn .icon {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .warn .title {
+    font-size: 1.6rem;
+  }
+
+  .warn .description {
+    font-size: 1.4rem;
+  }
 }

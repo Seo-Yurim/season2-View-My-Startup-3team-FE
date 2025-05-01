@@ -10,6 +10,7 @@ import {
   INVESTMENT_TABLE_DATA,
 } from "../constant";
 import Loading from "../components/Common/Loading/Loading";
+import Warn from "../components/Common/Warning/Warn";
 import { Helmet } from "react-helmet-async";
 
 export default function InvestmentPage() {
@@ -55,7 +56,12 @@ export default function InvestmentPage() {
       </Helmet>
 
       {isLoading && <Loading />}
-      {isError && <div>Error..</div>}
+      {isError && (
+        <Warn
+          title="오류 발생"
+          description="투자 현황 목록을 불러오는 중 오류가 발생했어요 😥"
+        />
+      )}
       {!isLoading && !isError && (
         <main className={styles.wrap}>
           <div className={styles.header}>
