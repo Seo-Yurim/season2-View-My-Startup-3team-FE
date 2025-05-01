@@ -39,8 +39,7 @@
 
 .default:hover:not(:disabled) {
     border: 0.1rem solid var(--primary-orange);
-    color: var(--primary-orange);
-    background-color: var(--primary-pink);
+    background-color: var(--primary-pink-200);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -63,7 +62,7 @@
 
 .solid:hover:not(:disabled),
 .square:hover:not(:disabled) {
-    background-color: var(--primary-pink);
+    background-color: var(--primary-pink-100);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
