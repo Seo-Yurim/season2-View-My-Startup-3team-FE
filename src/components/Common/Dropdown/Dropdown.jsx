@@ -49,7 +49,9 @@ export default function Dropdown({ sortOptions, setSortOrder, order, sort }) {
           {Object.keys(sortOptions).map((option, idx) => (
             <li
               key={idx}
-              className={styles.option}
+              className={`${styles.option} ${
+                option === currentLabel ? styles.current : ""
+              }`}
               onClick={() => handleOptionClick(option)}
             >
               {option}
