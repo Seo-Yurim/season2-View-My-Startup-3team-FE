@@ -5,14 +5,16 @@
     height: 4.8rem;
 
     margin: 0 auto;
-    padding: 1.2rem 2rem;
+    padding: 0 2rem;
 
+    cursor: pointer;
+}
+
+.button p {
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.909rem;
     text-wrap: nowrap;
-
-    cursor: pointer;
 }
 
 .content {
@@ -29,10 +31,17 @@
 
 .default {
     border-radius: 5rem;
-    border: none;
+    border: 0.1rem solid var(--primary-orange);
 
     color: white;
     background-color: var(--primary-orange);
+}
+
+.default:hover:not(:disabled) {
+    border: 0.1rem solid var(--primary-orange);
+    color: var(--primary-orange);
+    background-color: var(--primary-pink);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .solid {
@@ -52,11 +61,18 @@
     background-color: transparent;
 }
 
+.solid:hover:not(:disabled),
+.square:hover:not(:disabled) {
+    background-color: var(--primary-pink);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .button:disabled {
     cursor: default;
 }
 
 .default:disabled {
+    border: 0.2rem solid var(--secondary-gray-300);
     background-color: var(--secondary-gray-300);
 }
 
