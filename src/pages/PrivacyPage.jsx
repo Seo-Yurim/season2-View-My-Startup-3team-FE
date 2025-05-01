@@ -1,9 +1,68 @@
-import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
+import styles from "../styles/PrivacyPolicyPage.module.css";
 
 export default function PrivacyPage() {
   return (
-    <div>
-      <PrivacyPolicy />
-    </div>
-  )
+    <main className={styles.wrap}>
+      <h1>개인정보 처리방침</h1>
+      <section>
+        <h2>1. 개인정보의 수집 및 이용 목적</h2>
+        <p>
+          본 서비스는 로그인 기능 없이 사용자에게 맞춤형 서비스를 제공하기 위해
+          세션 아이디를 사용합니다.
+          <br />
+          세션 아이디는 브라우저를 닫지 않는 동안 기업 비교 기능을 이용할 수
+          있도록 저장됩니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. 수집하는 개인정보 항목</h2>
+        <p>
+          본 서비스는 개인정보를 직접적으로 수집하지 않으며, 사용자의 세션
+          아이디만을 저장합니다.
+          <br />이 세션 아이디는 브라우저를 닫는 순간 삭제되며, 사용자의
+          개인정보는 전혀 저장되지 않습니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. 개인정보의 보유 및 이용 기간</h2>
+        <p>
+          세션 아이디는 사용자가 브라우저를 닫기 전까지 유효하며, 이후 자동으로
+          삭제됩니다.
+          <br />
+          별도의 개인정보 저장 및 보유는 이루어지지 않습니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. 개인정보의 제3자 제공</h2>
+        <p>본 서비스는 수집된 개인정보를 제3자에게 제공하지 않습니다.</p>
+      </section>
+
+      <section>
+        <h2>5. 개인정보의 안전성 확보 조치</h2>
+        <p>
+          세션 정보는 브라우저 내에 임시로 저장되며, 외부 접근을 차단하여
+          안전하게 관리됩니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. 사용자 권리</h2>
+        <p>
+          사용자는 언제든지 브라우저를 종료하여 세션 정보를 삭제할 수 있으며,
+          서비스 이용을 중단할 수 있습니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. 기타</h2>
+        <p>
+          본 서비스는 로그인 없이 제공되는 만큼 개인정보와 관련된 추가적인
+          사항은 없으며, 관련된 사항은 본 방침을 따릅니다.
+        </p>
+      </section>
+    </main>
+  );
 }
