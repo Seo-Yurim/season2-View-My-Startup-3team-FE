@@ -79,7 +79,9 @@
 @media (max-width: 743px) {
     .button {
         height: 4rem;
+    }
 
+    .button p {
         font-size: 1.4rem;
         line-height: 1.671rem;
     }

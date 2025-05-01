@@ -72,9 +72,8 @@ export default function StartupPage() {
       {isLoading && <Loading />}
       {isError && (
         <Warn
-          variant="error"
           title="오류발생"
-          description={"데이터를 불러오는 중 오류가 발생했습니다."}
+          description={"스타트업 목록을 불러오는 중 오류가 발생했어요 😥"}
         />
       )}
       {!isLoading && !isError && (

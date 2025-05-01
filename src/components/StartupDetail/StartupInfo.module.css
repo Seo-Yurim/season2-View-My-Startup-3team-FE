@@ -66,11 +66,14 @@
   background-color: var(--secondary-black-200);
 }
 
+.info p {
+  text-wrap: nowrap;
+}
+
 .label {
   font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.909rem;
-  text-wrap: nowrap;
 }
 
 .value {

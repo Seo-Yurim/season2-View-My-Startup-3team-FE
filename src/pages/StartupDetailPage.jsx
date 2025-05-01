@@ -19,19 +19,7 @@ export default function StartupDetailPage() {
     limit: MAX_ITEMS,
   });
 
-  if (isError) {
-    return (
-      <Warn
-        variant="error"
-        title="오류발생"
-        description={"기업 상세 정보를 불러오는 데 실패했습니다."}
-      />
-    );
-  }
-
-  if (isLoading && !data) {
-    return <Loading />;
-  }
+  if (isLoading) return <Loading />;
 
   const investors = data?.mockInvestors;
   const startup = data?.startup;
@@ -57,15 +45,25 @@ export default function StartupDetailPage() {
         />
       </Helmet>
 
-      <main style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}>
-        <StartupInfo startup={startup} />
-        <InvestorList startup={startup} investors={investors.list} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
+      {isError && (
+        <Warn
+          title="오류 발생"
+          description="기업 상세 정보를 불러오는 중 오류가 발생했어요 😥"
         />
-      </main>
+      )}
+      {!isLoading && !isError && (
+        <main
+          style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
+        >
+          <StartupInfo startup={startup} />
+          <InvestorList startup={startup} investors={investors.list} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </main>
+      )}
     </>
   );
 }
